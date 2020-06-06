@@ -31,17 +31,8 @@ namespace GitDiffMargin.Core
                 if (_commands.IsGitRepository(_textDocument.FilePath, _originalPath))
                 {
                     _textDocument.FileActionOccurred += OnFileActionOccurred;
+                    // TODO: implement a mechanism that will monitor perforce submit and update diff after submit
 
-                    var repositoryDirectory = _commands.GetGitRepository(_textDocument.FilePath, _originalPath);
-                    if (repositoryDirectory != null)
-                    {
-                        _watcher = new FileSystemWatcher(repositoryDirectory);
-                        _watcher.Changed += HandleFileSystemChanged;
-                        _watcher.Created += HandleFileSystemChanged;
-                        _watcher.Deleted += HandleFileSystemChanged;
-                        _watcher.Renamed += HandleFileSystemChanged;
-                        _watcher.EnableRaisingEvents = true;
-                    }
                 }
             }
         }

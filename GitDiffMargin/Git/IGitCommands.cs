@@ -38,18 +38,5 @@ namespace GitDiffMargin.Git
         /// Git repository; otherwise, <see langword="false"/>.
         /// </returns>
         bool IsGitRepository(string path, string originalPath);
-
-        /// <summary>
-        /// Gets the absolute path to the folder containing the Git repository database for a specified path.
-        /// </summary>
-        /// <param name="path">The path to the file or directory within the repository.</param>
-        /// <param name="originalPath">The original path of the file in a source-controlled working copy.</param>
-        /// <returns>
-        /// <para>The absolute path to folder containing the repository database for <paramref name="path"/>.</para>
-        /// <para>-or-</para>
-        /// <para><see langword="null"/> if <paramref name="path"/> is not a path to a file or directory within a Git
-        /// repository.</para>
-        /// </returns>
-        string GetGitRepository(string path, string originalPath);
     }
 }

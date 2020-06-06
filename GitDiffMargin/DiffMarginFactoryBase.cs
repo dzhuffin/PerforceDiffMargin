@@ -51,8 +51,7 @@ namespace GitDiffMargin
             if (!GitCommands.TryGetOriginalPath(fullPath, out string originalPath))
                 return null;
 
-            var repositoryPath = GitCommands.GetGitRepository(fullPath, originalPath);
-            if (repositoryPath == null)
+            if (!GitCommands.IsGitRepository(fullPath, originalPath))
                 return null;
 
             return textViewHost.TextView.Properties.GetOrCreateSingletonProperty(

@@ -36,10 +36,5 @@ namespace GitDiffMargin.Git
         {
             throw new NotImplementedException();
         }
-
-        public string GetGitRepository(string path, string originalPath)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
