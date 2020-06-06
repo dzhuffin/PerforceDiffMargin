@@ -51,21 +51,5 @@ namespace GitDiffMargin.Git
         /// repository.</para>
         /// </returns>
         string GetGitRepository(string path, string originalPath);
-
-        /// <summary>
-        /// Gets the root of the working copy of the Git repository containing <paramref name="path"/>.
-        /// </summary>
-        /// <param name="path">The path to the file or directory.</param>
-        /// <param name="originalPath">The original path of the file in a source-controlled working copy.</param>
-        /// <returns>
-        /// <para>The absolute path to the root of the working copy of the Git repository containing
-        /// <paramref name="path"/>.</para>
-        /// <para>-or-</para>
-        /// <para><see langword="null"/> if the Git repository is bare.</para>
-        /// <para>-or-</para>
-        /// <para><see langword="null"/> if <paramref name="path"/> is not a path to a file or directory within the
-        /// working copy of a Git repository.</para>
-        /// </returns>
-        string GetGitWorkingCopy(string path, string originalPath);
     }
 }

@@ -297,26 +297,6 @@ namespace GitDiffMargin.Git
             return Repository.Discover(Path.GetFullPath(originalPath));
         }
 
-        /// <inheritdoc/>
-        public string GetGitWorkingCopy(string path, string originalPath)
-        {
-            if (originalPath == null)
-                throw new ArgumentNullException(nameof(originalPath));
-
-            var repositoryPath = GetGitRepository(path, originalPath);
-            if (repositoryPath == null)
-                return null;
-
-            using (Repository repository = new Repository(repositoryPath))
-            {
-                string workingDirectory = repository.Info.WorkingDirectory;
-                if (workingDirectory == null)
-                    return null;
-
-                return Path.GetFullPath(workingDirectory);
-            }
-        }
-
         static Encoding GetEncoding(string file)
         {
             if (File.Exists(file))
