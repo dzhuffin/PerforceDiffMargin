@@ -11,6 +11,8 @@ namespace GitDiffMargin.Git
     {
         private readonly SVsServiceProvider _serviceProvider;
 
+        // P4USER, P4PORT and P4CLIENT should be set
+
         [ImportingConstructor]
         public PerforceCommands(SVsServiceProvider serviceProvider)
         {

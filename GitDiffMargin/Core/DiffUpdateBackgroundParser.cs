@@ -32,7 +32,8 @@ namespace GitDiffMargin.Core
                 {
                     _textDocument.FileActionOccurred += OnFileActionOccurred;
                     // TODO: implement a mechanism that will monitor perforce submit and update diff after submit
-
+                    // Probably class which will check if current changelist already submitted using p4 describe every second can work as workaround
+                    // or "Custom Tool": https://stackoverflow.com/questions/16053503/perforce-client-side-pre-commit-hook
                 }
             }
         }

@@ -56,6 +56,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="p4api.net.x64">
+      <Version>2020.1.193.5313</Version>
+    </PackageReference>
     <PackageReference Include="Tvl.VisualStudio.Text.Utility.10" version="1.0.0" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <!-- This is a development-only dependency. -->
