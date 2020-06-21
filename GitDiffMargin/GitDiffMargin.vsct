@@ -6,7 +6,13 @@
         <CommandFlag>NotInTBList</CommandFlag>
         <Strings>
           <LocCanonicalName>GitDiffMarginToolbar</LocCanonicalName>
-          <ButtonText>Git Diff Margin</ButtonText>
+          <ButtonText>Git Diff Margin Navigation</ButtonText>
+        </Strings>
+      </Menu>
+      <Menu guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbar" type="Toolbar">
+        <Strings>
+          <LocCanonicalName>GitDiffMarginStaticToolbar</LocCanonicalName>
+          <ButtonText>Git Diff Margin Configuration</ButtonText>
         </Strings>
       </Menu>
     </Menus>
@@ -15,7 +21,38 @@
       <Group guid="GitDiffMarginCommand" id="GitDiffToolbarGroup" priority="0x0101">
         <Parent guid="GitDiffMarginCommand" id="GitDiffToolbar"/>
       </Group>
+      <Group guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup" priority="0x0102">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbar"/>
+      </Group>
     </Groups>
+
+    <Combos>
+      <!--<Combo guid="GitDiffMarginCommand" id="ChagelistComboBox" idCommandList="MyCommandListID" defaultWidth="20" priority="0x0107" type="DropDownCombo">
+        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <LocCanonicalName>GitDiffMargin.PreviousChange</LocCanonicalName>
+          <ButtonText>Previous</ButtonText>
+          <MenuText>Previous Change</MenuText>
+          <ToolTipText>Jump to Previous Change</ToolTipText>
+        </Strings>
+      </Combo>-->
+      <Combo guid="GitDiffMarginStaticToolbarCommand" id="ChangelistCombo" priority="0x0101" type="DynamicCombo" defaultWidth="90" idCommandList="ChangelistComboGetList">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+        <!--<CommandFlag>DynamicVisibility</CommandFlag>-->
+        <!--<CommandFlag>DefaultInvisible</CommandFlag>-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <!-- "Dynamic:" in the toolbar other is shit -->
+          <ButtonText>Changelist: </ButtonText>
+          <MenuText>Changelist Combo: </MenuText>
+          <ToolTipText>Choonse changelist to show diff</ToolTipText>
+          <LocCanonicalName>GitDiffMarginStaticToolbar.ChangelistCombo</LocCanonicalName>
+        </Strings>
+      </Combo>
+
+    </Combos>
+
 
     <Buttons>
       <Button guid="GitDiffMarginCommand" id="PreviousChange" priority="0x0101" type="Button">
@@ -112,6 +149,14 @@
 
       <IDSymbol name="GitDiffToolbar" value="100"/>
       <IDSymbol name="GitDiffToolbarGroup" value="150"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="GitDiffMarginStaticToolbarCommand" value="{6DA7066F-F38D-44D5-A52B-ADC48D274176}">
+      <IDSymbol name="ChangelistCombo" value="0" />
+      <IDSymbol name="ChangelistComboGetList" value="1" />
+
+      <IDSymbol name="GitDiffStaticToolbar" value="100"/>
+      <IDSymbol name="GitDiffStaticToolbarGroup" value="150"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidGitDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">

@@ -79,6 +79,7 @@
     <Compile Include="GitDiffMarginCommand.cs" />
     <Compile Include="GitDiffMarginCommandHandler.cs" />
     <Compile Include="GitDiffMarginPackage.cs" />
+    <Compile Include="GitDiffMarginStaticToolbarCommand.cs" />
     <Compile Include="Git\PerforceCommands.cs" />
     <Compile Include="Settings\DiffAdditionEditorFormatDefinition.cs" />
     <Compile Include="DiffMarginBase.cs" />
@@ -176,6 +177,7 @@
   <ItemGroup>
     <VSCTCompile Include="GitDiffMargin.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
     </VSCTCompile>
     <EmbeddedResource Include="VSPackage.resx">
       <ManifestResourceName>VSPackage</ManifestResourceName>

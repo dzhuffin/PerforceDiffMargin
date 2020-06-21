@@ -16,6 +16,7 @@ namespace GitDiffMargin
     internal sealed class GitDiffMarginCommandHandler : TextViewCommandFilter
     {
         internal const string GitDiffMarginCommandSet = "691DB887-6D82-46A9-B0AF-407C7F0E39BE";
+        internal const string GitDiffMarginStaticToolbarCommandSet = "6DA7066F-F38D-44D5-A52B-ADC48D274176";
 
         private readonly IVsEditorAdaptersFactoryService _editorAdaptersFactoryService;
         private readonly ITextView _textView;
@@ -107,7 +108,6 @@ namespace GitDiffMargin
                         else
                             return OLECMDF.OLECMDF_SUPPORTED;
                     }
-
                 case GitDiffMarginCommand.GitDiffToolbar:
                 case GitDiffMarginCommand.GitDiffToolbarGroup:
                     // these aren't actually commands, but IDs of the command bars and groups
