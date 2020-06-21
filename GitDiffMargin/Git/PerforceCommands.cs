@@ -18,14 +18,6 @@ namespace GitDiffMargin.Git
         private readonly Connection _connection;
         private readonly string _perforceRoot;
         private readonly bool _connected;
-        private readonly int _currentChangelistId;
-        private readonly Changelist _currentChangelist;
-
-        // TODO: which actions are supported???
-        private static readonly IList<FileAction> _supportedFileActions = new List<FileAction>() {
-            FileAction.Edit,
-            FileAction.EditFrom
-        };
 
         // P4USER, P4PORT and P4CLIENT should be set. Connection.GetP4EnvironmentVar can be used
 
@@ -34,6 +26,7 @@ namespace GitDiffMargin.Git
         {
             _serviceProvider = serviceProvider;
 
+            // TODO: how to work with 2 workspaces
             _server = new Server(new ServerAddress(""));
             _repository = new Repository(_server);
             _connection = _repository.Connection;
@@ -51,9 +44,6 @@ namespace GitDiffMargin.Git
                 return;
             }
 
-            var currentChangelistId = 451155; // TODO: move to taskbar/property
-            _currentChangelist = _repository.GetChangelist(currentChangelistId);
-
             _connected = true;
         }
 
@@ -62,22 +52,7 @@ namespace GitDiffMargin.Git
             if (!IsGitRepository(textDocument.FilePath, null))
                 yield break;
 
-            // Not pending chagelists are already submitted and no changes should be shown
-            if (!_currentChangelist.Pending)
-                yield break;
-
-
             var depotPath = GetPerforcePath(textDocument.FilePath);
-
-            var changelistFileMetaData = _currentChangelist.Files.FirstOrDefault(metaData => metaData.DepotPath.Path == depotPath);
-
-            // file is not found in the current changelist
-            if (changelistFileMetaData == null)
-                yield break;
-
-            // Unsupported actions check. For example in case new file is added diff can't be shown.
-            if (!_supportedFileActions.Contains(changelistFileMetaData.Action))
-                yield break;
 
             // get diff using p4 diff
             GetDepotFileDiffsCmdOptions opts = new GetDepotFileDiffsCmdOptions(GetDepotFileDiffsCmdFlags.Unified, 0, 0, "", "", "");
