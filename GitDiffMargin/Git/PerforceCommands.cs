@@ -55,18 +55,23 @@ namespace GitDiffMargin.Git
             var depotPath = GetPerforcePath(textDocument.FilePath);
 
             // get diff using p4 diff
-            GetDepotFileDiffsCmdOptions opts = new GetDepotFileDiffsCmdOptions(GetDepotFileDiffsCmdFlags.Unified, 0, 0, "", "", "");
+            GetDepotFileDiffsCmdOptions diffOptions = new GetDepotFileDiffsCmdOptions(GetDepotFileDiffsCmdFlags.Unified, 0, 0, "", "", "");
             IList<FileSpec> fsl = new List<FileSpec>();
             FileSpec fs = new FileSpec(new DepotPath(depotPath));
             fsl.Add(fs);
-            IList<FileDiff> target = _repository.GetFileDiffs(fsl, opts);
+            var diffRes = _repository.GetFileDiffs(fsl, diffOptions);
 
             // TODO: implement comparison with yellow changes not "file on disk" vs "file in depot" but "file in RAM in VS" vs "file in depot"
             //var content = GetCompleteContent(textDocument, snapshot);
             //if (content == null) yield break;
 
+            // TODO: check if file is in some changelist!! p4 opened -a filename
+            var tempFolderPath = "D:\\"; // TODO: google mb special temp for extension exists or common practice
+            var printOptions = new GetFileContentsCmdOptions(GetFileContentsCmdFlags.None, Path.Combine(tempFolderPath, depotPath.TrimStart('/').Replace('/', '\\')));
+            var printRes = _repository.GetFileContents(printOptions, fs);
+
             // TODO: after debugging remove the second and the third arguments from c'tor and next code, are they useless?
-            var gitDiffParser = new GitDiffParser(target[0].Diff, 0, false);
+            var gitDiffParser = new GitDiffParser(diffRes[0].Diff, 0, false);
             var hunkRangeInfos = gitDiffParser.Parse();
 
             foreach (var hunkRangeInfo in hunkRangeInfos)
