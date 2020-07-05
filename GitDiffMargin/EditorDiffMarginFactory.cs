@@ -18,7 +18,7 @@ namespace GitDiffMargin
     {
         public override IWpfTextViewMargin CreateMargin(IWpfTextViewHost textViewHost, IWpfTextViewMargin containerMargin)
         {
-            var marginCore = TryGetMarginCore(textViewHost);
+            var marginCore = TryGetMarginCore(textViewHost, true);
             if (marginCore == null)
                 return null;
 

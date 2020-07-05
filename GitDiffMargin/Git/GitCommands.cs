@@ -274,6 +274,11 @@ namespace GitDiffMargin.Git
             return GetGitRepository(path, ref originalPath);
         }
 
+        public string GetConnectionError()
+        {
+            return null;
+        }
+
         private string GetGitRepository(string path, ref string originalPath)
         {
             if (originalPath == null)

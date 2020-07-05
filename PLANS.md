@@ -7,3 +7,4 @@
 * implement settings. Use as an example "Open in VS Code" project. This option only or both this and buttons
 * Rename Git to Perforce for every item in project (think about separate brunch or local commits and git squash)
 * Remove useless code
+* Fix README.md

@@ -2,12 +2,14 @@
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Security;
+using System.Windows;
 using GitDiffMargin.Core;
 using GitDiffMargin.Git;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 using Path = System.IO.Path;
+using Microsoft.VisualStudio.PlatformUI;
 
 namespace GitDiffMargin
 {
@@ -27,7 +29,7 @@ namespace GitDiffMargin
 
         public abstract IWpfTextViewMargin CreateMargin(IWpfTextViewHost wpfTextViewHost, IWpfTextViewMargin marginContainer);
 
-        protected IMarginCore TryGetMarginCore(IWpfTextViewHost textViewHost)
+        protected IMarginCore TryGetMarginCore(IWpfTextViewHost textViewHost, bool showMessageBox = false)
         {
             MarginCore marginCore;
             if (textViewHost.TextView.Properties.TryGetProperty(typeof(MarginCore), out marginCore))
@@ -52,7 +54,14 @@ namespace GitDiffMargin
                 return null;
 
             if (!GitCommands.IsGitRepository(fullPath, originalPath))
+            {
+                if (showMessageBox)
+                {
+                    string error_msg = GitCommands.GetConnectionError();
+                    MessageBox.Show(String.IsNullOrEmpty(error_msg) ? "Unknown error PerforceDiffMargin plugin" : error_msg);
+                }
                 return null;
+            }
 
             return textViewHost.TextView.Properties.GetOrCreateSingletonProperty(
                         () => new MarginCore(textViewHost.TextView, originalPath, TextDocumentFactoryService, ClassificationFormatMapService, EditorFormatMapService, GitCommands));

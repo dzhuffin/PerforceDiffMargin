@@ -38,5 +38,7 @@ namespace GitDiffMargin.Git
         /// Git repository; otherwise, <see langword="false"/>.
         /// </returns>
         bool IsGitRepository(string path, string originalPath);
+
+        string GetConnectionError();
     }
 }
