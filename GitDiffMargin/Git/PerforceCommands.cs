@@ -13,19 +13,12 @@ namespace GitDiffMargin.Git
     public class PerforceCommands : IGitCommands
     {
         private readonly SVsServiceProvider _serviceProvider;
-        private readonly Server _server;
-        private readonly Repository _repository;
-        private readonly Connection _connection;
-        private readonly string _perforceRoot;
-        private readonly bool _connected;
-        private readonly int _currentChangelistId;
-        private readonly Changelist _currentChangelist;
-
-        // TODO: which actions are supported???
-        private static readonly IList<FileAction> _supportedFileActions = new List<FileAction>() {
-            FileAction.Edit,
-            FileAction.EditFrom
-        };
+        private Server _server;
+        private Repository _repository;
+        private Connection _connection;
+        private string _perforceRoot;
+        private bool _connected;
+        private string _last_error;
 
         // P4USER, P4PORT and P4CLIENT should be set. Connection.GetP4EnvironmentVar can be used
 
@@ -34,6 +27,11 @@ namespace GitDiffMargin.Git
         {
             _serviceProvider = serviceProvider;
 
+            RefreshConnection();
+        }
+
+        public void RefreshConnection()
+        {
             _server = new Server(new ServerAddress(""));
             _repository = new Repository(_server);
             _connection = _repository.Connection;
@@ -43,18 +41,53 @@ namespace GitDiffMargin.Git
             _connection.Client.Name = "";
             _connection.Connect(null);
 
-
             _perforceRoot = _repository.GetClientMetadata().Root;
-            if (_perforceRoot == null || !Directory.Exists(_perforceRoot))
+
+            var error_msg = String.Format("Can't establish Perforce connection. P4USER, P4PORT and P4CLIENT perforce environment varialbes should be set. Login should be done. Currently thier values are: \nP4USER={0} \nP4PORT={1} \nP4CLIENT={2}",
+                _connection.GetP4EnvironmentVar("P4USER"), _connection.GetP4EnvironmentVar("P4PORT"), _connection.GetP4EnvironmentVar("P4CLIENT"));
+
+            if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
             {
+                // TODO: close connection?
                 _connected = false;
+                _last_error = error_msg;
                 return;
             }
 
-            var currentChangelistId = 451155; // TODO: move to taskbar/property
-            _currentChangelist = _repository.GetChangelist(currentChangelistId);
+            if (_perforceRoot == null || !Directory.Exists(_perforceRoot))
+            {
+                _connected = false;
+                _last_error = error_msg + " \nError: \nWorkspace root is unset or doesn't exist";
+                return;
+            }
+
+            // check user:
+            // check ticket exists and valid. 
+            var cmd = new P4Command(_connection, "login", true, new string[] { "-s" }); // p4 login -s get status of the ticket
+            try
+            {
+                // P4Exception will be thrown in case user is not logged in
+                cmd.Run();
+            }
+            catch (P4Exception ex)
+            {
+                // TODO: close connection?
+                _connected = false;
+                _last_error = error_msg + " \nError: \n" + ex.CmdLine;
+                return;
+            }
+            // this ticket should belong to current user
+            var output = cmd.TextOutput;
+            if (cmd.TaggedOutput[0]["User"] != _connection.UserName)
+            {
+                // TODO: close connection?
+                _connected = false;
+                _last_error = error_msg + " \nError: \nP4USER variable don't correspond to logged in user.";
+                return;
+            }
 
             _connected = true;
+            _last_error = "";
         }
 
         public IEnumerable<HunkRangeInfo> GetGitDiffFor(ITextDocument textDocument, string originalPath, ITextSnapshot snapshot)
@@ -62,22 +95,7 @@ namespace GitDiffMargin.Git
             if (!IsGitRepository(textDocument.FilePath, null))
                 yield break;
 
-            // Not pending chagelists are already submitted and no changes should be shown
-            if (!_currentChangelist.Pending)
-                yield break;
-
-
             var depotPath = GetPerforcePath(textDocument.FilePath);
-
-            var changelistFileMetaData = _currentChangelist.Files.FirstOrDefault(metaData => metaData.DepotPath.Path == depotPath);
-
-            // file is not found in the current changelist
-            if (changelistFileMetaData == null)
-                yield break;
-
-            // Unsupported actions check. For example in case new file is added diff can't be shown.
-            if (!_supportedFileActions.Contains(changelistFileMetaData.Action))
-                yield break;
 
             // get diff using p4 diff
             GetDepotFileDiffsCmdOptions opts = new GetDepotFileDiffsCmdOptions(GetDepotFileDiffsCmdFlags.Unified, 0, 0, "", "", "");
@@ -132,6 +150,11 @@ namespace GitDiffMargin.Git
         public bool IsGitRepository(string path, string originalPath)
         {
             return _connected && IsFileUnderPerforceRoot(path);
+        }
+
+        public string GetConnectionError()
+        {
+            return _last_error;
         }
 
         private bool IsFileUnderPerforceRoot(string absolutePath)
