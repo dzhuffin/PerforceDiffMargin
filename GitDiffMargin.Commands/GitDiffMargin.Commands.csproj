@@ -46,8 +46,6 @@
     <PackageReference Include="StreamJsonRpc" Version="1.3.23" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangelistComboCommandArgs.cs" />
-    <Compile Include="ChangelistComboGetListCommandArgs.cs" />
     <Compile Include="CommandHandlerTextViewCreationListener.cs" />
     <Compile Include="CopyOldTextCommandArgs.cs" />
     <Compile Include="CopyOldTextCommandHandler.cs" />

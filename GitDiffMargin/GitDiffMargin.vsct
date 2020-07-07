@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable">
+  <Include href="KnownImageIds.vsct"/>
+
   <Commands package="GitDiffMarginPackage">
     <Menus>
       <Menu guid="GitDiffMarginCommand" id="GitDiffToolbar" type="Toolbar">
@@ -25,34 +27,6 @@
         <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbar"/>
       </Group>
     </Groups>
-
-    <Combos>
-      <!--<Combo guid="GitDiffMarginCommand" id="ChagelistComboBox" idCommandList="MyCommandListID" defaultWidth="20" priority="0x0107" type="DropDownCombo">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <LocCanonicalName>GitDiffMargin.PreviousChange</LocCanonicalName>
-          <ButtonText>Previous</ButtonText>
-          <MenuText>Previous Change</MenuText>
-          <ToolTipText>Jump to Previous Change</ToolTipText>
-        </Strings>
-      </Combo>-->
-      <Combo guid="GitDiffMarginStaticToolbarCommand" id="ChangelistCombo" priority="0x0101" type="DynamicCombo" defaultWidth="90" idCommandList="ChangelistComboGetList">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
-        <!--<CommandFlag>DynamicVisibility</CommandFlag>-->
-        <!--<CommandFlag>DefaultInvisible</CommandFlag>-->
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <!-- "Dynamic:" in the toolbar other is shit -->
-          <ButtonText>Changelist: </ButtonText>
-          <MenuText>Changelist Combo: </MenuText>
-          <ToolTipText>Choonse changelist to show diff</ToolTipText>
-          <LocCanonicalName>GitDiffMarginStaticToolbar.ChangelistCombo</LocCanonicalName>
-        </Strings>
-      </Combo>
-
-    </Combos>
-
 
     <Buttons>
       <Button guid="GitDiffMarginCommand" id="PreviousChange" priority="0x0101" type="Button">
@@ -132,6 +106,67 @@
           <ToolTipText>Show popup</ToolTipText>
         </Strings>
       </Button>
+
+      <Button guid="GitDiffMarginStaticToolbarCommand" id="Refresh" priority="0x0101" type="Button">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="AddConnection"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <LocCanonicalName>GitDiffMargin.Refresh</LocCanonicalName>
+          <ButtonText>Refresh</ButtonText>
+          <MenuText>Refresh P4 Connection</MenuText>
+          <ToolTipText>Refresh connection to Perforce</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="GitDiffMarginStaticToolbarCommand" id="Disconnect" priority="0x0102" type="Button">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="Disconnect"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <LocCanonicalName>GitDiffMargin.Disconnect</LocCanonicalName>
+          <ButtonText>Disconnect</ButtonText>
+          <MenuText>Disconnect P4 Connection</MenuText>
+          <ToolTipText>Disconnect connection to Perforce</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="GitDiffMarginStaticToolbarCommand" id="SetP4Port" priority="0x0103" type="Button">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="URLInputBox"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <LocCanonicalName>GitDiffMargin.SetP4Port</LocCanonicalName>
+          <ButtonText>Set P4PORT</ButtonText>
+          <MenuText>Set P4PORT</MenuText>
+          <ToolTipText>Set P4PORT environment variable. Address to server</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="GitDiffMarginStaticToolbarCommand" id="SetUser" priority="0x0104" type="Button">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="User"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <LocCanonicalName>GitDiffMargin.SetUser</LocCanonicalName>
+          <ButtonText>Set User</ButtonText>
+          <MenuText>Set User</MenuText>
+          <ToolTipText>Set P4USER environment variable. Your username</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="GitDiffMarginStaticToolbarCommand" id="SetWorkspace" priority="0x0105" type="Button">
+        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="FolderClosed"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <LocCanonicalName>GitDiffMargin.SetWorkspace</LocCanonicalName>
+          <ButtonText>Set Workspace</ButtonText>
+          <MenuText>Set Workspace</MenuText>
+          <ToolTipText>Set P4CLIENT environment variable. Your workspace name</ToolTipText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
   </Commands>
@@ -152,8 +187,11 @@
     </GuidSymbol>
 
     <GuidSymbol name="GitDiffMarginStaticToolbarCommand" value="{6DA7066F-F38D-44D5-A52B-ADC48D274176}">
-      <IDSymbol name="ChangelistCombo" value="0" />
-      <IDSymbol name="ChangelistComboGetList" value="1" />
+      <IDSymbol name="Refresh" value="0" />
+      <IDSymbol name="Disconnect" value="1" />
+      <IDSymbol name="SetP4Port" value="2" />
+      <IDSymbol name="SetUser" value="3" />
+      <IDSymbol name="SetWorkspace" value="4" />
 
       <IDSymbol name="GitDiffStaticToolbar" value="100"/>
       <IDSymbol name="GitDiffStaticToolbarGroup" value="150"/>
