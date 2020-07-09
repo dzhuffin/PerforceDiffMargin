@@ -15,7 +15,6 @@ namespace GitDiffMargin.Core
 
         IWpfTextView TextView { get; }
         string OriginalPath { get; }
-        IGitCommands GitCommands { get; }
         FontFamily FontFamily { get; }
         FontStretch FontStretch { get; }
         FontStyle FontStyle { get; }

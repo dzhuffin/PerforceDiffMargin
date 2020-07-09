@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Security;
-using System.Windows;
 using GitDiffMargin.Core;
 using GitDiffMargin.Git;
 using Microsoft.VisualStudio.Text;
@@ -24,12 +23,9 @@ namespace GitDiffMargin
         [Import]
         internal IEditorFormatMapService EditorFormatMapService { get; private set; }
 
-        [Import]
-        internal IGitCommands GitCommands { get; private set; }
-
         public abstract IWpfTextViewMargin CreateMargin(IWpfTextViewHost wpfTextViewHost, IWpfTextViewMargin marginContainer);
 
-        protected IMarginCore TryGetMarginCore(IWpfTextViewHost textViewHost, bool showMessageBox = false)
+        protected IMarginCore TryGetMarginCore(IWpfTextViewHost textViewHost)
         {
             MarginCore marginCore;
             if (textViewHost.TextView.Properties.TryGetProperty(typeof(MarginCore), out marginCore))
@@ -50,21 +46,16 @@ namespace GitDiffMargin
             if (fullPath == null)
                 return null;
 
-            if (!GitCommands.TryGetOriginalPath(fullPath, out string originalPath))
+            if (!PerforceCommands.getInstance().TryGetOriginalPath(fullPath, out string originalPath))
                 return null;
 
-            if (!GitCommands.IsGitRepository(fullPath, originalPath))
+            if (!PerforceCommands.getInstance().IsGitRepository(fullPath, originalPath))
             {
-                if (showMessageBox)
-                {
-                    string error_msg = GitCommands.GetConnectionError();
-                    MessageBox.Show(String.IsNullOrEmpty(error_msg) ? "Unknown error PerforceDiffMargin plugin" : error_msg);
-                }
                 return null;
             }
 
             return textViewHost.TextView.Properties.GetOrCreateSingletonProperty(
-                        () => new MarginCore(textViewHost.TextView, originalPath, TextDocumentFactoryService, ClassificationFormatMapService, EditorFormatMapService, GitCommands));
+                        () => new MarginCore(textViewHost.TextView, originalPath, TextDocumentFactoryService, ClassificationFormatMapService, EditorFormatMapService));
         }
 
         private static string GetFullPath(string filename)

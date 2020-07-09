@@ -223,7 +223,7 @@ namespace GitDiffMargin.ViewModel
             var document = MarginCore.GetTextDocument();
             if (document != null)
             {
-                MarginCore.GitCommands.StartExternalDiff(document, MarginCore.OriginalPath);
+                PerforceCommands.getInstance().StartExternalDiff(document, MarginCore.OriginalPath);
             } 
         }
 

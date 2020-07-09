@@ -20,7 +20,7 @@ using SVsSolution = Microsoft.VisualStudio.Shell.Interop.SVsSolution;
 
 namespace GitDiffMargin.Git
 {
-    [Export(typeof(IGitCommands))]
+    //[Export(typeof(IGitCommands))]
     public class GitCommands : IGitCommands
     {
         private readonly SVsServiceProvider _serviceProvider;

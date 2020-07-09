@@ -13,22 +13,20 @@ namespace GitDiffMargin.Core
     public class DiffUpdateBackgroundParser : BackgroundParser
     {
         private readonly FileSystemWatcher _watcher;
-        private readonly IGitCommands _commands;
         private readonly ITextDocument _textDocument;
         private readonly ITextBuffer _documentBuffer;
         private readonly string _originalPath;
 
-        internal DiffUpdateBackgroundParser(ITextBuffer textBuffer, ITextBuffer documentBuffer, string originalPath, TaskScheduler taskScheduler, ITextDocumentFactoryService textDocumentFactoryService, IGitCommands commands)
+        internal DiffUpdateBackgroundParser(ITextBuffer textBuffer, ITextBuffer documentBuffer, string originalPath, TaskScheduler taskScheduler, ITextDocumentFactoryService textDocumentFactoryService)
             : base(textBuffer, taskScheduler, textDocumentFactoryService)
         {
             _documentBuffer = documentBuffer;
-            _commands = commands;
             ReparseDelay = TimeSpan.FromMilliseconds(500);
 
             if (TextDocumentFactoryService.TryGetTextDocument(_documentBuffer, out _textDocument))
             {
                 _originalPath = originalPath;
-                if (_commands.IsGitRepository(_textDocument.FilePath, _originalPath))
+                if (PerforceCommands.getInstance().IsGitRepository(_textDocument.FilePath, _originalPath))
                 {
                     _textDocument.FileActionOccurred += OnFileActionOccurred;
                     // TODO: implement a mechanism that will monitor perforce submit and update diff after submit
@@ -94,7 +92,7 @@ namespace GitDiffMargin.Core
                 ITextDocument textDocument;
                 if (!TextDocumentFactoryService.TryGetTextDocument(_documentBuffer, out textDocument)) return;
 
-                var diff = _commands.GetGitDiffFor(textDocument, _originalPath, snapshot);
+                var diff = PerforceCommands.getInstance().GetGitDiffFor(textDocument, _originalPath, snapshot);
                 var result = new DiffParseResultEventArgs(snapshot, stopwatch.Elapsed, diff.ToList());
                 OnParseComplete(result);
             }

@@ -9,10 +9,11 @@ using Perforce.P4;
 
 namespace GitDiffMargin.Git
 {
-    //[Export(typeof(IGitCommands))]
     public class PerforceCommands : IGitCommands
     {
-        private readonly SVsServiceProvider _serviceProvider;
+        private static PerforceCommands instance = null;
+
+        private readonly IServiceProvider _serviceProvider;
         private Server _server;
         private Repository _repository;
         private Connection _connection;
@@ -20,10 +21,16 @@ namespace GitDiffMargin.Git
         private bool _connected;
         private string _last_error;
 
+        public static PerforceCommands getInstance(IServiceProvider serviceProvider = null)
+        {
+            if (instance == null)
+                instance = new PerforceCommands(serviceProvider);
+            return instance;
+        }
+
         // P4USER, P4PORT and P4CLIENT should be set. Connection.GetP4EnvironmentVar can be used
 
-        [ImportingConstructor]
-        public PerforceCommands(SVsServiceProvider serviceProvider)
+        private PerforceCommands(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
 
@@ -32,8 +39,16 @@ namespace GitDiffMargin.Git
 
         public void RefreshConnection()
         {
-            _server = new Server(new ServerAddress(""));
-            _repository = new Repository(_server);
+            Disconnect();
+            if (_server == null)
+            {
+                _server = new Server(new ServerAddress(""));
+            }
+
+            if (_repository == null)
+            {
+                _repository = new Repository(_server);
+            }
             _connection = _repository.Connection;
 
             _connection.UserName = "";
@@ -49,14 +64,14 @@ namespace GitDiffMargin.Git
             if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
             {
                 // TODO: close connection?
-                _connected = false;
+                Disconnect();
                 _last_error = error_msg;
                 return;
             }
 
             if (_perforceRoot == null || !Directory.Exists(_perforceRoot))
             {
-                _connected = false;
+                Disconnect();
                 _last_error = error_msg + " \nError: \nWorkspace root is unset or doesn't exist";
                 return;
             }
@@ -72,7 +87,7 @@ namespace GitDiffMargin.Git
             catch (P4Exception ex)
             {
                 // TODO: close connection?
-                _connected = false;
+                Disconnect();
                 _last_error = error_msg + " \nError: \n" + ex.CmdLine;
                 return;
             }
@@ -81,13 +96,30 @@ namespace GitDiffMargin.Git
             if (cmd.TaggedOutput[0]["User"] != _connection.UserName)
             {
                 // TODO: close connection?
-                _connected = false;
+                Disconnect();
                 _last_error = error_msg + " \nError: \nP4USER variable don't correspond to logged in user.";
                 return;
             }
 
             _connected = true;
             _last_error = "";
+        }
+
+        public void Disconnect()
+        {
+            _connected = false;
+            if (_connection != null)
+            {
+                _connection.Disconnect();
+            }
+        }
+
+        public bool Connected
+        {
+            get
+            {
+                return _connected;
+            }
         }
 
         public IEnumerable<HunkRangeInfo> GetGitDiffFor(ITextDocument textDocument, string originalPath, ITextSnapshot snapshot)
@@ -97,12 +129,21 @@ namespace GitDiffMargin.Git
 
             var depotPath = GetPerforcePath(textDocument.FilePath);
 
-            // get diff using p4 diff
-            GetDepotFileDiffsCmdOptions opts = new GetDepotFileDiffsCmdOptions(GetDepotFileDiffsCmdFlags.Unified, 0, 0, "", "", "");
-            IList<FileSpec> fsl = new List<FileSpec>();
-            FileSpec fs = new FileSpec(new DepotPath(depotPath));
-            fsl.Add(fs);
-            IList<FileDiff> target = _repository.GetFileDiffs(fsl, opts);
+            IList<FileDiff> target = null;
+            try
+            {
+                // get diff using p4 diff
+                GetDepotFileDiffsCmdOptions opts = new GetDepotFileDiffsCmdOptions(GetDepotFileDiffsCmdFlags.Unified, 0, 0, "", "", "");
+                IList<FileSpec> fsl = new List<FileSpec>();
+                FileSpec fs = new FileSpec(new DepotPath(depotPath));
+                fsl.Add(fs);
+                target = _repository.GetFileDiffs(fsl, opts);
+            }
+            catch (P4Exception ex)
+            {
+                Disconnect();
+                yield break;
+            }
 
             // TODO: implement comparison with yellow changes not "file on disk" vs "file in depot" but "file in RAM in VS" vs "file in depot"
             //var content = GetCompleteContent(textDocument, snapshot);
