@@ -198,6 +198,11 @@ namespace GitDiffMargin.Git
             return _last_error;
         }
 
+        public string GetP4EnvironmentVar(string varName)
+        {
+            return _connection == null ? null : _connection.GetP4EnvironmentVar(varName);
+        }
+
         private bool IsFileUnderPerforceRoot(string absolutePath)
         {
             return absolutePath.StartsWith(_perforceRoot, StringComparison.OrdinalIgnoreCase);

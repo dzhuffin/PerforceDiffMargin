@@ -119,6 +119,9 @@
       <DependentUpon>ScrollDiffMarginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\WeakReference.cs" />
+    <Compile Include="View\SettingsDialog.xaml.cs">
+      <DependentUpon>SettingsDialog.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(NuGetPackageRoot)\libgit2sharp.nativebinaries\2.0.306\runtimes\win-x86\native\git2-106a5f2.dll">
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ScrollDiffMarginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

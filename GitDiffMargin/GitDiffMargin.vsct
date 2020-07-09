@@ -131,44 +131,18 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginStaticToolbarCommand" id="SetP4Port" priority="0x0103" type="Button">
+      <Button guid="GitDiffMarginStaticToolbarCommand" id="Settings" priority="0x0103" type="Button">
         <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
-        <Icon guid="ImageCatalogGuid" id="URLInputBox"/>
+        <Icon guid="ImageCatalogGuid" id="Settings"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.SetP4Port</LocCanonicalName>
-          <ButtonText>Set P4PORT</ButtonText>
-          <MenuText>Set P4PORT</MenuText>
-          <ToolTipText>Set P4PORT environment variable. Address to server</ToolTipText>
+          <LocCanonicalName>GitDiffMargin.Settings</LocCanonicalName>
+          <ButtonText>Settings</ButtonText>
+          <MenuText>Perforce connection Settings</MenuText>
+          <ToolTipText>Set P4 environment variables and login.</ToolTipText>
         </Strings>
       </Button>
-
-      <Button guid="GitDiffMarginStaticToolbarCommand" id="SetUser" priority="0x0104" type="Button">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
-        <Icon guid="ImageCatalogGuid" id="User"/>
-        <CommandFlag>IconIsMoniker</CommandFlag>
-        <Strings>
-          <LocCanonicalName>GitDiffMargin.SetUser</LocCanonicalName>
-          <ButtonText>Set User</ButtonText>
-          <MenuText>Set User</MenuText>
-          <ToolTipText>Set P4USER environment variable. Your username</ToolTipText>
-        </Strings>
-      </Button>
-
-      <Button guid="GitDiffMarginStaticToolbarCommand" id="SetWorkspace" priority="0x0105" type="Button">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
-        <Icon guid="ImageCatalogGuid" id="FolderClosed"/>
-        <CommandFlag>IconIsMoniker</CommandFlag>
-        <Strings>
-          <LocCanonicalName>GitDiffMargin.SetWorkspace</LocCanonicalName>
-          <ButtonText>Set Workspace</ButtonText>
-          <MenuText>Set Workspace</MenuText>
-          <ToolTipText>Set P4CLIENT environment variable. Your workspace name</ToolTipText>
-        </Strings>
-      </Button>
-
     </Buttons>
-
   </Commands>
 
   <Symbols>
@@ -189,9 +163,7 @@
     <GuidSymbol name="GitDiffMarginStaticToolbarCommand" value="{6DA7066F-F38D-44D5-A52B-ADC48D274176}">
       <IDSymbol name="Refresh" value="0" />
       <IDSymbol name="Disconnect" value="1" />
-      <IDSymbol name="SetP4Port" value="2" />
-      <IDSymbol name="SetUser" value="3" />
-      <IDSymbol name="SetWorkspace" value="4" />
+      <IDSymbol name="Settings" value="2" />
 
       <IDSymbol name="GitDiffStaticToolbar" value="100"/>
       <IDSymbol name="GitDiffStaticToolbarGroup" value="150"/>

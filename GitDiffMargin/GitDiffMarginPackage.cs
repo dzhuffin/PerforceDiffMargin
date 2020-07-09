@@ -10,6 +10,8 @@ namespace GitDiffMargin
     using Microsoft.VisualStudio.Shell;
     using System.Windows;
     using Microsoft.VisualStudio.Shell.Interop;
+    using GitDiffMargin.View;
+    using Microsoft.Internal.VisualStudio.PlatformUI;
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [Guid("F82C1EF6-3B52-425E-BC28-4934E6073A32")]
@@ -33,10 +35,25 @@ namespace GitDiffMargin
                 CommandID disconnectCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)GitDiffMarginStaticToolbarCommand.Disconnect);
                 OleMenuCommand disconnectCommand = new OleMenuCommand(new EventHandler(OnDisconnect), disconnectCommandID);
                 mcs.AddCommand(disconnectCommand);
+
+                CommandID settingsCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)GitDiffMarginStaticToolbarCommand.Settings);
+                OleMenuCommand settingsCommand = new OleMenuCommand(new EventHandler(OnSettings), settingsCommandID);
+                mcs.AddCommand(settingsCommand);
             }
 
             // Initialize PerforceCommands
             PerforceCommands.getInstance(this);
+        }
+
+        private void OnSettings(object sender, EventArgs e)
+        {
+            IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
+            var myDialog = new SettingsDialog();
+
+            myDialog.HasMinimizeButton = false;
+            myDialog.HasMaximizeButton = true;
+            myDialog.Height = 300; // TODO: why window doesn't work without this????
+            myDialog.ShowModal();
         }
 
         private void OnRefresh(object sender, EventArgs e)

@@ -7,9 +7,7 @@
     {
         Refresh = 0,
         Disconnect = 1,
-        SetP4Port = 2,
-        SetUser = 3,
-        SetWorkspace = 4,
+        Settings = 2,
 
         GitDiffStaticToolbar = 100,
         GitDiffStaticToolbarGroup = 150,
