@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GitDiffMargin.Git;
 using Microsoft.VisualStudio.PlatformUI;
 
 namespace GitDiffMargin.View
@@ -21,9 +22,56 @@ namespace GitDiffMargin.View
     /// </summary>
     public partial class SettingsDialog : DialogWindow
     {
+        string _initialPort;
+        string _initialClient;
+        string _initialUser;
+
         public SettingsDialog()
         {
             InitializeComponent();
+
+            var commands = PerforceCommands.getInstance();
+
+            _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
+            _initialClient = ClientTextBox.Text = commands.GetP4EnvironmentVar("P4CLIENT");
+            _initialUser = UserTextBox.Text = commands.GetP4EnvironmentVar("P4USER");
+        }
+
+        private void LoginClick(object sender, RoutedEventArgs e)
+        {
+            ResultLabel.Content = "";
+
+            var commands = PerforceCommands.getInstance();
+
+            if (_initialUser != PortTextBox.Text)
+                commands.SetP4EnvironmentVar("P4PORT", PortTextBox.Text);
+
+            if (_initialUser != ClientTextBox.Text)
+                commands.SetP4EnvironmentVar("P4CLIENT", ClientTextBox.Text);
+
+            if (_initialUser != UserTextBox.Text)
+                commands.SetP4EnvironmentVar("P4USER", UserTextBox.Text);
+
+            string password = PasswordTextBox.Password;
+            if (!String.IsNullOrEmpty(password))
+            {
+                if (commands.Login(password))
+                {
+                    commands.RefreshConnection();
+                    ResultLabel.Foreground = Brushes.Black;
+                    ResultLabel.Content = "Logged in successfully";
+                }
+                else
+                {
+                    ResultLabel.Foreground = Brushes.Red;
+                    ResultLabel.Content = "An error occured: " + PerforceCommands.getInstance().GetConnectionError();
+                }
+            }
+            else
+            {
+                ResultLabel.Foreground = Brushes.Red;
+                ResultLabel.Content = "Please, enter the password";
+            }
         }
     }
 }

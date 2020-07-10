@@ -52,7 +52,6 @@ namespace GitDiffMargin
 
             myDialog.HasMinimizeButton = false;
             myDialog.HasMaximizeButton = true;
-            myDialog.Height = 300; // TODO: why window doesn't work without this????
             myDialog.ShowModal();
         }
 

@@ -39,6 +39,8 @@ namespace GitDiffMargin.Core
             _parser.ParseComplete += HandleParseComplete;
             _parser.RequestParse(false);
 
+            PerforceCommands.getInstance().ConnectionChanged += (sender, e) => _parser.RequestParse(true);
+
             _textView.Closed += (sender, e) =>
             {
                 _editorFormatMap.FormatMappingChanged -= HandleFormatMappingChanged;

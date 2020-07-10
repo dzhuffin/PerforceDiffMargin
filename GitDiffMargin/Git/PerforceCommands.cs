@@ -11,6 +11,8 @@ namespace GitDiffMargin.Git
 {
     public class PerforceCommands : IGitCommands
     {
+        public event EventHandler ConnectionChanged;
+
         private static PerforceCommands instance = null;
 
         private readonly IServiceProvider _serviceProvider;
@@ -37,9 +39,8 @@ namespace GitDiffMargin.Git
             RefreshConnection();
         }
 
-        public void RefreshConnection()
+        private void Init()
         {
-            Disconnect();
             if (_server == null)
             {
                 _server = new Server(new ServerAddress(""));
@@ -51,10 +52,49 @@ namespace GitDiffMargin.Git
             }
             _connection = _repository.Connection;
 
-            _connection.UserName = "";
-            _connection.Client = new Client();
-            _connection.Client.Name = "";
-            _connection.Connect(null);
+            if (!_connection.connectionEstablished())
+            {
+                _connection.UserName = "";
+                _connection.Client = new Client();
+                _connection.Client.Name = "";
+                _connection.Connect(null);
+            }
+        }
+
+        public bool Login(string password)
+        {
+            bool res = false;
+            DisconnectImpl();
+            Init();
+
+            try
+            {
+                _connection.Login(password);
+                res = true;
+            }
+            catch (P4Exception ex)
+            {
+                _last_error = ex.Message;
+            }
+            return res;
+        }
+
+        public void RefreshConnection()
+        {
+            RefreshConnectionImpl();
+            ConnectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void Disconnect()
+        {
+            DisconnectImpl();
+            ConnectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void RefreshConnectionImpl()
+        {
+            DisconnectImpl();
+            Init();
 
             _perforceRoot = _repository.GetClientMetadata().Root;
 
@@ -64,14 +104,14 @@ namespace GitDiffMargin.Git
             if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
             {
                 // TODO: close connection?
-                Disconnect();
+                DisconnectImpl();
                 _last_error = error_msg;
                 return;
             }
 
             if (_perforceRoot == null || !Directory.Exists(_perforceRoot))
             {
-                Disconnect();
+                DisconnectImpl();
                 _last_error = error_msg + " \nError: \nWorkspace root is unset or doesn't exist";
                 return;
             }
@@ -87,8 +127,8 @@ namespace GitDiffMargin.Git
             catch (P4Exception ex)
             {
                 // TODO: close connection?
-                Disconnect();
-                _last_error = error_msg + " \nError: \n" + ex.CmdLine;
+                DisconnectImpl();
+                _last_error = error_msg + " \nError: \n" + ex.Message;
                 return;
             }
             // this ticket should belong to current user
@@ -96,7 +136,7 @@ namespace GitDiffMargin.Git
             if (cmd.TaggedOutput[0]["User"] != _connection.UserName)
             {
                 // TODO: close connection?
-                Disconnect();
+                DisconnectImpl();
                 _last_error = error_msg + " \nError: \nP4USER variable don't correspond to logged in user.";
                 return;
             }
@@ -105,7 +145,7 @@ namespace GitDiffMargin.Git
             _last_error = "";
         }
 
-        public void Disconnect()
+        public void DisconnectImpl()
         {
             _connected = false;
             if (_connection != null)
@@ -141,7 +181,7 @@ namespace GitDiffMargin.Git
             }
             catch (P4Exception ex)
             {
-                Disconnect();
+                DisconnectImpl();
                 yield break;
             }
 
@@ -200,6 +240,7 @@ namespace GitDiffMargin.Git
 
         public string GetP4EnvironmentVar(string varName)
         {
+            Init();
             string res = null;
 
             try
@@ -217,6 +258,7 @@ namespace GitDiffMargin.Git
 
         public bool SetP4EnvironmentVar(string varName, string val)
         {
+            Init();
             bool res = false;
 
             try
