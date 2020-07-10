@@ -6,6 +6,7 @@ using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Perforce.P4;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace GitDiffMargin.Git
 {
@@ -218,7 +219,41 @@ namespace GitDiffMargin.Git
 
         public void StartExternalDiff(ITextDocument textDocument, string originalPath)
         {
-            throw new NotImplementedException();
+            if (textDocument == null || string.IsNullOrEmpty(textDocument.FilePath))
+                return;
+
+            var filename = textDocument.FilePath;
+
+            if (!IsGitRepository(filename, null))
+                return;
+
+            var depotPath = GetPerforcePath(filename);
+            FileSpec fs = new FileSpec(new DepotPath(depotPath));
+
+            var tempFileName = Path.GetTempFileName();
+            var printOptions = new GetFileContentsCmdOptions(GetFileContentsCmdFlags.Suppress, tempFileName);
+            _repository.GetFileContents(printOptions, fs);
+
+            IVsDifferenceService differenceService = _serviceProvider.GetService(typeof(SVsDifferenceService)) as IVsDifferenceService;
+            string leftFileMoniker = tempFileName;
+            // The difference service will automatically load the text from the file open in the editor, even if
+            // it has changed. Don't use the original path here.
+            string rightFileMoniker = filename;
+            string caption = "p4 diff";
+
+            string leftLabel = string.Format("{0}#head", depotPath);
+            string rightLabel = filename;
+            string inlineLabel = null;
+            string tooltip = null;
+            string roles = null;
+
+            __VSDIFFSERVICEOPTIONS grfDiffOptions = __VSDIFFSERVICEOPTIONS.VSDIFFOPT_LeftFileIsTemporary;
+            differenceService.OpenComparisonWindow2(leftFileMoniker, rightFileMoniker, caption, tooltip, leftLabel, rightLabel, inlineLabel, roles, (uint)grfDiffOptions);
+
+            // Since the file is marked as temporary, we can delete it now
+            // Perforce can create read-only file, so set FileAttributes.Normal in order to safe delete it
+            System.IO.File.SetAttributes(tempFileName, FileAttributes.Normal);
+            System.IO.File.Delete(tempFileName);
         }
 
         public bool TryGetOriginalPath(string path, out string originalPath)
