@@ -200,7 +200,37 @@ namespace GitDiffMargin.Git
 
         public string GetP4EnvironmentVar(string varName)
         {
-            return _connection == null ? null : _connection.GetP4EnvironmentVar(varName);
+            string res = null;
+
+            try
+            {
+                if (_connection != null)
+                {
+                    res = _connection.GetP4EnvironmentVar(varName);
+                }
+            }
+            catch (P4Exception ex)
+            {
+            }
+            return res;
+        }
+
+        public bool SetP4EnvironmentVar(string varName, string val)
+        {
+            bool res = false;
+
+            try
+            {
+                if (_connection != null)
+                {
+                    _connection.SetP4EnvironmentVar(varName, val);
+                    res = true;
+                }
+            }
+            catch (P4Exception ex)
+            {
+            }
+            return res;
         }
 
         private bool IsFileUnderPerforceRoot(string absolutePath)
