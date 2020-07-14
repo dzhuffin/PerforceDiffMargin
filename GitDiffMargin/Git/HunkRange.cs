@@ -18,7 +18,7 @@ namespace GitDiffMargin.Git
 
         }
 
-        public int StartingLineNumber { get; private set; }
-        public int NumberOfLines { get; private set; }
+        public int StartingLineNumber { get; set; }
+        public int NumberOfLines { get; set; }
     }
 }

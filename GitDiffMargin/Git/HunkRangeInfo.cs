@@ -31,6 +31,12 @@ namespace GitDiffMargin.Git
             {
                 OriginalText = DiffLines.Where(s => s.StartsWith("-")).Select(s => s.Remove(0, 1).TrimEnd('\n').TrimEnd('\r')).ToList();
             }
+
+            // Perforce diff give line before deletion not after
+            if (IsDeletion)
+            {
+                NewHunkRange.StartingLineNumber -= 1;
+            }
         }
 
         public HunkRange OriginalHunkRange { get; private set; }

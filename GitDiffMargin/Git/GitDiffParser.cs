@@ -31,7 +31,10 @@ namespace GitDiffMargin.Git
 
         public IEnumerable<Tuple<string, IEnumerable<string>>> GetUnifiedFormatHunkLines()
         {
-            var split = _gitDiff.Split('\n');
+            var split = _gitDiff.Split(
+                    new[] { "\r\n", "\r", "\n" },
+                    StringSplitOptions.None
+                );
             //var split = _gitDiff.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 
             var withoutHeader = split.SkipWhile(s => !s.StartsWith("@@")).ToList();

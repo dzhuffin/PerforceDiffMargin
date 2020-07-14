@@ -8,6 +8,7 @@
     + **DONE** Implement settings dialog and add it to buttons
 * **DONE** StartExternalDiff using p4 print. Find an example in temporary_changes_start_develop branch
 * We need diff not vs latest but vs have revision????
+* Try fix hang
 * Rename Git to Perforce for every item in project (think about separate brunch or local commits and git squash)
 * Remove useless code
 * Fix README.md

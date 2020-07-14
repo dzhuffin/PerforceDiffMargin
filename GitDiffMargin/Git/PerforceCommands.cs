@@ -180,7 +180,7 @@ namespace GitDiffMargin.Git
                 fsl.Add(fs);
                 target = _repository.GetFileDiffs(fsl, opts);
             }
-            catch (P4Exception ex)
+            catch (P4Exception)
             {
                 DisconnectImpl();
                 yield break;
@@ -285,7 +285,7 @@ namespace GitDiffMargin.Git
                     res = _connection.GetP4EnvironmentVar(varName);
                 }
             }
-            catch (P4Exception ex)
+            catch (P4Exception)
             {
             }
             return res;
@@ -304,7 +304,7 @@ namespace GitDiffMargin.Git
                     res = true;
                 }
             }
-            catch (P4Exception ex)
+            catch (P4Exception)
             {
             }
             return res;
