@@ -26,7 +26,7 @@ namespace GitDiffMargin.Core
 
         private bool _isDisposed;
 
-        public MarginCore(IWpfTextView textView, string originalPath, ITextDocumentFactoryService textDocumentFactoryService, IClassificationFormatMapService classificationFormatMapService, IEditorFormatMapService editorFormatMapService)
+        public MarginCore(IWpfTextView textView, ITextDocumentFactoryService textDocumentFactoryService, IClassificationFormatMapService classificationFormatMapService, IEditorFormatMapService editorFormatMapService)
         {
             _textView = textView;
 
@@ -35,7 +35,7 @@ namespace GitDiffMargin.Core
             _editorFormatMap = editorFormatMapService.GetEditorFormatMap(textView);
             _editorFormatMap.FormatMappingChanged += HandleFormatMappingChanged;
 
-            _parser = new DiffUpdateBackgroundParser(textView.TextBuffer, textView.TextDataModel.DocumentBuffer, originalPath, TaskScheduler.Default, textDocumentFactoryService);
+            _parser = new DiffUpdateBackgroundParser(textView.TextBuffer, textView.TextDataModel.DocumentBuffer, TaskScheduler.Default, textDocumentFactoryService);
             _parser.ParseComplete += HandleParseComplete;
             _parser.RequestParse(false);
 

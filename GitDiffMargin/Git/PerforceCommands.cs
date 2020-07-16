@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Perforce.P4;
 using Microsoft.VisualStudio.Shell.Interop;
+using System.Diagnostics;
 
 namespace GitDiffMargin.Git
 {
@@ -31,7 +32,7 @@ namespace GitDiffMargin.Git
             return instance;
         }
 
-        // P4USER, P4PORT and P4CLIENT should be set. Connection.GetP4EnvironmentVar can be used
+        // P4USER, P4PORT and P4CLIENT should be set. 
 
         private PerforceCommands(IServiceProvider serviceProvider)
         {
@@ -163,9 +164,9 @@ namespace GitDiffMargin.Git
             }
         }
 
-        public IEnumerable<HunkRangeInfo> GetGitDiffFor(ITextDocument textDocument, string originalPath, ITextSnapshot snapshot)
+        public IEnumerable<HunkRangeInfo> GetGitDiffFor(ITextDocument textDocument, ITextSnapshot snapshot)
         {
-            if (!IsGitRepository(textDocument.FilePath, null))
+            if (!IsGitRepository(textDocument.FilePath))
                 yield break;
 
             var depotPath = GetPerforcePath(textDocument.FilePath);
@@ -217,14 +218,14 @@ namespace GitDiffMargin.Git
             return completeContent;
         }
 
-        public void StartExternalDiff(ITextDocument textDocument, string originalPath)
+        public void StartExternalDiff(ITextDocument textDocument)
         {
             if (textDocument == null || string.IsNullOrEmpty(textDocument.FilePath))
                 return;
 
             var filename = textDocument.FilePath;
 
-            if (!IsGitRepository(filename, null))
+            if (!IsGitRepository(filename))
                 return;
 
             var depotPath = GetPerforcePath(filename);
@@ -256,14 +257,7 @@ namespace GitDiffMargin.Git
             System.IO.File.Delete(tempFileName);
         }
 
-        public bool TryGetOriginalPath(string path, out string originalPath)
-        {
-            // TODO: after debugging remove originalPath from all places
-            originalPath = null;
-            return true;
-        }
-
-        public bool IsGitRepository(string path, string originalPath)
+        public bool IsGitRepository(string path)
         {
             return _connected && IsFileUnderPerforceRoot(path);
         }
@@ -317,16 +311,7 @@ namespace GitDiffMargin.Git
 
         private string GetPerforcePath(string absolutePath)
         {
-            // TODO: implement 2 following checks as asserts
-            if (!IsGitRepository(absolutePath, null))
-            {
-                return null;
-            }
-
-            if (!IsFileUnderPerforceRoot(absolutePath))
-            {
-                return null;
-            }
+            Debug.Assert(IsGitRepository(absolutePath));
 
             string perforcePath = absolutePath.Substring(_perforceRoot.Length, absolutePath.Length - _perforceRoot.Length);
             perforcePath = perforcePath.Replace('\\', '/');

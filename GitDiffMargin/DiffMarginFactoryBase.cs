@@ -46,16 +46,13 @@ namespace GitDiffMargin
             if (fullPath == null)
                 return null;
 
-            if (!PerforceCommands.GetInstance().TryGetOriginalPath(fullPath, out string originalPath))
-                return null;
-
-            if (!PerforceCommands.GetInstance().IsGitRepository(fullPath, originalPath))
+            if (!PerforceCommands.GetInstance().IsGitRepository(fullPath))
             {
                 return null;
             }
 
             return textViewHost.TextView.Properties.GetOrCreateSingletonProperty(
-                        () => new MarginCore(textViewHost.TextView, originalPath, TextDocumentFactoryService, ClassificationFormatMapService, EditorFormatMapService));
+                        () => new MarginCore(textViewHost.TextView, TextDocumentFactoryService, ClassificationFormatMapService, EditorFormatMapService));
         }
 
         private static string GetFullPath(string filename)

@@ -91,7 +91,6 @@
     <Compile Include="EditorDiffMarginFactory.cs" />
     <Compile Include="GitDiffMarginTextViewOptions.cs" />
     <Compile Include="Git\DiffFormatNames.cs" />
-    <Compile Include="Git\GitCommands.cs" />
     <Compile Include="Git\GitDiffParser.cs" />
     <Compile Include="Git\HunkRange.cs" />
     <Compile Include="Git\HunkRangeInfo.cs" />
