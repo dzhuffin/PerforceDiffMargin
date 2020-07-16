@@ -46,10 +46,10 @@ namespace GitDiffMargin
             if (fullPath == null)
                 return null;
 
-            if (!PerforceCommands.getInstance().TryGetOriginalPath(fullPath, out string originalPath))
+            if (!PerforceCommands.GetInstance().TryGetOriginalPath(fullPath, out string originalPath))
                 return null;
 
-            if (!PerforceCommands.getInstance().IsGitRepository(fullPath, originalPath))
+            if (!PerforceCommands.GetInstance().IsGitRepository(fullPath, originalPath))
             {
                 return null;
             }

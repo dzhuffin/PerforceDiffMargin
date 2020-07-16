@@ -42,7 +42,7 @@ namespace GitDiffMargin
             }
 
             // Initialize PerforceCommands
-            PerforceCommands.getInstance(this);
+            PerforceCommands.GetInstance(this);
         }
 
         private void OnSettings(object sender, EventArgs e)
@@ -57,12 +57,12 @@ namespace GitDiffMargin
 
         private void OnRefresh(object sender, EventArgs e)
         {
-            PerforceCommands.getInstance().RefreshConnection();
+            PerforceCommands.GetInstance().RefreshConnection();
 
             string message_text = "";
-            if (!PerforceCommands.getInstance().Connected)
+            if (!PerforceCommands.GetInstance().Connected)
             {
-                string error_msg = PerforceCommands.getInstance().GetConnectionError();
+                string error_msg = PerforceCommands.GetInstance().GetConnectionError();
                 message_text = String.IsNullOrEmpty(error_msg) ? "Unknown error. Perforce connection is not established" : error_msg;
             }
             else
@@ -107,7 +107,7 @@ namespace GitDiffMargin
         private void OnDisconnect(object sender, EventArgs e)
         {
             // TODO: add try-catch?
-            PerforceCommands.getInstance().Disconnect();
+            PerforceCommands.GetInstance().Disconnect();
             MessageBox.Show("Disconnected");
         }
 

@@ -26,7 +26,7 @@ namespace GitDiffMargin.Core
             if (TextDocumentFactoryService.TryGetTextDocument(_documentBuffer, out _textDocument))
             {
                 _originalPath = originalPath;
-                if (PerforceCommands.getInstance().IsGitRepository(_textDocument.FilePath, _originalPath))
+                if (PerforceCommands.GetInstance().IsGitRepository(_textDocument.FilePath, _originalPath))
                 {
                     _textDocument.FileActionOccurred += OnFileActionOccurred;
                     // TODO: implement a mechanism that will monitor perforce submit and update diff after submit
@@ -92,7 +92,7 @@ namespace GitDiffMargin.Core
                 ITextDocument textDocument;
                 if (!TextDocumentFactoryService.TryGetTextDocument(_documentBuffer, out textDocument)) return;
 
-                var diff = PerforceCommands.getInstance().GetGitDiffFor(textDocument, _originalPath, snapshot);
+                var diff = PerforceCommands.GetInstance().GetGitDiffFor(textDocument, _originalPath, snapshot);
                 var result = new DiffParseResultEventArgs(snapshot, stopwatch.Elapsed, diff.ToList());
                 OnParseComplete(result);
             }

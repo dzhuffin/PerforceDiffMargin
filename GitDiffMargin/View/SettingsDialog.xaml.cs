@@ -30,7 +30,7 @@ namespace GitDiffMargin.View
         {
             InitializeComponent();
 
-            var commands = PerforceCommands.getInstance();
+            var commands = PerforceCommands.GetInstance();
 
             _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
             _initialClient = ClientTextBox.Text = commands.GetP4EnvironmentVar("P4CLIENT");
@@ -41,7 +41,7 @@ namespace GitDiffMargin.View
         {
             ResultLabel.Content = "";
 
-            var commands = PerforceCommands.getInstance();
+            var commands = PerforceCommands.GetInstance();
 
             if (_initialUser != PortTextBox.Text)
                 commands.SetP4EnvironmentVar("P4PORT", PortTextBox.Text);
@@ -64,7 +64,7 @@ namespace GitDiffMargin.View
                 else
                 {
                     ResultLabel.Foreground = Brushes.Red;
-                    ResultLabel.Content = "An error occured: " + PerforceCommands.getInstance().GetConnectionError();
+                    ResultLabel.Content = "An error occured: " + PerforceCommands.GetInstance().GetConnectionError();
                 }
             }
             else

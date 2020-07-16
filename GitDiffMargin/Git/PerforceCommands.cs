@@ -24,7 +24,7 @@ namespace GitDiffMargin.Git
         private bool _connected;
         private string _last_error;
 
-        public static PerforceCommands getInstance(IServiceProvider serviceProvider = null)
+        public static PerforceCommands GetInstance(IServiceProvider serviceProvider = null)
         {
             if (instance == null)
                 instance = new PerforceCommands(serviceProvider);
