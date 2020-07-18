@@ -17,12 +17,40 @@ namespace GitDiffMargin.Git
 
         private static PerforceCommands instance = null;
 
+        public enum ConnectionState
+        {
+            Unknown = 0, // default state, _repository and _connection are null, can't get P4USER, P4PORT or P4CLIENT
+            Initialized = 1, //_repository and _connection are initialized, but not connected. can't get P4USER, P4PORT or P4CLIENT
+            Connected = 2, //_repository and _connection are initialized and connected. can get P4USER, P4PORT or P4CLIENT No login and no logic checks
+            Success = 3, // everything is known and initialized
+            //Failed = 4, //_repository and _connection are not null. P4USER, P4PORT or P4CLIENT unset(can get it), or no internet connection, or no pass
+            //FailedRootKnown = 5, // the same as Failed but we can successfully obtain root. Usually no pass or maybe no user.
+        }
+
+        private string GetStateDescription(ConnectionState state)
+        {
+            switch (state)
+            {
+            case ConnectionState.Unknown:
+                return "Unknown state, connection is not initialized";
+            case ConnectionState.Initialized:
+                return "Not connected to local p4. Can't get environmental variables like P4USER, P4PORT or P4CLIENT";
+            case ConnectionState.Connected:
+                return String.Format("Connected to local p4 but can't connect to the server. P4USER, P4PORT and P4CLIENT perforce environment varialbes should be set. Login should be done. Currently thier values are: \nP4USER={0} \nP4PORT={1} \nP4CLIENT={2}",
+                    _connection.GetP4EnvironmentVar("P4USER"), _connection.GetP4EnvironmentVar("P4PORT"), _connection.GetP4EnvironmentVar("P4CLIENT"));
+            case ConnectionState.Success:
+                return "Successfully connected!";
+            default:
+                 return "PerforceDiffCommand plugin internal error. Please report the issue."; // TODO: add link?
+            }
+    }
+
         private readonly IServiceProvider _serviceProvider;
         private Server _server;
         private Repository _repository;
         private Connection _connection;
         private string _perforceRoot;
-        private bool _connected;
+        private ConnectionState _state = ConnectionState.Unknown;
         private string _last_error;
 
         public static PerforceCommands GetInstance(IServiceProvider serviceProvider = null)
@@ -38,10 +66,10 @@ namespace GitDiffMargin.Git
         {
             _serviceProvider = serviceProvider;
 
-            RefreshConnection();
+            RefreshConnection(out string msg);
         }
 
-        private void Init()
+        private bool Init()
         {
             if (_server == null)
             {
@@ -59,20 +87,35 @@ namespace GitDiffMargin.Git
                 _connection.UserName = "";
                 _connection.Client = new Client();
                 _connection.Client.Name = "";
-                _connection.Connect(null);
+                try
+                {
+                    _connection.Connect(null);
+                    _state = ConnectionState.Connected;
+                }
+                catch (P4Exception ex)
+                {
+                    _state = ConnectionState.Initialized;
+                    _last_error = ex.Message;
+                }
             }
+
+            return _state == ConnectionState.Connected;
         }
 
         public bool Login(string password)
         {
             bool res = false;
             DisconnectImpl();
-            Init();
+            if (!Init())
+            {
+                return res;
+            }
 
             try
             {
                 _connection.Login(password);
                 res = true;
+                _state = ConnectionState.Success;
             }
             catch (P4Exception ex)
             {
@@ -81,10 +124,13 @@ namespace GitDiffMargin.Git
             return res;
         }
 
-        public void RefreshConnection()
+        public ConnectionState RefreshConnection(out string msg)
         {
             RefreshConnectionImpl();
             ConnectionChanged?.Invoke(this, EventArgs.Empty);
+
+            msg = String.IsNullOrEmpty(_last_error) ? GetStateDescription(ConnectionState.Success) : _last_error;
+            return _state;
         }
 
         public void Disconnect()
@@ -96,25 +142,26 @@ namespace GitDiffMargin.Git
         private void RefreshConnectionImpl()
         {
             DisconnectImpl();
-            Init();
-
-            _perforceRoot = _repository.GetClientMetadata().Root;
-
-            var error_msg = String.Format("Can't establish Perforce connection. P4USER, P4PORT and P4CLIENT perforce environment varialbes should be set. Login should be done. Currently thier values are: \nP4USER={0} \nP4PORT={1} \nP4CLIENT={2}",
-                _connection.GetP4EnvironmentVar("P4USER"), _connection.GetP4EnvironmentVar("P4PORT"), _connection.GetP4EnvironmentVar("P4CLIENT"));
-
-            if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
+            if (!Init())
             {
-                // TODO: close connection?
-                DisconnectImpl();
-                _last_error = error_msg;
                 return;
             }
 
-            if (_perforceRoot == null || !Directory.Exists(_perforceRoot))
+            _perforceRoot = _repository.GetClientMetadata().Root;
+
+            var error_msg_start = GetStateDescription(ConnectionState.Connected);
+
+            if (!IsPerforceRootFound())
             {
                 DisconnectImpl();
-                _last_error = error_msg + " \nError: \nWorkspace root is unset or doesn't exist";
+                _last_error = error_msg_start + " \nError: \nWorkspace root is unset or doesn't exist";
+                return;
+            }
+
+            if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
+            {
+                DisconnectImpl();
+                _last_error = error_msg_start;
                 return;
             }
 
@@ -130,7 +177,7 @@ namespace GitDiffMargin.Git
             {
                 // TODO: close connection?
                 DisconnectImpl();
-                _last_error = error_msg + " \nError: \n" + ex.Message;
+                _last_error = error_msg_start + " \nError: \n" + ex.Message;
                 return;
             }
             // this ticket should belong to current user
@@ -139,34 +186,27 @@ namespace GitDiffMargin.Git
             {
                 // TODO: close connection?
                 DisconnectImpl();
-                _last_error = error_msg + " \nError: \nP4USER variable don't correspond to logged in user.";
+                _last_error = error_msg_start + " \nError: \nP4USER variable don't correspond to logged in user.";
                 return;
             }
 
-            _connected = true;
+            _state = ConnectionState.Success;
+
             _last_error = "";
         }
 
         public void DisconnectImpl()
         {
-            _connected = false;
             if (_connection != null)
             {
                 _connection.Disconnect();
-            }
-        }
-
-        public bool Connected
-        {
-            get
-            {
-                return _connected;
+                _state = ConnectionState.Initialized;
             }
         }
 
         public IEnumerable<HunkRangeInfo> GetGitDiffFor(ITextDocument textDocument, ITextSnapshot snapshot)
         {
-            if (!IsGitRepository(textDocument.FilePath))
+            if (!CanGetDiff(textDocument.FilePath))
                 yield break;
 
             var depotPath = GetPerforcePath(textDocument.FilePath);
@@ -257,9 +297,26 @@ namespace GitDiffMargin.Git
             System.IO.File.Delete(tempFileName);
         }
 
+        private bool CanGetDiff(string path)
+        {
+            return _state == ConnectionState.Success && IsFileUnderPerforceRoot(path);
+        }
+
         public bool IsGitRepository(string path)
         {
-            return _connected && IsFileUnderPerforceRoot(path);
+            switch (_state)
+            {
+                case ConnectionState.Unknown:
+                case ConnectionState.Initialized:
+                    return true; // can connect later
+                case ConnectionState.Connected:
+                    return !IsPerforceRootFound() || // can connect later
+                        IsFileUnderPerforceRoot(path);
+                case ConnectionState.Success:
+                    return IsFileUnderPerforceRoot(path);
+                default:
+                    return true; // can connect later
+            }
         }
 
         public string GetConnectionError()
@@ -269,8 +326,11 @@ namespace GitDiffMargin.Git
 
         public string GetP4EnvironmentVar(string varName)
         {
-            Init();
             string res = null;
+            if (!Init())
+            {
+                return res;
+            }
 
             try
             {
@@ -287,8 +347,11 @@ namespace GitDiffMargin.Git
 
         public bool SetP4EnvironmentVar(string varName, string val)
         {
-            Init();
             bool res = false;
+            if (!Init())
+            {
+                return res;
+            }
 
             try
             {
@@ -304,14 +367,22 @@ namespace GitDiffMargin.Git
             return res;
         }
 
+        private bool IsPerforceRootFound()
+        {
+            return _perforceRoot != null && Directory.Exists(_perforceRoot);
+        }
+
         private bool IsFileUnderPerforceRoot(string absolutePath)
         {
+            Debug.Assert(IsPerforceRootFound());
+
             return absolutePath.StartsWith(_perforceRoot, StringComparison.OrdinalIgnoreCase);
         }
 
         private string GetPerforcePath(string absolutePath)
         {
             Debug.Assert(IsGitRepository(absolutePath));
+            Debug.Assert(IsPerforceRootFound());
 
             string perforcePath = absolutePath.Substring(_perforceRoot.Length, absolutePath.Length - _perforceRoot.Length);
             perforcePath = perforcePath.Replace('\\', '/');

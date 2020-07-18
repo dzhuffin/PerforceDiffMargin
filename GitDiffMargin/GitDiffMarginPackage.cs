@@ -57,51 +57,9 @@ namespace GitDiffMargin
 
         private void OnRefresh(object sender, EventArgs e)
         {
-            PerforceCommands.GetInstance().RefreshConnection();
+            var status = PerforceCommands.GetInstance().RefreshConnection(out string message_text);
 
-            string message_text = "";
-            if (!PerforceCommands.GetInstance().Connected)
-            {
-                string error_msg = PerforceCommands.GetInstance().GetConnectionError();
-                message_text = String.IsNullOrEmpty(error_msg) ? "Unknown error. Perforce connection is not established" : error_msg;
-            }
-            else
-            {
-                message_text = "Successfully connected!";
-            }
             MessageBox.Show(message_text);
-
-            // Code can be useful get current text view:
-            //var textManager = (IVsTextManager)GetService(typeof(SVsTextManager));
-            ////var editor = (IVsEditorAdaptersFactoryService)GetService(typeof(IVsEditorAdaptersFactoryService));
-            //if (textManager != null)
-            //{
-            //    textManager.GetActiveView(1, null, out IVsTextView textViewCurrent);
-
-            //    IWpfTextView view = null;
-            //    IVsUserData userData = textViewCurrent as IVsUserData;
-
-            //    if (null != userData)
-            //    {
-            //        IWpfTextViewHost viewHost;
-            //        object holder;
-            //        Guid guidViewHost = DefGuidList.guidIWpfTextViewHost;
-            //        userData.GetData(ref guidViewHost, out holder);
-            //        viewHost = (IWpfTextViewHost)holder;
-            //        view = viewHost.TextView;
-            //    }
-
-            //}
-            //IVsTextManager txtMgr = (IVsTextManager)GetService(typeof(SVsTextManager));
-            //IVsTextView vTextView = null;
-            //int mustHaveFocus = 1;
-            //txtMgr.GetActiveView(mustHaveFocus, null, out vTextView);
-            //vTextView.
-            //            MarginCore marginCore;
-            //if (vTextView.Properties.TryGetProperty(typeof(MarginCore), out marginCore))
-            //{
-            //    return marginCore;
-            //}
         }
 
         private void OnDisconnect(object sender, EventArgs e)

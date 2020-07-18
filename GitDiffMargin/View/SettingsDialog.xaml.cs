@@ -32,6 +32,7 @@ namespace GitDiffMargin.View
 
             var commands = PerforceCommands.GetInstance();
 
+            // TODO: do the following on open dialog not in c'tor
             _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
             _initialClient = ClientTextBox.Text = commands.GetP4EnvironmentVar("P4CLIENT");
             _initialUser = UserTextBox.Text = commands.GetP4EnvironmentVar("P4USER");
@@ -57,9 +58,17 @@ namespace GitDiffMargin.View
             {
                 if (commands.Login(password))
                 {
-                    commands.RefreshConnection();
-                    ResultLabel.Foreground = Brushes.Black;
-                    ResultLabel.Content = "Logged in successfully";
+                    var state = commands.RefreshConnection(out string msg);
+                    if (state == PerforceCommands.ConnectionState.Success)
+                    {
+                        ResultLabel.Foreground = Brushes.Black;
+                        ResultLabel.Content = "Logged in successfully";
+                    }
+                    else
+                    {
+                        ResultLabel.Foreground = Brushes.Red;
+                        ResultLabel.Content = "An error occured: " + PerforceCommands.GetInstance().GetConnectionError();
+                    }
                 }
                 else
                 {
