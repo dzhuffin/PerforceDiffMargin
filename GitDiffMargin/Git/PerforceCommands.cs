@@ -69,26 +69,33 @@ namespace GitDiffMargin.Git
             RefreshConnection(out string msg);
         }
 
-        private bool Init()
+        public bool SetNewPort(string uri)
         {
-            if (_server == null)
-            {
-                _server = new Server(new ServerAddress(""));
-            }
+            DisconnectImpl();
 
-            if (_repository == null)
+            return Init(uri);
+        }
+
+        private bool Init(string uri = null)
+        {
+            string corrected_uri = String.IsNullOrEmpty(uri) ? "" : uri;
+            if (_server == null || 
+                (_server.Address.Uri != corrected_uri && !String.IsNullOrEmpty(corrected_uri)))
             {
+                _server = new Server(new ServerAddress(corrected_uri));
                 _repository = new Repository(_server);
             }
+
             _connection = _repository.Connection;
 
-            if (!_connection.connectionEstablished())
+            if (_state == ConnectionState.Unknown || _state == ConnectionState.Initialized || !_connection.connectionEstablished())
             {
-                _connection.UserName = "";
-                _connection.Client = new Client();
-                _connection.Client.Name = "";
                 try
                 {
+                    _connection.UserName = "";
+                    _connection.Client = new Client();
+                    _connection.Client.Name = "";
+
                     _connection.Connect(null);
                     _state = ConnectionState.Connected;
                 }
@@ -99,7 +106,7 @@ namespace GitDiffMargin.Git
                 }
             }
 
-            return _state == ConnectionState.Connected;
+            return _state == ConnectionState.Connected || _state == ConnectionState.Success;
         }
 
         public bool Login(string password)

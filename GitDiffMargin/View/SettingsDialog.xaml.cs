@@ -38,16 +38,43 @@ namespace GitDiffMargin.View
             _initialUser = UserTextBox.Text = commands.GetP4EnvironmentVar("P4USER");
         }
 
+        private void SetError(string error)
+        {
+            ResultLabel.Foreground = Brushes.Red;
+            ResultLabel.Content = error.Trim();
+        }
+
+        private void SetInfo(string info)
+        {
+            ResultLabel.Foreground = Brushes.Black;
+            ResultLabel.Content = info.Trim();
+        }
+
         private void LoginClick(object sender, RoutedEventArgs e)
         {
             ResultLabel.Content = "";
 
             var commands = PerforceCommands.GetInstance();
 
-            if (_initialUser != PortTextBox.Text)
-                commands.SetP4EnvironmentVar("P4PORT", PortTextBox.Text);
+            if (_initialPort != PortTextBox.Text)
+            {
+                if (String.IsNullOrEmpty(PortTextBox.Text))
+                {
+                    SetError("Please, set the address");
+                    return;
+                }
+                bool init_res = commands.SetNewPort(PortTextBox.Text);
+                if (!init_res)
+                {
+                    SetError("An error occured: " + PerforceCommands.GetInstance().GetConnectionError());
+                    return;
+                    // can't connect to Perforce because Port is not set
+                }
 
-            if (_initialUser != ClientTextBox.Text)
+                commands.SetP4EnvironmentVar("P4PORT", PortTextBox.Text);
+            }
+
+            if (_initialClient != ClientTextBox.Text)
                 commands.SetP4EnvironmentVar("P4CLIENT", ClientTextBox.Text);
 
             if (_initialUser != UserTextBox.Text)
@@ -61,25 +88,21 @@ namespace GitDiffMargin.View
                     var state = commands.RefreshConnection(out string msg);
                     if (state == PerforceCommands.ConnectionState.Success)
                     {
-                        ResultLabel.Foreground = Brushes.Black;
-                        ResultLabel.Content = "Logged in successfully";
+                        SetInfo("Logged in successfully");
                     }
                     else
                     {
-                        ResultLabel.Foreground = Brushes.Red;
-                        ResultLabel.Content = "An error occured: " + PerforceCommands.GetInstance().GetConnectionError();
+                        SetError("An error occured: " + PerforceCommands.GetInstance().GetConnectionError());
                     }
                 }
                 else
                 {
-                    ResultLabel.Foreground = Brushes.Red;
-                    ResultLabel.Content = "An error occured: " + PerforceCommands.GetInstance().GetConnectionError();
+                    SetError("An error occured: " + PerforceCommands.GetInstance().GetConnectionError());
                 }
             }
             else
             {
-                ResultLabel.Foreground = Brushes.Red;
-                ResultLabel.Content = "Please, enter the password";
+                SetError("Please, enter the password");
             }
         }
     }
