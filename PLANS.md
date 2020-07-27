@@ -15,3 +15,4 @@
 * Fix dialog according to TODO in the code, p4 get ariables each time on open
 * Fix README.md
 * other TODOs
+* fix very slow set get in case P4PORT is unknown.
