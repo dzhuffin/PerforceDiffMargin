@@ -1,4 +1,4 @@
-﻿namespace GitDiffMargin.Commands
+﻿namespace PerforceDiffMargin.Commands
 {
     using System.ComponentModel.Composition;
     using Microsoft.VisualStudio.Commanding;

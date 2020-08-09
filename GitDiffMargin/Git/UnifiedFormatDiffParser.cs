@@ -2,22 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GitDiffMargin.Git
+namespace PerforceDiffMargin.Git
 {
-    public class GitDiffParser
+    public class UnifiedFormatDiffParser
     {
-        private readonly string _gitDiff;
+        private readonly string _fullUnifiedDiffContent;
         private readonly int _contextLines;
         private readonly bool _suppressRollback;
 
-        public GitDiffParser(string gitDiff, int contextLines)
+        public UnifiedFormatDiffParser(string gitDiff, int contextLines)
             : this(gitDiff, contextLines, false)
         {
         }
 
-        public GitDiffParser(string gitDiff, int contextLines, bool suppressRollback)
+        public UnifiedFormatDiffParser(string fullUnifiedDiffContent, int contextLines, bool suppressRollback)
         {
-            _gitDiff = gitDiff;
+            _fullUnifiedDiffContent = fullUnifiedDiffContent;
             _contextLines = contextLines;
             _suppressRollback = suppressRollback;
         }
@@ -31,11 +31,10 @@ namespace GitDiffMargin.Git
 
         public IEnumerable<Tuple<string, IEnumerable<string>>> GetUnifiedFormatHunkLines()
         {
-            var split = _gitDiff.Split(
+            var split = _fullUnifiedDiffContent.Split(
                     new[] { "\r\n", "\r", "\n" },
                     StringSplitOptions.None
                 );
-            //var split = _gitDiff.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 
             var withoutHeader = split.SkipWhile(s => !s.StartsWith("@@")).ToList();
 

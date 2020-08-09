@@ -7,8 +7,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -16,7 +16,7 @@ using IOleCommandTarget = Microsoft.VisualStudio.OLE.Interop.IOleCommandTarget;
 
 #endregion
 
-namespace GitDiffMargin.ViewModel
+namespace PerforceDiffMargin.ViewModel
 {
     internal class EditorDiffViewModel : DiffViewModel
     {

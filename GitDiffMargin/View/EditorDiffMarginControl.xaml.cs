@@ -5,10 +5,10 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using GitDiffMargin.ViewModel;
+using PerforceDiffMargin.ViewModel;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace GitDiffMargin.View
+namespace PerforceDiffMargin.View
 {
     /// <summary>
     ///   Interaction logic for EditorDiffMarginControl.xaml

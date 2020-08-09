@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GitDiffMargin.View
+namespace PerforceDiffMargin.View
 {
     /// <summary>
     /// Interaction logic for ScrollDiffMarginControl.xaml

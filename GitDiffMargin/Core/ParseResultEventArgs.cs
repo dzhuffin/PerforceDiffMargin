@@ -25,7 +25,7 @@
 using System;
 using Microsoft.VisualStudio.Text;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     public class ParseResultEventArgs : EventArgs
     {

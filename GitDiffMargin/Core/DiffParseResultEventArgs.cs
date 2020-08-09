@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio.Text;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     public class DiffParseResultEventArgs : ParseResultEventArgs
     {

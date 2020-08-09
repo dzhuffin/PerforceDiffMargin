@@ -1,4 +1,4 @@
-﻿namespace GitDiffMargin
+﻿namespace PerforceDiffMargin
 {
     using System.Runtime.InteropServices;
 

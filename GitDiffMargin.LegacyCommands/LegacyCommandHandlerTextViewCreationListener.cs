@@ -1,4 +1,4 @@
-﻿namespace GitDiffMargin.LegacyCommands
+﻿namespace PerforceDiffMargin.LegacyCommands
 {
     using System.ComponentModel.Composition;
     using Microsoft.VisualStudio.Editor;

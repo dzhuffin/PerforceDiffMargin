@@ -1,11 +1,11 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using GitDiffMargin.ViewModel;
+using PerforceDiffMargin.ViewModel;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Editor.OptionsExtensionMethods;
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     internal abstract class DiffMarginBase : Canvas, IWpfTextViewMargin
     {

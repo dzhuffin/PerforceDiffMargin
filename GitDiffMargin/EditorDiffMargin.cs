@@ -1,16 +1,16 @@
 ﻿#region using
 
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
-using GitDiffMargin.View;
-using GitDiffMargin.ViewModel;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
+using PerforceDiffMargin.View;
+using PerforceDiffMargin.ViewModel;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Formatting;
 
 #endregion
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     internal sealed class EditorDiffMargin : DiffMarginBase
     {

@@ -1,13 +1,13 @@
 ﻿#region using
 
 using System.Collections.Generic;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 using NUnit.Framework;
 using Shouldly;
 
 #endregion
 
-namespace GitDiffMargin.Unit.Tests.Git
+namespace PerforceDiffMargin.Unit.Tests.Git
 {
     // ReSharper disable InconsistentNaming 
 

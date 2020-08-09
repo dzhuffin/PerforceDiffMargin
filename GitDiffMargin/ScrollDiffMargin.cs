@@ -1,11 +1,11 @@
 ﻿using System;
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
-using GitDiffMargin.View;
-using GitDiffMargin.ViewModel;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
+using PerforceDiffMargin.View;
+using PerforceDiffMargin.ViewModel;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     internal sealed class ScrollDiffMargin : DiffMarginBase
     {

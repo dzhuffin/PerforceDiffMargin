@@ -35,7 +35,7 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.PreviousChange</LocCanonicalName>
+          <LocCanonicalName>PerforceDiffMargin.PreviousChange</LocCanonicalName>
           <ButtonText>Previous</ButtonText>
           <MenuText>Previous Change</MenuText>
           <ToolTipText>Jump to Previous Change</ToolTipText>
@@ -48,7 +48,7 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.NextChange</LocCanonicalName>
+          <LocCanonicalName>PerforceDiffMargin.NextChange</LocCanonicalName>
           <ButtonText>Next</ButtonText>
           <MenuText>Next Change</MenuText>
           <ToolTipText>Jump to Next Change</ToolTipText>
@@ -62,7 +62,7 @@
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <!-- Uncommenting the following line exposes the command for key binding -->
-          <!--<LocCanonicalName>GitDiffMargin.Rollback</LocCanonicalName>-->
+          <!--<LocCanonicalName>PerforceDiffMargin.Rollback</LocCanonicalName>-->
           <ButtonText>Rollback</ButtonText>
           <MenuText>Rollback</MenuText>
           <ToolTipText>Rollback</ToolTipText>
@@ -76,7 +76,7 @@
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <!-- Uncommenting the following line exposes the command for key binding -->
-          <!--<LocCanonicalName>GitDiffMargin.ShowDifference</LocCanonicalName>-->
+          <!--<LocCanonicalName>PerforceDiffMargin.ShowDifference</LocCanonicalName>-->
           <ButtonText>Diff</ButtonText>
           <MenuText>Show Difference</MenuText>
           <ToolTipText>Show Difference</ToolTipText>
@@ -90,7 +90,7 @@
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <!-- Uncommenting the following line exposes the command for key binding -->
-          <!--<LocCanonicalName>GitDiffMargin.CopyOldText</LocCanonicalName>-->
+          <!--<LocCanonicalName>PerforceDiffMargin.CopyOldText</LocCanonicalName>-->
           <ButtonText>Copy</ButtonText>
           <MenuText>Copy Old Text</MenuText>
           <ToolTipText>Copy Old Text</ToolTipText>
@@ -100,7 +100,7 @@
       <Button guid="GitDiffMarginCommand" id="ShowPopup" priority="0x0106" type="Button">
         <CommandFlag>DefaultDisabled</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.ShowPopup</LocCanonicalName>
+          <LocCanonicalName>PerforceDiffMargin.ShowPopup</LocCanonicalName>
           <ButtonText>ShowPopup</ButtonText>
           <MenuText>Show popup</MenuText>
           <ToolTipText>Show popup</ToolTipText>
@@ -112,7 +112,7 @@
         <Icon guid="ImageCatalogGuid" id="AddConnection"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.Refresh</LocCanonicalName>
+          <LocCanonicalName>PerforceDiffMargin.Refresh</LocCanonicalName>
           <ButtonText>Refresh</ButtonText>
           <MenuText>Refresh P4 Connection</MenuText>
           <ToolTipText>Refresh connection to Perforce</ToolTipText>
@@ -124,7 +124,7 @@
         <Icon guid="ImageCatalogGuid" id="Disconnect"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.Disconnect</LocCanonicalName>
+          <LocCanonicalName>PerforceDiffMargin.Disconnect</LocCanonicalName>
           <ButtonText>Disconnect</ButtonText>
           <MenuText>Disconnect P4 Connection</MenuText>
           <ToolTipText>Disconnect connection to Perforce</ToolTipText>
@@ -136,7 +136,7 @@
         <Icon guid="ImageCatalogGuid" id="Settings"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMargin.Settings</LocCanonicalName>
+          <LocCanonicalName>PerforceDiffMargin.Settings</LocCanonicalName>
           <ButtonText>Settings</ButtonText>
           <MenuText>Perforce connection Settings</MenuText>
           <ToolTipText>Set P4 environment variables and login.</ToolTipText>

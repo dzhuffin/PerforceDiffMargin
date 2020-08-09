@@ -1,4 +1,4 @@
-﻿namespace GitDiffMargin.Commands
+﻿namespace PerforceDiffMargin.Commands
 {
     using System;
     using Microsoft.VisualStudio.OLE.Interop;

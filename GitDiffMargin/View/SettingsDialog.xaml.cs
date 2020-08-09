@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace GitDiffMargin.View
+namespace PerforceDiffMargin.View
 {
     /// <summary>
     /// Interaction logic for SettingsDialog.xaml

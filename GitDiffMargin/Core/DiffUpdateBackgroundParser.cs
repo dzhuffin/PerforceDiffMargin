@@ -4,15 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Text;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     public class DiffUpdateBackgroundParser : BackgroundParser
     {
-        private readonly FileSystemWatcher _watcher;
         private readonly ITextDocument _textDocument;
         private readonly ITextBuffer _documentBuffer;
 
@@ -110,10 +109,6 @@ namespace GitDiffMargin.Core
                 if (_textDocument != null)
                 {
                     _textDocument.FileActionOccurred -= OnFileActionOccurred;
-                }
-                if (_watcher != null)
-                {
-                    _watcher.Dispose();
                 }
             }
         }

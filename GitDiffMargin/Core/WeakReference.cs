@@ -25,7 +25,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     public class WeakReference<T> : WeakReference
         where T : class

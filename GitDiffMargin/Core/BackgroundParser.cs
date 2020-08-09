@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Text;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     public abstract class BackgroundParser : IDisposable
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     public class HunksChangedEventArgs : EventArgs
     {

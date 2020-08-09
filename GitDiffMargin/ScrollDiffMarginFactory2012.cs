@@ -3,7 +3,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     [Export(typeof(IWpfTextViewMarginProvider))]
     [Name(ScrollDiffMargin.MarginNameConst + "2012")]

@@ -1,8 +1,8 @@
-﻿using GitDiffMargin.Git;
+﻿using PerforceDiffMargin.Git;
 using NUnit.Framework;
 using Shouldly;
 
-namespace GitDiffMargin.Unit.Tests.Git
+namespace PerforceDiffMargin.Unit.Tests.Git
 {
     // ReSharper disable InconsistentNaming 
 

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.Utilities;
 
 #endregion
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     [Export(typeof (IWpfTextViewMarginProvider))]
     [Name(EditorDiffMargin.MarginNameConst)]

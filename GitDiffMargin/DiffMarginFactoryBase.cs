@@ -2,15 +2,15 @@
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Security;
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 using Path = System.IO.Path;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     internal abstract class DiffMarginFactoryBase : IWpfTextViewMarginProvider
     {

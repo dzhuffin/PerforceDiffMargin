@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.Text.Editor;
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     public static class GitDiffMarginTextViewOptions
     {

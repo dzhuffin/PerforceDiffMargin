@@ -1,10 +1,10 @@
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     using System;
     using System.Linq;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
-    using GitDiffMargin.ViewModel;
+    using PerforceDiffMargin.ViewModel;
     using Microsoft.VisualStudio.Editor;
     using Microsoft.VisualStudio.Text.Editor;
     using Tvl.VisualStudio.Shell;

@@ -1,8 +1,8 @@
 using System;
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
 
-namespace GitDiffMargin.ViewModel
+namespace PerforceDiffMargin.ViewModel
 {
     internal sealed class ScrollDiffViewModel : DiffViewModel
     {

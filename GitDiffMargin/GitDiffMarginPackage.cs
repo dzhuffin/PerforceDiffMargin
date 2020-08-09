@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace GitDiffMargin
+namespace PerforceDiffMargin
 {
     using System;
     using System.Runtime.InteropServices;
-    using GitDiffMargin.Core;
-    using GitDiffMargin.Git;
+    using PerforceDiffMargin.Core;
+    using PerforceDiffMargin.Git;
     using Microsoft.VisualStudio.Shell;
     using System.Windows;
     using Microsoft.VisualStudio.Shell.Interop;
-    using GitDiffMargin.View;
+    using PerforceDiffMargin.View;
     using Microsoft.Internal.VisualStudio.PlatformUI;
 
     [PackageRegistration(UseManagedResourcesOnly = true)]

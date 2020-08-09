@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Media;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
-namespace GitDiffMargin.Settings
+namespace PerforceDiffMargin.Settings
 {
     [Export(typeof(EditorFormatDefinition))]
     [Name(DiffFormatNames.Modification)]

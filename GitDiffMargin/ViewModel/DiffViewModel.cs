@@ -2,10 +2,10 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 using GalaSoft.MvvmLight;
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
 
-namespace GitDiffMargin.ViewModel
+namespace PerforceDiffMargin.ViewModel
 {
     internal abstract class DiffViewModel : ViewModelBase
     {

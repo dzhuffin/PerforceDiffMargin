@@ -9,9 +9,9 @@ using Perforce.P4;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Diagnostics;
 
-namespace GitDiffMargin.Git
+namespace PerforceDiffMargin.Git
 {
-    public class PerforceCommands : IGitCommands
+    public class PerforceCommands
     {
         public event EventHandler ConnectionChanged;
 
@@ -235,7 +235,7 @@ namespace GitDiffMargin.Git
             //if (content == null) yield break;
 
             // TODO: after debugging remove the second and the third arguments from c'tor and next code, are they useless?
-            var gitDiffParser = new GitDiffParser(target[0].Diff, 0, false);
+            var gitDiffParser = new UnifiedFormatDiffParser(target[0].Diff, 0, false);
             var hunkRangeInfos = gitDiffParser.Parse();
 
             foreach (var hunkRangeInfo in hunkRangeInfos)

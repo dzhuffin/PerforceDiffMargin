@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace GitDiffMargin.Core
+namespace PerforceDiffMargin.Core
 {
     internal interface IMarginCore
     {

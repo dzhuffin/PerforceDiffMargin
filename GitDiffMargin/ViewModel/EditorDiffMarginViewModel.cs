@@ -3,12 +3,12 @@
 using System;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
-using GitDiffMargin.Core;
-using GitDiffMargin.Git;
+using PerforceDiffMargin.Core;
+using PerforceDiffMargin.Git;
 
 #endregion
 
-namespace GitDiffMargin.ViewModel
+namespace PerforceDiffMargin.ViewModel
 {
     internal class EditorDiffMarginViewModel : DiffMarginViewModelBase
     {

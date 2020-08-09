@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace GitDiffMargin.View
+namespace PerforceDiffMargin.View
 {
     [ValueConversion(typeof(Brush), typeof(Brush))]
     class OpaqueColorConverter : IValueConverter
