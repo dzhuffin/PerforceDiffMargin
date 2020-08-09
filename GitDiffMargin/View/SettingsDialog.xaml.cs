@@ -34,8 +34,11 @@ namespace GitDiffMargin.View
 
             // TODO: do the following on open dialog not in c'tor
             _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
-            _initialClient = ClientTextBox.Text = commands.GetP4EnvironmentVar("P4CLIENT");
-            _initialUser = UserTextBox.Text = commands.GetP4EnvironmentVar("P4USER");
+            if (_initialPort != null)
+            {
+                _initialClient = ClientTextBox.Text = commands.GetP4EnvironmentVar("P4CLIENT");
+                _initialUser = UserTextBox.Text = commands.GetP4EnvironmentVar("P4USER");
+            }
         }
 
         private void SetError(string error)

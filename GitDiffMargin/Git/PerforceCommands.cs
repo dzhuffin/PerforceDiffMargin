@@ -23,8 +23,6 @@ namespace GitDiffMargin.Git
             Initialized = 1, //_repository and _connection are initialized, but not connected. can't get P4USER, P4PORT or P4CLIENT
             Connected = 2, //_repository and _connection are initialized and connected. can get P4USER, P4PORT or P4CLIENT No login and no logic checks
             Success = 3, // everything is known and initialized
-            //Failed = 4, //_repository and _connection are not null. P4USER, P4PORT or P4CLIENT unset(can get it), or no internet connection, or no pass
-            //FailedRootKnown = 5, // the same as Failed but we can successfully obtain root. Usually no pass or maybe no user.
         }
 
         private string GetStateDescription(ConnectionState state)
@@ -172,7 +170,6 @@ namespace GitDiffMargin.Git
                 return;
             }
 
-            // check user:
             // check ticket exists and valid. 
             var cmd = new P4Command(_connection, "login", true, new string[] { "-s" }); // p4 login -s get status of the ticket
             try
@@ -182,16 +179,15 @@ namespace GitDiffMargin.Git
             }
             catch (P4Exception ex)
             {
-                // TODO: close connection?
                 DisconnectImpl();
                 _last_error = error_msg_start + " \nError: \n" + ex.Message;
                 return;
             }
+
             // this ticket should belong to current user
             var output = cmd.TextOutput;
             if (cmd.TaggedOutput[0]["User"] != _connection.UserName)
             {
-                // TODO: close connection?
                 DisconnectImpl();
                 _last_error = error_msg_start + " \nError: \nP4USER variable don't correspond to logged in user.";
                 return;
