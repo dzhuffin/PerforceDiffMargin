@@ -52,6 +52,7 @@ namespace GitDiffMargin
 
             myDialog.HasMinimizeButton = false;
             myDialog.HasMaximizeButton = true;
+            myDialog.Title = "Perforce Connection Settings";
             myDialog.ShowModal();
         }
 
@@ -59,14 +60,14 @@ namespace GitDiffMargin
         {
             var status = PerforceCommands.GetInstance().RefreshConnection(out string message_text);
 
-            MessageBox.Show(message_text);
+            MessageBox.Show(message_text, "Perforce Connection");
         }
 
         private void OnDisconnect(object sender, EventArgs e)
         {
             // TODO: add try-catch?
             PerforceCommands.GetInstance().Disconnect();
-            MessageBox.Show("Disconnected");
+            MessageBox.Show("Disconnected", "Perforce Connection");
         }
 
     }

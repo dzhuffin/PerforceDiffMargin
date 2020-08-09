@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GitDiffMargin.View"
              xmlns:platformUi="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.11.0"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              Height="330" Width="400" ResizeMode="NoResize">
     <Grid>
@@ -24,15 +25,30 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Content="P4PORT" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="52"/>
-            <Label Content="P4CLIENT" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="61"/>
-            <Label Content="P4USER" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="51"/>
-            <Label Content="Password" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="60"/>
+            <Grid.Resources>
+                <clr:String xml:space="preserve" x:Key="P4PORTTooltip">For the Perforce service (server, broker, or proxy), the port number on which it listens, and the network transport(s) to which it is to bind.&#x0a;Foramt: protocol:host:portcmd.&#x0a;Examples: example.com:1666, or tcp:example.com:1666, or ssl:example.com:1666</clr:String>
+                <clr:String x:Key="P4CLIENTTooltip">Name of current client workspace</clr:String>
+                <clr:String x:Key="P4USERTooltip">Current Helix Server username</clr:String>
+                <clr:String x:Key="PasswordTooltip">Current Helix Server user's password</clr:String>
+            </Grid.Resources>
 
-            <TextBox Name="PortTextBox" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="18"/>
-            <TextBox Name="ClientTextBox" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="18"/>
-            <TextBox Name="UserTextBox" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="18"/>
-            <PasswordBox Name="PasswordTextBox" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Width="280" Height="18"/>
+            <Label Content="P4PORT" ToolTip="{StaticResource P4PORTTooltip}"
+                   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="52"/>
+            <Label Content="P4CLIENT" ToolTip="{StaticResource P4CLIENTTooltip}"
+                   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="61"/>
+            <Label Content="P4USER" ToolTip="{StaticResource P4USERTooltip}"
+                   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="51"/>
+            <Label Content="Password" ToolTip="{StaticResource PasswordTooltip}"
+                   Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="60"/>
+
+            <TextBox Name="PortTextBox" ToolTip="{StaticResource P4PORTTooltip}"
+                     HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="18"/>
+            <TextBox Name="ClientTextBox" ToolTip="{StaticResource P4CLIENTTooltip}"
+                     HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="18"/>
+            <TextBox Name="UserTextBox" ToolTip="{StaticResource P4USERTooltip}"
+                     HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="280" Height="18"/>
+            <PasswordBox Name="PasswordTextBox" ToolTip="{StaticResource PasswordTooltip}"
+                         HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Width="280" Height="18"/>
         </Grid>
     </Grid>
 </platformUi:DialogWindow>
