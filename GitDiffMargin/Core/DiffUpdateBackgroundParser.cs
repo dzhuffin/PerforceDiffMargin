@@ -76,7 +76,7 @@ namespace GitDiffMargin.Core
         {
             get
             {
-                return "Git Diff Analyzer";
+                return "Perforce Diff Analyzer";
             }
         }
 

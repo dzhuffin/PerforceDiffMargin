@@ -15,7 +15,7 @@ namespace GitDiffMargin.Settings
         {
             BackgroundColor = Color.FromRgb(160, 200, 255);
             ForegroundCustomizable = false;
-            DisplayName = "Git Diff Modification";
+            DisplayName = "Perforce Diff Modification";
         }
     }
 }

@@ -2,8 +2,8 @@
 {
     public static class DiffFormatNames
     {
-        public const string Addition = "GitDiffMarginAddition";
-        public const string Modification = "GitDiffMarginModification";
-        public const string Removed = "GitDiffMarginRemoved";
+        public const string Addition = "PerforceDiffMarginAddition";
+        public const string Modification = "PerforceDiffMarginModification";
+        public const string Removed = "PerforceDiffMarginRemoved";
     }
 }
