@@ -10,7 +10,7 @@
     internal class PreviousChangeCommandHandler : GitDiffMarginCommandHandler<PreviousChangeCommandArgs>
     {
         public PreviousChangeCommandHandler()
-            : base(GitDiffMarginCommand.PreviousChange)
+            : base(PerforceDiffMarginCommand.PreviousChange)
         {
         }
 

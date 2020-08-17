@@ -207,7 +207,7 @@ namespace PerforceDiffMargin.Git
             }
         }
 
-        public IEnumerable<HunkRangeInfo> GetGitDiffFor(ITextDocument textDocument, ITextSnapshot snapshot)
+        public IEnumerable<HunkRangeInfo> GetDiffFor(ITextDocument textDocument, ITextSnapshot snapshot)
         {
             if (!CanGetDiff(textDocument.FilePath))
                 yield break;
@@ -235,8 +235,8 @@ namespace PerforceDiffMargin.Git
             //if (content == null) yield break;
 
             // TODO: after debugging remove the second and the third arguments from c'tor and next code, are they useless?
-            var gitDiffParser = new UnifiedFormatDiffParser(target[0].Diff, 0, false);
-            var hunkRangeInfos = gitDiffParser.Parse();
+            var uniDiffParser = new UnifiedFormatDiffParser(target[0].Diff, 0, false);
+            var hunkRangeInfos = uniDiffParser.Parse();
 
             foreach (var hunkRangeInfo in hunkRangeInfos)
             {
@@ -268,7 +268,7 @@ namespace PerforceDiffMargin.Git
 
             var filename = textDocument.FilePath;
 
-            if (!IsGitRepository(filename))
+            if (!IsDiffPerformed(filename))
                 return;
 
             var depotPath = GetPerforcePath(filename);
@@ -305,20 +305,20 @@ namespace PerforceDiffMargin.Git
             return _state == ConnectionState.Success && IsFileUnderPerforceRoot(path);
         }
 
-        public bool IsGitRepository(string path)
+        public bool IsDiffPerformed(string path)
         {
             switch (_state)
             {
                 case ConnectionState.Unknown:
                 case ConnectionState.Initialized:
-                    return true; // can connect later
+                    return true; // can reconnect later
                 case ConnectionState.Connected:
-                    return !IsPerforceRootFound() || // can connect later
+                    return !IsPerforceRootFound() || // can reconnect later
                         IsFileUnderPerforceRoot(path);
                 case ConnectionState.Success:
                     return IsFileUnderPerforceRoot(path);
                 default:
-                    return true; // can connect later
+                    return true; // can reconnect later
             }
         }
 
@@ -384,7 +384,7 @@ namespace PerforceDiffMargin.Git
 
         private string GetPerforcePath(string absolutePath)
         {
-            Debug.Assert(IsGitRepository(absolutePath));
+            Debug.Assert(IsDiffPerformed(absolutePath));
             Debug.Assert(IsPerforceRootFound());
 
             string perforcePath = absolutePath.Substring(_perforceRoot.Length, absolutePath.Length - _perforceRoot.Length);

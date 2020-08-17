@@ -35,11 +35,11 @@ namespace PerforceDiffMargin
 
         protected override OLECMDF QueryCommandStatus(ref Guid commandGroup, uint commandId, OleCommandText oleCommandText)
         {
-            if (commandGroup == typeof(GitDiffMarginCommand).GUID)
+            if (commandGroup == typeof(PerforceDiffMarginCommand).GUID)
             {
-                switch ((GitDiffMarginCommand)commandId)
+                switch ((PerforceDiffMarginCommand)commandId)
                 {
-                case GitDiffMarginCommand.ShowPopup:
+                case PerforceDiffMarginCommand.ShowPopup:
                     {
                     EditorDiffMarginViewModel viewModel;
                     if (!TryGetMarginViewModel(out viewModel))
@@ -52,8 +52,8 @@ namespace PerforceDiffMargin
                     else
                         return OLECMDF.OLECMDF_SUPPORTED;
                 }
-                case GitDiffMarginCommand.PreviousChange:
-                case GitDiffMarginCommand.NextChange:
+                case PerforceDiffMarginCommand.PreviousChange:
+                case PerforceDiffMarginCommand.NextChange:
                     {
                         EditorDiffMarginViewModel viewModel;
                         if (!TryGetMarginViewModel(out viewModel))
@@ -63,7 +63,7 @@ namespace PerforceDiffMargin
                         EditorDiffViewModel diffViewModel = viewModel.DiffViewModels.OfType<EditorDiffViewModel>().FirstOrDefault(i => i.ShowPopup);
                         if (diffViewModel != null)
                         {
-                            RelayCommand<DiffViewModel> command = (GitDiffMarginCommand)commandId == GitDiffMarginCommand.NextChange ? viewModel.NextChangeCommand : viewModel.PreviousChangeCommand;
+                            RelayCommand<DiffViewModel> command = (PerforceDiffMarginCommand)commandId == PerforceDiffMarginCommand.NextChange ? viewModel.NextChangeCommand : viewModel.PreviousChangeCommand;
                             if (command.CanExecute(diffViewModel))
                                 return OLECMDF.OLECMDF_SUPPORTED | OLECMDF.OLECMDF_ENABLED;
                             else
@@ -78,8 +78,8 @@ namespace PerforceDiffMargin
                             return OLECMDF.OLECMDF_SUPPORTED;
                     }
 
-                case GitDiffMarginCommand.RollbackChange:
-                case GitDiffMarginCommand.CopyOldText:
+                case PerforceDiffMarginCommand.RollbackChange:
+                case PerforceDiffMarginCommand.CopyOldText:
                     {
                         EditorDiffMarginViewModel viewModel;
                         if (!TryGetMarginViewModel(out viewModel))
@@ -88,7 +88,7 @@ namespace PerforceDiffMargin
                         EditorDiffViewModel diffViewModel = viewModel.DiffViewModels.OfType<EditorDiffViewModel>().FirstOrDefault(i => i.ShowPopup);
                         if (diffViewModel != null)
                         {
-                            ICommand command = (GitDiffMarginCommand)commandId == GitDiffMarginCommand.RollbackChange ? diffViewModel.RollbackCommand : diffViewModel.CopyOldTextCommand;
+                            ICommand command = (PerforceDiffMarginCommand)commandId == PerforceDiffMarginCommand.RollbackChange ? diffViewModel.RollbackCommand : diffViewModel.CopyOldTextCommand;
                             if (command.CanExecute(diffViewModel))
                                 return OLECMDF.OLECMDF_SUPPORTED | OLECMDF.OLECMDF_ENABLED;
                         }
@@ -97,7 +97,7 @@ namespace PerforceDiffMargin
                         return OLECMDF.OLECMDF_SUPPORTED;
                     }
 
-                case GitDiffMarginCommand.ShowDiff:
+                case PerforceDiffMarginCommand.ShowDiff:
                     {
                         EditorDiffMarginViewModel viewModel;
                         if (!TryGetMarginViewModel(out viewModel))
@@ -108,8 +108,8 @@ namespace PerforceDiffMargin
                         else
                             return OLECMDF.OLECMDF_SUPPORTED;
                     }
-                case GitDiffMarginCommand.GitDiffToolbar:
-                case GitDiffMarginCommand.GitDiffToolbarGroup:
+                case PerforceDiffMarginCommand.PerforceDiffToolbar:
+                case PerforceDiffMarginCommand.PerforceDiffToolbarGroup:
                     // these aren't actually commands, but IDs of the command bars and groups
                     break;
 
@@ -123,16 +123,16 @@ namespace PerforceDiffMargin
 
         protected override bool HandlePreExec(ref Guid commandGroup, uint commandId, OLECMDEXECOPT executionOptions, IntPtr pvaIn, IntPtr pvaOut)
         {
-            if (commandGroup == typeof(GitDiffMarginCommand).GUID)
+            if (commandGroup == typeof(PerforceDiffMarginCommand).GUID)
             {
                 EditorDiffMarginViewModel viewModel = null;
                 EditorDiffViewModel diffViewModel = null;
                 if (TryGetMarginViewModel(out viewModel))
                     diffViewModel = viewModel.DiffViewModels.OfType<EditorDiffViewModel>().FirstOrDefault(i => i.ShowPopup);
 
-                switch ((GitDiffMarginCommand)commandId)
+                switch ((PerforceDiffMarginCommand)commandId)
                 {
-                case GitDiffMarginCommand.ShowPopup:
+                case PerforceDiffMarginCommand.ShowPopup:
                 {                  
                     diffViewModel = GetCurrentDiffViewModel(viewModel);
 
@@ -144,13 +144,13 @@ namespace PerforceDiffMargin
 
                     return false;
                 }
-                case GitDiffMarginCommand.PreviousChange:
-                case GitDiffMarginCommand.NextChange:
+                case PerforceDiffMarginCommand.PreviousChange:
+                case PerforceDiffMarginCommand.NextChange:
                     {
                         if (viewModel == null)
                             return false;
 
-                        RelayCommand<DiffViewModel> command = (GitDiffMarginCommand)commandId == GitDiffMarginCommand.NextChange ? viewModel.NextChangeCommand : viewModel.PreviousChangeCommand;
+                        RelayCommand<DiffViewModel> command = (PerforceDiffMarginCommand)commandId == PerforceDiffMarginCommand.NextChange ? viewModel.NextChangeCommand : viewModel.PreviousChangeCommand;
 
                         // First look for a diff already showing a popup
                         if (diffViewModel != null)
@@ -167,18 +167,18 @@ namespace PerforceDiffMargin
                         return true;
                     }
 
-                case GitDiffMarginCommand.RollbackChange:
-                case GitDiffMarginCommand.CopyOldText:
+                case PerforceDiffMarginCommand.RollbackChange:
+                case PerforceDiffMarginCommand.CopyOldText:
                     {
                         if (diffViewModel == null)
                             return false;
 
-                        ICommand command = (GitDiffMarginCommand)commandId == GitDiffMarginCommand.RollbackChange ? diffViewModel.RollbackCommand : diffViewModel.CopyOldTextCommand;
+                        ICommand command = (PerforceDiffMarginCommand)commandId == PerforceDiffMarginCommand.RollbackChange ? diffViewModel.RollbackCommand : diffViewModel.CopyOldTextCommand;
                         command.Execute(diffViewModel);
                         return true;
                     }
 
-                case GitDiffMarginCommand.ShowDiff:
+                case PerforceDiffMarginCommand.ShowDiff:
                     {
                         if (diffViewModel == null)
                             return false;
@@ -188,8 +188,8 @@ namespace PerforceDiffMargin
                         return true;
                     }
 
-                case GitDiffMarginCommand.GitDiffToolbar:
-                case GitDiffMarginCommand.GitDiffToolbarGroup:
+                case PerforceDiffMarginCommand.PerforceDiffToolbar:
+                case PerforceDiffMarginCommand.PerforceDiffToolbarGroup:
                     // these aren't actually commands, but IDs of the command bars and groups
                     break;
 
@@ -205,7 +205,7 @@ namespace PerforceDiffMargin
         {
             var lineNumber = _textView.Caret.Position.BufferPosition.GetContainingLine().LineNumber;
 
-            return (GitDiffMarginCommand) commandId == GitDiffMarginCommand.NextChange ?
+            return (PerforceDiffMarginCommand) commandId == PerforceDiffMarginCommand.NextChange ?
                 viewModel.DiffViewModels.OfType<EditorDiffViewModel>().FirstOrDefault(model => model.LineNumber > lineNumber) :
                 viewModel.DiffViewModels.OfType<EditorDiffViewModel>().LastOrDefault(model => model.LineNumber < lineNumber);
         }

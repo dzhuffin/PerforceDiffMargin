@@ -10,7 +10,7 @@
     internal class ShowDiffCommandHandler : GitDiffMarginCommandHandler<ShowDiffCommandArgs>
     {
         public ShowDiffCommandHandler()
-            : base(GitDiffMarginCommand.ShowDiff)
+            : base(PerforceDiffMarginCommand.ShowDiff)
         {
         }
 

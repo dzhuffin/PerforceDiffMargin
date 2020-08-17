@@ -46,7 +46,7 @@ namespace PerforceDiffMargin
             if (fullPath == null)
                 return null;
 
-            if (!PerforceCommands.GetInstance().IsGitRepository(fullPath))
+            if (!PerforceCommands.GetInstance().IsDiffPerformed(fullPath))
             {
                 return null;
             }

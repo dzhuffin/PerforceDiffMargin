@@ -10,7 +10,7 @@
     internal class RollbackChangeCommandHandler : GitDiffMarginCommandHandler<RollbackChangeCommandArgs>
     {
         public RollbackChangeCommandHandler()
-            : base(GitDiffMarginCommand.RollbackChange)
+            : base(PerforceDiffMarginCommand.RollbackChange)
         {
         }
 

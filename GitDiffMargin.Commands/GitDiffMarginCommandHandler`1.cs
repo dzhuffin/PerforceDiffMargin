@@ -7,7 +7,7 @@
     internal abstract class GitDiffMarginCommandHandler<T> : ShimCommandHandler<T>
         where T : EditorCommandArgs
     {
-        protected GitDiffMarginCommandHandler(GitDiffMarginCommand commandId)
+        protected GitDiffMarginCommandHandler(PerforceDiffMarginCommand commandId)
             : base(new Guid(GitDiffMarginCommandHandler.GitDiffMarginCommandSet), (uint)commandId)
         {
         }

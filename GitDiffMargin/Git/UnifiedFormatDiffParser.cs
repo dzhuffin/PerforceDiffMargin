@@ -10,8 +10,8 @@ namespace PerforceDiffMargin.Git
         private readonly int _contextLines;
         private readonly bool _suppressRollback;
 
-        public UnifiedFormatDiffParser(string gitDiff, int contextLines)
-            : this(gitDiff, contextLines, false)
+        public UnifiedFormatDiffParser(string fullUnifiedDiffContent, int contextLines)
+            : this(fullUnifiedDiffContent, contextLines, false)
         {
         }
 

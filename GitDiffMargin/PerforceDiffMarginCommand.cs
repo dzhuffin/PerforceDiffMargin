@@ -3,7 +3,7 @@
     using System.Runtime.InteropServices;
 
     [Guid(GitDiffMarginCommandHandler.GitDiffMarginCommandSet)]
-    public enum GitDiffMarginCommand
+    public enum PerforceDiffMarginCommand
     {
         PreviousChange = 0,
         NextChange = 1,
@@ -12,8 +12,8 @@
         CopyOldText = 4,
         ShowPopup = 5,
 
-        GitDiffToolbar = 100,
+        PerforceDiffToolbar = 100,
 
-        GitDiffToolbarGroup = 150,
+        PerforceDiffToolbarGroup = 150,
     }
 }

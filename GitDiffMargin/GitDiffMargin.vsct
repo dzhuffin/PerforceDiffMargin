@@ -4,34 +4,34 @@
 
   <Commands package="GitDiffMarginPackage">
     <Menus>
-      <Menu guid="GitDiffMarginCommand" id="GitDiffToolbar" type="Toolbar">
+      <Menu guid="PerforceDiffMarginCommand" id="PerforceDiffToolbar" type="Toolbar">
         <CommandFlag>NotInTBList</CommandFlag>
         <Strings>
-          <LocCanonicalName>GitDiffMarginToolbar</LocCanonicalName>
-          <ButtonText>Git Diff Margin Navigation</ButtonText>
+          <LocCanonicalName>PerforceDiffMarginToolbar</LocCanonicalName>
+          <ButtonText>Perforce Diff Margin Navigation</ButtonText>
         </Strings>
       </Menu>
-      <Menu guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbar" type="Toolbar">
+      <Menu guid="PerforceDiffMarginStaticToolbarCommand" id="PerforceDiffStaticToolbar" type="Toolbar">
         <Strings>
-          <LocCanonicalName>GitDiffMarginStaticToolbar</LocCanonicalName>
-          <ButtonText>Git Diff Margin Configuration</ButtonText>
+          <LocCanonicalName>PerforceDiffMarginStaticToolbar</LocCanonicalName>
+          <ButtonText>Perforce Diff Margin Configuration</ButtonText>
         </Strings>
       </Menu>
     </Menus>
 
     <Groups>
-      <Group guid="GitDiffMarginCommand" id="GitDiffToolbarGroup" priority="0x0101">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbar"/>
+      <Group guid="PerforceDiffMarginCommand" id="PerforceDiffToolbarGroup" priority="0x0101">
+        <Parent guid="PerforceDiffMarginCommand" id="PerforceDiffToolbar"/>
       </Group>
-      <Group guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup" priority="0x0102">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbar"/>
+      <Group guid="PerforceDiffMarginStaticToolbarCommand" id="PerforceDiffStaticToolbarGroup" priority="0x0102">
+        <Parent guid="PerforceDiffMarginStaticToolbarCommand" id="PerforceDiffStaticToolbar"/>
       </Group>
     </Groups>
 
     <Buttons>
-      <Button guid="GitDiffMarginCommand" id="PreviousChange" priority="0x0101" type="Button">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
-        <Icon guid="guidGitDiffMarginIcons" id="GitDiffMarginPreviousChange" />
+      <Button guid="PerforceDiffMarginCommand" id="PreviousChange" priority="0x0101" type="Button">
+        <Parent guid="PerforceDiffMarginCommand" id="PerforceDiffToolbarGroup"/>
+        <Icon guid="guidPerforceDiffMarginIcons" id="PerforceDiffMarginPreviousChange" />
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -42,9 +42,9 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginCommand" id="NextChange" priority="0x0102" type="Button">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
-        <Icon guid="guidGitDiffMarginIcons" id="GitDiffMarginNextChange" />
+      <Button guid="PerforceDiffMarginCommand" id="NextChange" priority="0x0102" type="Button">
+        <Parent guid="PerforceDiffMarginCommand" id="PerforceDiffToolbarGroup"/>
+        <Icon guid="guidPerforceDiffMarginIcons" id="PerforceDiffMarginNextChange" />
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -55,9 +55,9 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginCommand" id="RollbackChange" priority="0x0103" type="Button">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
-        <Icon guid="guidGitDiffMarginIcons" id="GitDiffMarginRollbackChange" />
+      <Button guid="PerforceDiffMarginCommand" id="RollbackChange" priority="0x0103" type="Button">
+        <Parent guid="PerforceDiffMarginCommand" id="PerforceDiffToolbarGroup"/>
+        <Icon guid="guidPerforceDiffMarginIcons" id="PerforceDiffMarginRollbackChange" />
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -69,9 +69,9 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginCommand" id="ShowDiff" priority="0x0104" type="Button">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
-        <Icon guid="guidGitDiffMarginIcons" id="GitDiffMarginShowDiff" />
+      <Button guid="PerforceDiffMarginCommand" id="ShowDiff" priority="0x0104" type="Button">
+        <Parent guid="PerforceDiffMarginCommand" id="PerforceDiffToolbarGroup"/>
+        <Icon guid="guidPerforceDiffMarginIcons" id="PerforceDiffMarginShowDiff" />
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -83,9 +83,9 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginCommand" id="CopyOldText" priority="0x0105" type="Button">
-        <Parent guid="GitDiffMarginCommand" id="GitDiffToolbarGroup"/>
-        <Icon guid="guidGitDiffMarginIcons" id="GitDiffMarginCopy" />
+      <Button guid="PerforceDiffMarginCommand" id="CopyOldText" priority="0x0105" type="Button">
+        <Parent guid="PerforceDiffMarginCommand" id="PerforceDiffToolbarGroup"/>
+        <Icon guid="guidPerforceDiffMarginIcons" id="PerforceDiffMarginCopy" />
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -97,7 +97,7 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginCommand" id="ShowPopup" priority="0x0106" type="Button">
+      <Button guid="PerforceDiffMarginCommand" id="ShowPopup" priority="0x0106" type="Button">
         <CommandFlag>DefaultDisabled</CommandFlag>
         <Strings>
           <LocCanonicalName>PerforceDiffMargin.ShowPopup</LocCanonicalName>
@@ -107,8 +107,8 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginStaticToolbarCommand" id="Refresh" priority="0x0101" type="Button">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+      <Button guid="PerforceDiffMarginStaticToolbarCommand" id="Refresh" priority="0x0101" type="Button">
+        <Parent guid="PerforceDiffMarginStaticToolbarCommand" id="PerforceDiffStaticToolbarGroup"/>
         <Icon guid="ImageCatalogGuid" id="AddConnection"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -119,8 +119,8 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginStaticToolbarCommand" id="Disconnect" priority="0x0102" type="Button">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+      <Button guid="PerforceDiffMarginStaticToolbarCommand" id="Disconnect" priority="0x0102" type="Button">
+        <Parent guid="PerforceDiffMarginStaticToolbarCommand" id="PerforceDiffStaticToolbarGroup"/>
         <Icon guid="ImageCatalogGuid" id="Disconnect"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -131,8 +131,8 @@
         </Strings>
       </Button>
 
-      <Button guid="GitDiffMarginStaticToolbarCommand" id="Settings" priority="0x0103" type="Button">
-        <Parent guid="GitDiffMarginStaticToolbarCommand" id="GitDiffStaticToolbarGroup"/>
+      <Button guid="PerforceDiffMarginStaticToolbarCommand" id="Settings" priority="0x0103" type="Button">
+        <Parent guid="PerforceDiffMarginStaticToolbarCommand" id="PerforceDiffStaticToolbarGroup"/>
         <Icon guid="ImageCatalogGuid" id="Settings"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
@@ -148,7 +148,7 @@
   <Symbols>
     <GuidSymbol name="GitDiffMarginPackage" value="{F82C1EF6-3B52-425E-BC28-4934E6073A32}" />
 
-    <GuidSymbol name="GitDiffMarginCommand" value="{691DB887-6D82-46A9-B0AF-407C7F0E39BE}">
+    <GuidSymbol name="PerforceDiffMarginCommand" value="{691DB887-6D82-46A9-B0AF-407C7F0E39BE}">
       <IDSymbol name="PreviousChange" value="0" />
       <IDSymbol name="NextChange" value="1" />
       <IDSymbol name="RollbackChange" value="2" />
@@ -156,33 +156,33 @@
       <IDSymbol name="CopyOldText" value="4" />
       <IDSymbol name="ShowPopup" value="5" />
 
-      <IDSymbol name="GitDiffToolbar" value="100"/>
-      <IDSymbol name="GitDiffToolbarGroup" value="150"/>
+      <IDSymbol name="PerforceDiffToolbar" value="100"/>
+      <IDSymbol name="PerforceDiffToolbarGroup" value="150"/>
     </GuidSymbol>
 
-    <GuidSymbol name="GitDiffMarginStaticToolbarCommand" value="{6DA7066F-F38D-44D5-A52B-ADC48D274176}">
+    <GuidSymbol name="PerforceDiffMarginStaticToolbarCommand" value="{6DA7066F-F38D-44D5-A52B-ADC48D274176}">
       <IDSymbol name="Refresh" value="0" />
       <IDSymbol name="Disconnect" value="1" />
       <IDSymbol name="Settings" value="2" />
 
-      <IDSymbol name="GitDiffStaticToolbar" value="100"/>
-      <IDSymbol name="GitDiffStaticToolbarGroup" value="150"/>
+      <IDSymbol name="PerforceDiffStaticToolbar" value="100"/>
+      <IDSymbol name="PerforceDiffStaticToolbarGroup" value="150"/>
     </GuidSymbol>
 
-    <GuidSymbol name="guidGitDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
-      <IDSymbol name="GitDiffMarginShowDiff" value="1" />
+    <GuidSymbol name="guidPerforceDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
+      <IDSymbol name="PerforceDiffMarginShowDiff" value="1" />
     </GuidSymbol>
-    <GuidSymbol name="guidGitDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
-      <IDSymbol name="GitDiffMarginRollbackChange" value="2" />
+    <GuidSymbol name="guidPerforceDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
+      <IDSymbol name="PerforceDiffMarginRollbackChange" value="2" />
     </GuidSymbol>
-    <GuidSymbol name="guidGitDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
-      <IDSymbol name="GitDiffMarginNextChange" value="3" />
+    <GuidSymbol name="guidPerforceDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
+      <IDSymbol name="PerforceDiffMarginNextChange" value="3" />
     </GuidSymbol>
-    <GuidSymbol name="guidGitDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
-      <IDSymbol name="GitDiffMarginPreviousChange" value="4" />
+    <GuidSymbol name="guidPerforceDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
+      <IDSymbol name="PerforceDiffMarginPreviousChange" value="4" />
     </GuidSymbol>
-    <GuidSymbol name="guidGitDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
-      <IDSymbol name="GitDiffMarginCopy" value="5" />
+    <GuidSymbol name="guidPerforceDiffMarginIcons" value="{3e6659f9-943a-4ba2-89d6-a7974e8b4e2f}">
+      <IDSymbol name="PerforceDiffMarginCopy" value="5" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

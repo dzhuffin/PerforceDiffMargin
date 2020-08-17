@@ -10,7 +10,7 @@
     internal class CopyOldTextCommandHandler : GitDiffMarginCommandHandler<CopyOldTextCommandArgs>
     {
         public CopyOldTextCommandHandler()
-            : base(GitDiffMarginCommand.CopyOldText)
+            : base(PerforceDiffMarginCommand.CopyOldText)
         {
         }
 

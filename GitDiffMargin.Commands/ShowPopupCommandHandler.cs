@@ -10,7 +10,7 @@
     internal class ShowPopupCommandHandler : GitDiffMarginCommandHandler<ShowPopupCommandArgs>
     {
         public ShowPopupCommandHandler()
-            : base(GitDiffMarginCommand.ShowPopup)
+            : base(PerforceDiffMarginCommand.ShowPopup)
         {
         }
 

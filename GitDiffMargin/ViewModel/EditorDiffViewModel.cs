@@ -174,8 +174,8 @@ namespace PerforceDiffMargin.ViewModel
                             IVsToolbarTrayHost toolbarTrayHost;
                             ErrorHandler.ThrowOnFailure(uiShell.CreateToolbarTray(commandTarget, out toolbarTrayHost));
 
-                            Guid toolBarGuid = typeof(GitDiffMarginCommand).GUID;
-                            ErrorHandler.ThrowOnFailure(toolbarTrayHost.AddToolbar(ref toolBarGuid, (int)GitDiffMarginCommand.GitDiffToolbar));
+                            Guid toolBarGuid = typeof(PerforceDiffMarginCommand).GUID;
+                            ErrorHandler.ThrowOnFailure(toolbarTrayHost.AddToolbar(ref toolBarGuid, (int)PerforceDiffMarginCommand.PerforceDiffToolbar));
 
                             _toolbarTrayHost = toolbarTrayHost;
                         }

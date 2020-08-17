@@ -28,15 +28,15 @@ namespace PerforceDiffMargin
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (null != mcs)
             {
-                CommandID refreshCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)GitDiffMarginStaticToolbarCommand.Refresh);
+                CommandID refreshCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Refresh);
                 OleMenuCommand refreshCommand = new OleMenuCommand(new EventHandler(OnRefresh), refreshCommandID);
                 mcs.AddCommand(refreshCommand);
 
-                CommandID disconnectCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)GitDiffMarginStaticToolbarCommand.Disconnect);
+                CommandID disconnectCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Disconnect);
                 OleMenuCommand disconnectCommand = new OleMenuCommand(new EventHandler(OnDisconnect), disconnectCommandID);
                 mcs.AddCommand(disconnectCommand);
 
-                CommandID settingsCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)GitDiffMarginStaticToolbarCommand.Settings);
+                CommandID settingsCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Settings);
                 OleMenuCommand settingsCommand = new OleMenuCommand(new EventHandler(OnSettings), settingsCommandID);
                 mcs.AddCommand(settingsCommand);
             }
