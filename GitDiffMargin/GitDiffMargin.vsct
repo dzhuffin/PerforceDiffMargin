@@ -2,7 +2,7 @@
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable">
   <Include href="KnownImageIds.vsct"/>
 
-  <Commands package="GitDiffMarginPackage">
+  <Commands package="PerforceDiffMarginPackage">
     <Menus>
       <Menu guid="PerforceDiffMarginCommand" id="PerforceDiffToolbar" type="Toolbar">
         <CommandFlag>NotInTBList</CommandFlag>
@@ -146,7 +146,7 @@
   </Commands>
 
   <Symbols>
-    <GuidSymbol name="GitDiffMarginPackage" value="{F82C1EF6-3B52-425E-BC28-4934E6073A32}" />
+    <GuidSymbol name="PerforceDiffMarginPackage" value="{F82C1EF6-3B52-425E-BC28-4934E6073A32}" />
 
     <GuidSymbol name="PerforceDiffMarginCommand" value="{691DB887-6D82-46A9-B0AF-407C7F0E39BE}">
       <IDSymbol name="PreviousChange" value="0" />

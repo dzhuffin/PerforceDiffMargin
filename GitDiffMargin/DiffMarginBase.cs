@@ -68,7 +68,7 @@ namespace PerforceDiffMargin
 
         private void HandleOptionChanged(object sender, EditorOptionChangedEventArgs e)
         {
-            if (!_isDisposed && e.OptionId == GitDiffMarginTextViewOptions.DiffMarginName)
+            if (!_isDisposed && e.OptionId == PerforceDiffMarginTextViewOptions.DiffMarginName)
             {
                 UpdateVisibility();
             }

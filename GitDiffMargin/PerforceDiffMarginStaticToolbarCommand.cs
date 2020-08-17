@@ -2,7 +2,7 @@
 {
     using System.Runtime.InteropServices;
 
-    [Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet)]
+    [Guid(GitDiffMarginCommandHandler.PerforceDiffMarginStaticToolbarCommandSet)]
     public enum PerforceDiffMarginStaticToolbarCommand
     {
         Refresh = 0,

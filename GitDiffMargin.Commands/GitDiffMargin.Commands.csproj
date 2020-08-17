@@ -49,10 +49,10 @@
     <Compile Include="CommandHandlerTextViewCreationListener.cs" />
     <Compile Include="CopyOldTextCommandArgs.cs" />
     <Compile Include="CopyOldTextCommandHandler.cs" />
-    <Compile Include="GitDiffMarginCommandBinding.cs" />
     <Compile Include="GitDiffMarginCommandHandler`1.cs" />
     <Compile Include="NextChangeCommandArgs.cs" />
     <Compile Include="NextChangeCommandHandler.cs" />
+    <Compile Include="PerforceDiffMarginCommandBinding.cs" />
     <Compile Include="PreviousChangeCommandArgs.cs" />
     <Compile Include="PreviousChangeCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

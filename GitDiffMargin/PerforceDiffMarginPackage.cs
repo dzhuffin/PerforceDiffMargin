@@ -19,7 +19,7 @@ namespace PerforceDiffMargin
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
 
-    public class GitDiffMarginPackage : Package
+    public class PerforceDiffMarginPackage : Package
     {
         protected override void Initialize()
         {
@@ -28,15 +28,15 @@ namespace PerforceDiffMargin
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (null != mcs)
             {
-                CommandID refreshCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Refresh);
+                CommandID refreshCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.PerforceDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Refresh);
                 OleMenuCommand refreshCommand = new OleMenuCommand(new EventHandler(OnRefresh), refreshCommandID);
                 mcs.AddCommand(refreshCommand);
 
-                CommandID disconnectCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Disconnect);
+                CommandID disconnectCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.PerforceDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Disconnect);
                 OleMenuCommand disconnectCommand = new OleMenuCommand(new EventHandler(OnDisconnect), disconnectCommandID);
                 mcs.AddCommand(disconnectCommand);
 
-                CommandID settingsCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.GitDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Settings);
+                CommandID settingsCommandID = new CommandID(new Guid(GitDiffMarginCommandHandler.PerforceDiffMarginStaticToolbarCommandSet), (int)PerforceDiffMarginStaticToolbarCommand.Settings);
                 OleMenuCommand settingsCommand = new OleMenuCommand(new EventHandler(OnSettings), settingsCommandID);
                 mcs.AddCommand(settingsCommand);
             }

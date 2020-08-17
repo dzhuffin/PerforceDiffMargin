@@ -2,7 +2,7 @@
 {
     using System.Runtime.InteropServices;
 
-    [Guid(GitDiffMarginCommandHandler.GitDiffMarginCommandSet)]
+    [Guid(GitDiffMarginCommandHandler.PerforceDiffMarginCommandSet)]
     public enum PerforceDiffMarginCommand
     {
         PreviousChange = 0,

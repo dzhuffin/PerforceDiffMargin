@@ -8,7 +8,7 @@
         where T : EditorCommandArgs
     {
         protected GitDiffMarginCommandHandler(PerforceDiffMarginCommand commandId)
-            : base(new Guid(GitDiffMarginCommandHandler.GitDiffMarginCommandSet), (uint)commandId)
+            : base(new Guid(GitDiffMarginCommandHandler.PerforceDiffMarginCommandSet), (uint)commandId)
         {
         }
 
