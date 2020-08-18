@@ -25,24 +25,6 @@ namespace PerforceDiffMargin.Git
             Success = 3, // everything is known and initialized
         }
 
-        private string GetStateDescription(ConnectionState state)
-        {
-            switch (state)
-            {
-            case ConnectionState.Unknown:
-                return "Unknown state, connection is not initialized";
-            case ConnectionState.Initialized:
-                return "Not connected to local p4. Can't get environmental variables like P4USER, P4PORT or P4CLIENT";
-            case ConnectionState.Connected:
-                return String.Format("Connected to local p4 but can't connect to the server. P4USER, P4PORT and P4CLIENT perforce environment varialbes should be set. Login should be done. Currently thier values are: \nP4USER={0} \nP4PORT={1} \nP4CLIENT={2}",
-                    _connection.GetP4EnvironmentVar("P4USER"), _connection.GetP4EnvironmentVar("P4PORT"), _connection.GetP4EnvironmentVar("P4CLIENT"));
-            case ConnectionState.Success:
-                return "Successfully connected!";
-            default:
-                 return "PerforceDiffCommand plugin internal error. Please report the issue."; // TODO: add link?
-            }
-    }
-
         private readonly IServiceProvider _serviceProvider;
         private Server _server;
         private Repository _repository;
@@ -50,6 +32,8 @@ namespace PerforceDiffMargin.Git
         private string _perforceRoot;
         private ConnectionState _state = ConnectionState.Unknown;
         private string _last_error;
+
+        #region Public Methods
 
         public static PerforceCommands GetInstance(IServiceProvider serviceProvider = null)
         {
@@ -60,51 +44,11 @@ namespace PerforceDiffMargin.Git
 
         // P4USER, P4PORT and P4CLIENT should be set. 
 
-        private PerforceCommands(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-
-            RefreshConnection(out string msg);
-        }
-
         public bool SetNewPort(string uri)
         {
             DisconnectImpl();
 
             return Init(uri);
-        }
-
-        private bool Init(string uri = null)
-        {
-            string corrected_uri = String.IsNullOrEmpty(uri) ? "" : uri;
-            if (_server == null || 
-                (_server.Address.Uri != corrected_uri && !String.IsNullOrEmpty(corrected_uri)))
-            {
-                _server = new Server(new ServerAddress(corrected_uri));
-                _repository = new Repository(_server);
-            }
-
-            _connection = _repository.Connection;
-
-            if (_state == ConnectionState.Unknown || _state == ConnectionState.Initialized || !_connection.connectionEstablished())
-            {
-                try
-                {
-                    _connection.UserName = "";
-                    _connection.Client = new Client();
-                    _connection.Client.Name = "";
-
-                    _connection.Connect(null);
-                    _state = ConnectionState.Connected;
-                }
-                catch (P4Exception ex)
-                {
-                    _state = ConnectionState.Initialized;
-                    _last_error = ex.Message;
-                }
-            }
-
-            return _state == ConnectionState.Connected || _state == ConnectionState.Success;
         }
 
         public bool Login(string password)
@@ -142,60 +86,6 @@ namespace PerforceDiffMargin.Git
         {
             DisconnectImpl();
             ConnectionChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void RefreshConnectionImpl()
-        {
-            DisconnectImpl();
-            if (!Init())
-            {
-                return;
-            }
-
-            _perforceRoot = _repository.GetClientMetadata().Root;
-
-            var error_msg_start = GetStateDescription(ConnectionState.Connected);
-
-            if (!IsPerforceRootFound())
-            {
-                DisconnectImpl();
-                _last_error = error_msg_start + " \nError: \nWorkspace root is unset or doesn't exist";
-                return;
-            }
-
-            if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
-            {
-                DisconnectImpl();
-                _last_error = error_msg_start;
-                return;
-            }
-
-            // check ticket exists and valid. 
-            var cmd = new P4Command(_connection, "login", true, new string[] { "-s" }); // p4 login -s get status of the ticket
-            try
-            {
-                // P4Exception will be thrown in case user is not logged in
-                cmd.Run();
-            }
-            catch (P4Exception ex)
-            {
-                DisconnectImpl();
-                _last_error = error_msg_start + " \nError: \n" + ex.Message;
-                return;
-            }
-
-            // this ticket should belong to current user
-            var output = cmd.TextOutput;
-            if (cmd.TaggedOutput[0]["User"] != _connection.UserName)
-            {
-                DisconnectImpl();
-                _last_error = error_msg_start + " \nError: \nP4USER variable don't correspond to logged in user.";
-                return;
-            }
-
-            _state = ConnectionState.Success;
-
-            _last_error = "";
         }
 
         public void DisconnectImpl()
@@ -244,23 +134,6 @@ namespace PerforceDiffMargin.Git
             }
         }
 
-        // Probably will be required to get content
-        private static byte[] GetCompleteContent(ITextDocument textDocument, ITextSnapshot snapshot)
-        {
-            var currentText = snapshot.GetText();
-
-            var content = textDocument.Encoding.GetBytes(currentText);
-
-            var preamble = textDocument.Encoding.GetPreamble();
-            if (preamble.Length == 0) return content;
-
-            var completeContent = new byte[preamble.Length + content.Length];
-            Buffer.BlockCopy(preamble, 0, completeContent, 0, preamble.Length);
-            Buffer.BlockCopy(content, 0, completeContent, preamble.Length, content.Length);
-
-            return completeContent;
-        }
-
         public void StartExternalDiff(ITextDocument textDocument)
         {
             if (textDocument == null || string.IsNullOrEmpty(textDocument.FilePath))
@@ -298,11 +171,6 @@ namespace PerforceDiffMargin.Git
             // Perforce can create read-only file, so set FileAttributes.Normal in order to safe delete it
             System.IO.File.SetAttributes(tempFileName, FileAttributes.Normal);
             System.IO.File.Delete(tempFileName);
-        }
-
-        private bool CanGetDiff(string path)
-        {
-            return _state == ConnectionState.Success && IsFileUnderPerforceRoot(path);
         }
 
         public bool IsDiffPerformed(string path)
@@ -370,6 +238,132 @@ namespace PerforceDiffMargin.Git
             return res;
         }
 
+        #endregion
+
+        #region Private Methods
+
+        private string GetStateDescription(ConnectionState state)
+        {
+            switch (state)
+            {
+                case ConnectionState.Unknown:
+                    return "Unknown state, connection is not initialized";
+                case ConnectionState.Initialized:
+                    return "Not connected to local p4. Can't get environmental variables like P4USER, P4PORT or P4CLIENT";
+                case ConnectionState.Connected:
+                    return String.Format("Connected to local p4 but can't connect to the server. P4USER, P4PORT and P4CLIENT perforce environment varialbes should be set. Login should be done. Currently thier values are: \nP4USER={0} \nP4PORT={1} \nP4CLIENT={2}",
+                        _connection.GetP4EnvironmentVar("P4USER"), _connection.GetP4EnvironmentVar("P4PORT"), _connection.GetP4EnvironmentVar("P4CLIENT"));
+                case ConnectionState.Success:
+                    return "Successfully connected!";
+                default:
+                    return "PerforceDiffCommand plugin internal error. Please report the issue."; // TODO: add link?
+            }
+        }
+
+        // Probably will be required to get content
+        private static byte[] GetCompleteContent(ITextDocument textDocument, ITextSnapshot snapshot)
+        {
+            var currentText = snapshot.GetText();
+
+            var content = textDocument.Encoding.GetBytes(currentText);
+
+            var preamble = textDocument.Encoding.GetPreamble();
+            if (preamble.Length == 0) return content;
+
+            var completeContent = new byte[preamble.Length + content.Length];
+            Buffer.BlockCopy(preamble, 0, completeContent, 0, preamble.Length);
+            Buffer.BlockCopy(content, 0, completeContent, preamble.Length, content.Length);
+
+            return completeContent;
+        }
+
+        private void RefreshConnectionImpl()
+        {
+            DisconnectImpl();
+            if (!Init())
+            {
+                return;
+            }
+
+            _perforceRoot = _repository.GetClientMetadata().Root;
+
+            var error_msg_start = GetStateDescription(ConnectionState.Connected);
+
+            if (!IsPerforceRootFound())
+            {
+                DisconnectImpl();
+                _last_error = error_msg_start + " \nError: \nWorkspace root is unset or doesn't exist";
+                return;
+            }
+
+            if (!_connection.connectionEstablished() || _connection.GetActiveTicket() == null)
+            {
+                DisconnectImpl();
+                _last_error = error_msg_start;
+                return;
+            }
+
+            // check ticket exists and valid. 
+            var cmd = new P4Command(_connection, "login", true, new string[] { "-s" }); // p4 login -s get status of the ticket
+            try
+            {
+                // P4Exception will be thrown in case user is not logged in
+                cmd.Run();
+            }
+            catch (P4Exception ex)
+            {
+                DisconnectImpl();
+                _last_error = error_msg_start + " \nError: \n" + ex.Message;
+                return;
+            }
+
+            // this ticket should belong to current user
+            var output = cmd.TextOutput;
+            if (cmd.TaggedOutput[0]["User"] != _connection.UserName)
+            {
+                DisconnectImpl();
+                _last_error = error_msg_start + " \nError: \nP4USER variable don't correspond to logged in user.";
+                return;
+            }
+
+            _state = ConnectionState.Success;
+
+            _last_error = "";
+        }
+
+        private bool Init(string uri = null)
+        {
+            string corrected_uri = String.IsNullOrEmpty(uri) ? "" : uri;
+            if (_server == null ||
+                (_server.Address.Uri != corrected_uri && !String.IsNullOrEmpty(corrected_uri)))
+            {
+                _server = new Server(new ServerAddress(corrected_uri));
+                _repository = new Repository(_server);
+            }
+
+            _connection = _repository.Connection;
+
+            if (_state == ConnectionState.Unknown || _state == ConnectionState.Initialized || !_connection.connectionEstablished())
+            {
+                try
+                {
+                    _connection.UserName = "";
+                    _connection.Client = new Client();
+                    _connection.Client.Name = "";
+
+                    _connection.Connect(null);
+                    _state = ConnectionState.Connected;
+                }
+                catch (P4Exception ex)
+                {
+                    _state = ConnectionState.Initialized;
+                    _last_error = ex.Message;
+                }
+            }
+
+            return _state == ConnectionState.Connected || _state == ConnectionState.Success;
+        }
+
         private bool IsPerforceRootFound()
         {
             return _perforceRoot != null && Directory.Exists(_perforceRoot);
@@ -393,5 +387,19 @@ namespace PerforceDiffMargin.Git
 
             return perforcePath;
         }
+
+        private PerforceCommands(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+
+            RefreshConnection(out string msg);
+        }
+
+        private bool CanGetDiff(string path)
+        {
+            return _state == ConnectionState.Success && IsFileUnderPerforceRoot(path);
+        }
+
+        #endregion
     }
 }
