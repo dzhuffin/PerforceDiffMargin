@@ -1,19 +1,26 @@
 ## TODO list step-by-step
 
-* handle all possible p4 errors 
+* **DONE** handle all possible p4 errors.
 * **DONE** add popup with login request and "P4USER, P4PORT and P4CLIENT should be set"
 * **DONE** think abouit separate toolbar. For now a few buttons can be added: "P4 Connect"(Refresh), "P4 Disconnect", "P4 Settings". "P4 Settings" should call dialog with all setting and password 
     + **DONE** Implement dummy buttons
     + **DONE** Impleemnt connect/disconnect
     + **DONE** Implement settings dialog and add it to buttons
 * **DONE** StartExternalDiff using p4 print. Find an example in temporary_changes_start_develop branch
-* We need diff not vs latest but vs have revision????
+* **WONT FIX** We need diff not vs latest but vs have revision????
 * **Can't reproduce for now** Try fix hang
-* Rename Git to Perforce for every item in project (think about separate brunch or local commits and git squash)
-* Remove useless code
-* Fix warnings and check corresponding versions
+* **DONE** Remove useless code
+* **DONE** Fix warnings and check corresponding versions
 * **DONE** Fix dialog according to TODO in the code, p4 get ariables each time on open
-* **DONE** Fix README.md
-* Fix plugin file - name, version etc
-* other TODOs
-* fix very slow set get in case P4PORT is unknown.
+* **DONE** Fix plugin file - name, version etc
+* **DONE** fix very slow set get in case P4PORT is unknown.
+
+Actual list:
+* Rename Git to Perforce for every item in project
+* Fix README.md
+	+ add correct links
+	+ add instructions for connect/disconnect/p4 set
+* Fix README-marketplace.md
+* Scroll in the settings dialog
+* edit AssemblyInfo.cs
+* Final: add to marketplace + links
