@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Text.Editor;
+using Perforce.P4;
 
 namespace PerforceDiffMargin
 {
@@ -58,7 +59,16 @@ namespace PerforceDiffMargin
 
         private void OnRefresh(object sender, EventArgs e)
         {
-            var status = PerforceCommands.GetInstance().RefreshConnection(out string message_text);
+            string message_text = null;
+            try
+            {
+                PerforceCommands.GetInstance().RefreshConnection();
+                message_text = "Successfully connected!";
+            }
+            catch (P4Exception ex)
+            {
+                message_text = ex.Message;
+            }
 
             MessageBox.Show(message_text, "Perforce Connection");
         }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PerforceDiffMargin.Git;
 using Microsoft.VisualStudio.PlatformUI;
+using Perforce.P4;
 
 namespace PerforceDiffMargin.View
 {
@@ -32,11 +33,30 @@ namespace PerforceDiffMargin.View
 
             var commands = PerforceCommands.GetInstance();
 
-            _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
-            if (_initialPort != null)
+            try
+            {
+                _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
+            }
+            catch (P4Exception)
+            {
+                // optimization - it's useless to get client and user without port
+                return;
+            }
+
+            try
             {
                 _initialClient = ClientTextBox.Text = commands.GetP4EnvironmentVar("P4CLIENT");
+            }
+            catch (P4Exception)
+            {
+            }
+
+            try
+            {
                 _initialUser = UserTextBox.Text = commands.GetP4EnvironmentVar("P4USER");
+            }
+            catch (P4Exception)
+            {
             }
         }
 
@@ -65,41 +85,52 @@ namespace PerforceDiffMargin.View
                     SetError("Please, set the address");
                     return;
                 }
-                bool init_res = commands.SetNewPort(PortTextBox.Text);
-                if (!init_res)
+                try
                 {
-                    SetError("An error occured: " + PerforceCommands.GetInstance().GetConnectionError());
-                    return;
-                    // can't connect to Perforce because Port is not set
+                    commands.SetNewPort(PortTextBox.Text);
+                    commands.SetP4EnvironmentVar("P4PORT", PortTextBox.Text);
                 }
-
-                commands.SetP4EnvironmentVar("P4PORT", PortTextBox.Text);
+                catch (P4Exception ex)
+                {
+                    SetError("An error occured: " + ex.Message);
+                    return;
+                }
             }
 
             if (_initialClient != ClientTextBox.Text)
-                commands.SetP4EnvironmentVar("P4CLIENT", ClientTextBox.Text);
+            {
+                try
+                {
+                    commands.SetP4EnvironmentVar("P4CLIENT", ClientTextBox.Text);
+                }
+                catch (P4Exception)
+                {
+                }
+            }
 
             if (_initialUser != UserTextBox.Text)
-                commands.SetP4EnvironmentVar("P4USER", UserTextBox.Text);
+            {
+                try
+                {
+                    commands.SetP4EnvironmentVar("P4USER", UserTextBox.Text);
+                }
+                catch (P4Exception)
+                {
+                }
+            }
 
             string password = PasswordTextBox.Password;
             if (!String.IsNullOrEmpty(password))
             {
-                if (commands.Login(password))
+                try
                 {
-                    var state = commands.RefreshConnection(out string msg);
-                    if (state == PerforceCommands.ConnectionState.Success)
-                    {
-                        SetInfo("Logged in successfully");
-                    }
-                    else
-                    {
-                        SetError("An error occured: " + PerforceCommands.GetInstance().GetConnectionError());
-                    }
+                    commands.Login(password);
+                    commands.RefreshConnection();
+                    SetInfo("Logged in successfully");
                 }
-                else
+                catch (P4Exception ex)
                 {
-                    SetError("An error occured: " + PerforceCommands.GetInstance().GetConnectionError());
+                    SetError("An error occured: " + ex.Message);
                 }
             }
             else
