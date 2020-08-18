@@ -1,12 +1,10 @@
- # Git Diff Margin [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Rating(Short)](https://vsmarketplacebadge.apphb.com/rating-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Installs(Short))](https://vsmarketplacebadge.apphb.com/installs-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Downloads(Short)))](https://vsmarketplacebadge.apphb.com/downloads-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin)
+ # Perforce Diff Margin [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Rating(Short)](https://vsmarketplacebadge.apphb.com/rating-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Installs(Short))](https://vsmarketplacebadge.apphb.com/installs-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Downloads(Short)))](https://vsmarketplacebadge.apphb.com/downloads-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin)
 
-Git Diff Margin displays live Git changes of the currently edited file on Visual Studio margin and scroll bar.
-
-[![Build Status](https://dev.azure.com/techheadbrothers/GitDiffMargin/_apis/build/status/laurentkempe.GitDiffMargin)](https://dev.azure.com/techheadbrothers/GitDiffMargin/_build/latest?definitionId=7) [![Build status](https://ci.appveyor.com/api/projects/status/n2j1hcqpdel0xj0c/branch/master?svg=true)](https://ci.appveyor.com/project/laurentkempe/gitdiffmargin/branch/master) [![Gitter](https://img.shields.io/gitter/room/inferred/freebuilder.svg?style=flat-square)](https://gitter.im/GitDiffMargin/Lobby)
+Perforce Diff Margin displays live Perforce changes of the currently edited file on Visual Studio margin and scroll bar.
 
 ## Features
 
-* Supports Visual Studio 2012 through Visual Studio 2019
+* Supports Visual Studio 2012 through Visual Studio 2019. Tested on Visual Studio 2015 and Visual Studio 2017.
 * Quickly view all current file changes on
     * Left margin
     * Scroll Bars in map and bar mode with and without source overview
@@ -26,17 +24,21 @@ Git Diff Margin displays live Git changes of the currently edited file on Visual
 
 ![Screenshot](https://farm4.staticflickr.com/3893/15335334635_a88dc1f271.jpg)
 
-Git Diff Margin version 3.2.2 is the latest release supporting Visual Studio 2010 it uses LibGit2Sharp v0.23.1 and is not being maintained. You can [download it here](https://github.com/laurentkempe/GitDiffMargin/releases/tag/v3.2.2).
+Perforce Diff Margin version 1.0.0 is the latest release supporting Visual Studio 2012 it uses p4api.net version 2020.1.193.5313. You can [download it here](https://github.com/laurentkempe/GitDiffMargin/releases/tag/v3.2.2).
+
+## Project idea and code base
+
+The project is a clone of [Git Diff Margin](https://github.com/laurentkempe/GitDiffMargin)
+I've adopted existing Git plugin to Perforce control system with some modifications.
 
 ## Sponsor
 
-If you use and 💗 Git Diff Margin extension you can [become a sponsor](https://github.com/sponsors/laurentkempe) now!
+If you use and 💗 Perforce Diff Margin and Git Diff Margin extensions you can [become a sponsor](https://github.com/sponsors/laurentkempe) now!
+He is the author of Git Diff Margin and without his work Perforce Diff Margin would not exists! Thank you! 
 
 ## Installation
 
-Grab it from inside of Visual Studio's Extension Manager searching for **Git Diff Margin**, or via the [Extension Gallery link](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin).
-
-You can use [Chocolatey Git Diff Margin](https://www.chocolatey.org/packages/GitDiffMargin/).
+Grab it from inside of Visual Studio's Extension Manager searching for **Perforce Diff Margin**, or via the [Extension Gallery link](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin).
 
 ## Video
 
@@ -72,6 +74,9 @@ Open the `GitDiffMargin.sln` solution with Visual Studio 2017+, build and run!
 
 Thanks to
 
+* Laurent Kempé [@laurentkempe](https://github.com/laurentkempe) The auther of Git Diff Margin
+
+And other contributors of Git Diff Margin:
 * Sam Harwell [@sharwell](https://github.com/sharwell) for all the improvements
 * Rick Sladkey [@ricksladkey](https://github.com/ricksladkey) for the fixes
 * Ethan J. Brown [@Iristyle](https://github.com/Iristyle) for the first chocolatey package

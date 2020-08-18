@@ -12,7 +12,8 @@
 * Rename Git to Perforce for every item in project (think about separate brunch or local commits and git squash)
 * Remove useless code
 * Fix warnings and check corresponding versions
-* Fix dialog according to TODO in the code, p4 get ariables each time on open
-* Fix README.md
+* **DONE** Fix dialog according to TODO in the code, p4 get ariables each time on open
+* **DONE** Fix README.md
+* Fix plugin file - name, version etc
 * other TODOs
 * fix very slow set get in case P4PORT is unknown.

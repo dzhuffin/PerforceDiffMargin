@@ -32,7 +32,6 @@ namespace PerforceDiffMargin.View
 
             var commands = PerforceCommands.GetInstance();
 
-            // TODO: do the following on open dialog not in c'tor
             _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
             if (_initialPort != null)
             {
