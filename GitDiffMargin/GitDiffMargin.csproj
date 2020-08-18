@@ -126,10 +126,10 @@
       <Link>git2-106a5f2.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\GitDiffMargin-Preview.png">
+    <Resource Include="Resources\PerforceDiffMargin-Preview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\GitDiffMargin-Thumb.png">
+    <Resource Include="Resources\PerforceDiffMargin-Thumb.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="..\LICENSE.md">
