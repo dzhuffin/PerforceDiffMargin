@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 
 namespace PerforceDiffMargin.ViewModel
 {

@@ -1,4 +1,4 @@
-﻿using PerforceDiffMargin.Git;
+﻿using PerforceDiffMargin.Perforce;
 using NUnit.Framework;
 using Shouldly;
 

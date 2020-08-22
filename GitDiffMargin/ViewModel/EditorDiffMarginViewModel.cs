@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 
 #endregion
 

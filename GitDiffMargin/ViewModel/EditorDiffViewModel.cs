@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;

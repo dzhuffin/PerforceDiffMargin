@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Security;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;

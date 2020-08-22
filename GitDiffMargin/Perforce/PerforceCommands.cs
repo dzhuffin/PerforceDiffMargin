@@ -9,7 +9,7 @@ using Perforce.P4;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Diagnostics;
 
-namespace PerforceDiffMargin.Git
+namespace PerforceDiffMargin.Perforce
 {
     public class PerforceCommands
     {

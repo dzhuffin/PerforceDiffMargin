@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using Microsoft.VisualStudio.Text;
 
 namespace PerforceDiffMargin.Core

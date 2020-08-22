@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Text;
 

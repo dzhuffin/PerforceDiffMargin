@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PerforceDiffMargin.Git
+namespace PerforceDiffMargin.Perforce
 {
     public class UnifiedFormatDiffParser
     {

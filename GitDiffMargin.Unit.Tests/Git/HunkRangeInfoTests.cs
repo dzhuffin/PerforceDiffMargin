@@ -1,7 +1,7 @@
 ﻿#region using
 
 using System.Collections.Generic;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using NUnit.Framework;
 using Shouldly;
 

@@ -5,7 +5,7 @@ using System.Linq;
 
 #endregion
 
-namespace PerforceDiffMargin.Git
+namespace PerforceDiffMargin.Perforce
 {
     public class HunkRangeInfo
     {

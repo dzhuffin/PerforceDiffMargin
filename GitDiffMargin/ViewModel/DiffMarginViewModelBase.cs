@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 
 namespace PerforceDiffMargin.ViewModel
 {

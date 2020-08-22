@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using NUnit.Framework;
 using Shouldly;
 
@@ -129,7 +129,7 @@ index 8bb01f5..51495f9 100644
 index e91ba58..e2dbef0 100644
 --- a/note.txt
 +++ b/note.txt
-@@ -7,3 +6,0 @@ using PerforceDiffMargin.Git;
+@@ -7,3 +6,0 @@ using PerforceDiffMargin.Perforce;
 -using Microsoft.VisualStudio.Shell;
 -using Microsoft.VisualStudio.Text;
 -using Microsoft.VisualStudio.Text.Editor;";
@@ -350,7 +350,7 @@ index 6f4c525..a42139b 100644
             var unifiedFormatHunk = gitDiffParser.GetUnifiedFormatHunkLines().ToList();
 
             //Assert
-            unifiedFormatHunk[0].Item1.ShouldBe("@@ -7,3 +6,0 @@ using PerforceDiffMargin.Git;");
+            unifiedFormatHunk[0].Item1.ShouldBe("@@ -7,3 +6,0 @@ using PerforceDiffMargin.Perforce;");
         }
 
         [Test]

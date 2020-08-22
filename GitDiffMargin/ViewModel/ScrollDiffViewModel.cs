@@ -1,6 +1,6 @@
 using System;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 
 namespace PerforceDiffMargin.ViewModel
 {

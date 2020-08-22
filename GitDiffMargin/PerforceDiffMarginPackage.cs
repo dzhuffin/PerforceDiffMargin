@@ -7,7 +7,7 @@ namespace PerforceDiffMargin
     using System;
     using System.Runtime.InteropServices;
     using PerforceDiffMargin.Core;
-    using PerforceDiffMargin.Git;
+    using PerforceDiffMargin.Perforce;
     using Microsoft.VisualStudio.Shell;
     using System.Windows;
     using Microsoft.VisualStudio.Shell.Interop;

@@ -1,4 +1,4 @@
-namespace PerforceDiffMargin.Git
+namespace PerforceDiffMargin.Perforce
 {
     public class HunkRange
     {

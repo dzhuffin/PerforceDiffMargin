@@ -1,6 +1,6 @@
 ﻿using System;
 using PerforceDiffMargin.Core;
-using PerforceDiffMargin.Git;
+using PerforceDiffMargin.Perforce;
 using PerforceDiffMargin.View;
 using PerforceDiffMargin.ViewModel;
 using Microsoft.VisualStudio.Text.Editor;
