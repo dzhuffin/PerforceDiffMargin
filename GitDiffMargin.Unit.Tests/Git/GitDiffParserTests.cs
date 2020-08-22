@@ -10,7 +10,7 @@ namespace PerforceDiffMargin.Unit.Tests.Git
     // ReSharper disable InconsistentNaming 
 
     [TestFixture]
-    public class GitDiffParserTests
+    public class UnifiedDiffParserTests
     {
         /*
         git diff --unified=0 Sources/skyeEditor/Core/Model/Dependency/IModelDependency.cs                                                  
@@ -43,7 +43,7 @@ index b8a4c69..e73b080 100644
 +        bool IsDependencyThroughReference { get; }                                                                                             
          */
 
-        private const string FirstGitDiff = 
+        private const string FirstUnifiedDiff = 
 @"diff --git a/skye-editor/Sources/skyeEditor/Core/Model/Dependency/IModelDependency.cs b/skye-editor/Sources/skyeEditor/Core/Model/Dependency/IModelDependency.cs            
 index b8a4c69..e73b080 100644                                                                                                                                               
 --- a/skye-editor/Sources/skyeEditor/Core/Model/Dependency/IModelDependency.cs                                                                                              
@@ -71,7 +71,7 @@ index b8a4c69..e73b080 100644
 +        bool IsDependencyThroughReference { get; }                                                                                              * 
 ";
 
-        private const string SecondGitDiff = 
+        private const string SecondUnifiedDiff = 
 @"diff --git a/skye-editor/Sources/skyeEditor/Core/Model/Dependency/ModelDependency.cs b/skye-editor/Sources/skyeEditor/Core/Model/Dependency/ModelDependency.cs              
 index 157e930..571aa23 100644                                                                                                                                               
 --- a/skye-editor/Sources/skyeEditor/Core/Model/Dependency/ModelDependency.cs                                                                                               
@@ -112,9 +112,9 @@ index 157e930..571aa23 100644
 -                                                                                                                             
 ";
 
-        private const string EmptyGitDiff = "";
+        private const string EmptyUnifiedDiff = "";
 
-        private const string ThirdGitDiff = 
+        private const string ThirdUnifiedDiff = 
 @"diff --git a/README.md b/README.md
 index 8bb01f5..51495f9 100644
 --- a/README.md
@@ -134,133 +134,11 @@ index e91ba58..e2dbef0 100644
 -using Microsoft.VisualStudio.Text;
 -using Microsoft.VisualStudio.Text.Editor;";
 
-        private const string DiffFromLibGit = 
-@"diff --git a/ConsoleApplication1/Class1.cs b/ConsoleApplication1/Class1.cs
-index 6f4c525..a42139b 100644
---- a/ConsoleApplication1/Class1.cs
-+++ b/ConsoleApplication1/Class1.cs
-@@ -5,2 +4,0 @@
--
--
-@@ -9 +7 @@
--    class Class1
-+    class Class2
-@@ -11,0 +10,2 @@
-+        {
-+            int i = 100;
-@@ -14,2 +13,0 @@
--        {
--            int i = 0;
-@@ -17,0 +16 @@
-+        //Hello
-";
-
         [Test]
-        public void Parse_DiffFromLibGit_Expect5HunkRangeInfos()
+        public void Parse_EmptyUnifiedDiff_Expect0HunkRangeInfos()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos.Count.ShouldBe(5);
-        }
-
-        [Test]
-        public void Parse_DiffFromLibGit_ExpectFirstHunkRangeToBeDeletion()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos[0].IsDeletion.ShouldBe(true);
-            hunkRangeInfos[0].IsAddition.ShouldBe(false);
-            hunkRangeInfos[0].IsModification.ShouldBe(false);
-        }
-
-        [Test]
-        public void Parse_DiffFromLibGit_ExpectSecondHunkRangeToBeModification()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos[1].IsDeletion.ShouldBe(false);
-            hunkRangeInfos[1].IsAddition.ShouldBe(false);
-            hunkRangeInfos[1].IsModification.ShouldBe(true);
-        }
-
-        [Test]
-        public void Parse_DiffFromLibGit_ExpectSecondHunkRangeOriginalText()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos[1].OriginalText.ShouldBe(new List<string> {"    class Class1"});
-        }
-
-        [Test]
-        public void Parse_DiffFromLibGit_ExpectThirdHunkRangeToBeAddition()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos[2].IsDeletion.ShouldBe(false);
-            hunkRangeInfos[2].IsAddition.ShouldBe(true);
-            hunkRangeInfos[2].IsModification.ShouldBe(false);
-        }
-
-        [Test]
-        public void Parse_DiffFromLibGit_ExpectFourthHunkRangeToBeDeletion()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos[3].IsDeletion.ShouldBe(true);
-            hunkRangeInfos[3].IsAddition.ShouldBe(false);
-            hunkRangeInfos[3].IsModification.ShouldBe(false);
-        }
-
-        [Test]
-        public void Parse_DiffFromLibGit_ExpectFifthHunkRangeToBeAddition()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(DiffFromLibGit, 0);
-            
-            //Act
-            var hunkRangeInfos = uniDiffParser.Parse().ToList();
-
-            //Assert
-            hunkRangeInfos[4].IsDeletion.ShouldBe(false);
-            hunkRangeInfos[4].IsAddition.ShouldBe(true);
-            hunkRangeInfos[4].IsModification.ShouldBe(false);
-        }
-
-        [Test]
-        public void Parse_EmptyGitDiff_Expect0HunkRangeInfos()
-        {
-            //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(EmptyGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(EmptyUnifiedDiff, 0);
             
             //Act
             var hunkRangeInfos = uniDiffParser.Parse().ToList();
@@ -273,7 +151,7 @@ index 6f4c525..a42139b 100644
         public void Parse_WithOneHunk_ExpectHunkRanges()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(FirstGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(FirstUnifiedDiff, 0);
             
             //Act
             var hunkRanges = uniDiffParser.Parse().ToList();
@@ -289,7 +167,7 @@ index 6f4c525..a42139b 100644
         public void Parse_WithOneHunkWithoutLineCount_ExpectHunkRanges()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(ThirdGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(ThirdUnifiedDiff, 0);
             
             //Act
             var hunkRanges = uniDiffParser.Parse().ToList();
@@ -305,7 +183,7 @@ index 6f4c525..a42139b 100644
         public void Parse_WithThreeHunk_ExpectHunkRanges()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(SecondGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(SecondUnifiedDiff, 0);
             
             //Act
             var hunkRanges = uniDiffParser.Parse().ToList();
@@ -331,7 +209,7 @@ index 6f4c525..a42139b 100644
         public void GetUnifiedFormatHunkLine_WithOneHunk_ExpectHunkLine()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(FirstGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(FirstUnifiedDiff, 0);
             
             //Act
             var unifiedFormatHunk = uniDiffParser.GetUnifiedFormatHunkLines().ToList();
@@ -357,7 +235,7 @@ index 6f4c525..a42139b 100644
         public void GetUnifiedFormatHunkLine_WithTwoHunk_ExpectHunkLine()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(SecondGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(SecondUnifiedDiff, 0);
             
             //Act
             List<Tuple<string, IEnumerable<string>>> unifiedFormatHunk = uniDiffParser.GetUnifiedFormatHunkLines().ToList();
@@ -372,7 +250,7 @@ index 6f4c525..a42139b 100644
         public void GetHunkOriginalFile_WithOneHunk_ExpectHunkOriginalFile()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(FirstGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(FirstUnifiedDiff, 0);
             
             //Act
             string hunkOriginalFile = uniDiffParser.GetHunkNewFile(uniDiffParser.GetUnifiedFormatHunkLines().First().Item1);
@@ -385,7 +263,7 @@ index 6f4c525..a42139b 100644
         public void GetHunkNewFile_WithOneHunk_ExpectHunkNewFile()
         {
             //Arrange
-            var uniDiffParser = new UnifiedFormatDiffParser(FirstGitDiff, 0);
+            var uniDiffParser = new UnifiedFormatDiffParser(FirstUnifiedDiff, 0);
             
             //Act
             string hunkOriginalFile = uniDiffParser.GetHunkOriginalFile(uniDiffParser.GetUnifiedFormatHunkLines().First().Item1);
