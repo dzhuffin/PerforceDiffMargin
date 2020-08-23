@@ -7,7 +7,7 @@
     [Export(typeof(ICommandHandler))]
     [ContentType("text")]
     [Name(nameof(ShowDiffCommandHandler))]
-    internal class ShowDiffCommandHandler : GitDiffMarginCommandHandler<ShowDiffCommandArgs>
+    internal class ShowDiffCommandHandler : PerforceDiffMarginCommandHandler<ShowDiffCommandArgs>
     {
         public ShowDiffCommandHandler()
             : base(PerforceDiffMarginCommand.ShowDiff)

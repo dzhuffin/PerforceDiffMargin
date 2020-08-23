@@ -13,7 +13,7 @@ namespace PerforceDiffMargin
     using OLECMDEXECOPT = Microsoft.VisualStudio.OLE.Interop.OLECMDEXECOPT;
     using OLECMDF = Microsoft.VisualStudio.OLE.Interop.OLECMDF;
 
-    internal sealed class GitDiffMarginCommandHandler : TextViewCommandFilter
+    internal sealed class PerforceDiffMarginCommandHandler : TextViewCommandFilter
     {
         internal const string PerforceDiffMarginCommandSet = "691DB887-6D82-46A9-B0AF-407C7F0E39BE";
         internal const string PerforceDiffMarginStaticToolbarCommandSet = "6DA7066F-F38D-44D5-A52B-ADC48D274176";
@@ -21,7 +21,7 @@ namespace PerforceDiffMargin
         private readonly IVsEditorAdaptersFactoryService _editorAdaptersFactoryService;
         private readonly ITextView _textView;
 
-        public GitDiffMarginCommandHandler(IVsTextView textViewAdapter, IVsEditorAdaptersFactoryService editorAdaptersFactoryService, ITextView textView)
+        public PerforceDiffMarginCommandHandler(IVsTextView textViewAdapter, IVsEditorAdaptersFactoryService editorAdaptersFactoryService, ITextView textView)
             : base(textViewAdapter)
         {
             if (editorAdaptersFactoryService == null)

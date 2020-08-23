@@ -30,8 +30,8 @@
 
             // The new command handling approach does not require that the command filter be enabled. The command
             // implementations interact directly with the handler via its IOleCommandTarget interface.
-            GitDiffMarginCommandHandler filter = new GitDiffMarginCommandHandler(textViewAdapter, _editorAdaptersFactoryService, textView);
-            textView.Properties.AddProperty(typeof(GitDiffMarginCommandHandler), filter);
+            PerforceDiffMarginCommandHandler filter = new PerforceDiffMarginCommandHandler(textViewAdapter, _editorAdaptersFactoryService, textView);
+            textView.Properties.AddProperty(typeof(PerforceDiffMarginCommandHandler), filter);
         }
     }
 }

@@ -7,7 +7,7 @@
     [Export(typeof(ICommandHandler))]
     [ContentType("text")]
     [Name(nameof(RollbackChangeCommandHandler))]
-    internal class RollbackChangeCommandHandler : GitDiffMarginCommandHandler<RollbackChangeCommandArgs>
+    internal class RollbackChangeCommandHandler : PerforceDiffMarginCommandHandler<RollbackChangeCommandArgs>
     {
         public RollbackChangeCommandHandler()
             : base(PerforceDiffMarginCommand.RollbackChange)

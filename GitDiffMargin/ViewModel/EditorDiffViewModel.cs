@@ -169,7 +169,7 @@ namespace PerforceDiffMargin.ViewModel
                     IVsUIShell4 uiShell = Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell4;
                     if (uiShell != null)
                     {
-                        if (MarginCore.TextView.Properties.TryGetProperty<GitDiffMarginCommandHandler>(typeof(GitDiffMarginCommandHandler), out var commandTarget))
+                        if (MarginCore.TextView.Properties.TryGetProperty<PerforceDiffMarginCommandHandler>(typeof(PerforceDiffMarginCommandHandler), out var commandTarget))
                         {
                             IVsToolbarTrayHost toolbarTrayHost;
                             ErrorHandler.ThrowOnFailure(uiShell.CreateToolbarTray(commandTarget, out toolbarTrayHost));

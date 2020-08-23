@@ -7,7 +7,7 @@
     [Export(typeof(ICommandHandler))]
     [ContentType("text")]
     [Name(nameof(NextChangeCommandHandler))]
-    internal class NextChangeCommandHandler : GitDiffMarginCommandHandler<NextChangeCommandArgs>
+    internal class NextChangeCommandHandler : PerforceDiffMarginCommandHandler<NextChangeCommandArgs>
     {
         public NextChangeCommandHandler()
             : base(PerforceDiffMarginCommand.NextChange)

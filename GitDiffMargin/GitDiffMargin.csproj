@@ -72,8 +72,8 @@
   <ItemGroup>
     <Compile Include="Core\BackgroundParser.cs" />
     <Compile Include="Core\HunksChangedEventArgs.cs" />
-    <Compile Include="GitDiffMarginCommandHandler.cs" />
     <Compile Include="PerforceDiffMarginCommand.cs" />
+    <Compile Include="PerforceDiffMarginCommandHandler.cs" />
     <Compile Include="PerforceDiffMarginPackage.cs" />
     <Compile Include="PerforceDiffMarginStaticToolbarCommand.cs" />
     <Compile Include="PerforceDiffMarginTextViewOptions.cs" />

@@ -7,7 +7,7 @@
     [Export(typeof(ICommandHandler))]
     [ContentType("text")]
     [Name(nameof(CopyOldTextCommandHandler))]
-    internal class CopyOldTextCommandHandler : GitDiffMarginCommandHandler<CopyOldTextCommandArgs>
+    internal class CopyOldTextCommandHandler : PerforceDiffMarginCommandHandler<CopyOldTextCommandArgs>
     {
         public CopyOldTextCommandHandler()
             : base(PerforceDiffMarginCommand.CopyOldText)

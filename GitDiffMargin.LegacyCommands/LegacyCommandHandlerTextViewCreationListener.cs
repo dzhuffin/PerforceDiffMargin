@@ -28,9 +28,9 @@
             if (textView == null)
                 return;
 
-            GitDiffMarginCommandHandler filter = new GitDiffMarginCommandHandler(textViewAdapter, _editorAdaptersFactoryService, textView);
+            PerforceDiffMarginCommandHandler filter = new PerforceDiffMarginCommandHandler(textViewAdapter, _editorAdaptersFactoryService, textView);
             filter.Enabled = true;
-            textView.Properties.AddProperty(typeof(GitDiffMarginCommandHandler), filter);
+            textView.Properties.AddProperty(typeof(PerforceDiffMarginCommandHandler), filter);
         }
     }
 }

@@ -16,7 +16,8 @@
 * **DONE** fix very slow set get in case P4PORT is unknown.
 
 Actual list:
-* Rename Git to Perforce for every item in project
+* **DONE** Rename Git to Perforce for every item in project (code)
+* Fix unit tests and run them
 * Fix README.md
 	+ add correct links
 	+ add instructions for connect/disconnect/p4 set

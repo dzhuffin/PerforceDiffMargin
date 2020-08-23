@@ -7,7 +7,7 @@
     [Export(typeof(ICommandHandler))]
     [ContentType("text")]
     [Name(nameof(PreviousChangeCommandHandler))]
-    internal class PreviousChangeCommandHandler : GitDiffMarginCommandHandler<PreviousChangeCommandArgs>
+    internal class PreviousChangeCommandHandler : PerforceDiffMarginCommandHandler<PreviousChangeCommandArgs>
     {
         public PreviousChangeCommandHandler()
             : base(PerforceDiffMarginCommand.PreviousChange)

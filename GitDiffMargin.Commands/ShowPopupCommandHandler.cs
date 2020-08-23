@@ -7,7 +7,7 @@
     [Export(typeof(ICommandHandler))]
     [ContentType("text")]
     [Name(nameof(ShowPopupCommandHandler))]
-    internal class ShowPopupCommandHandler : GitDiffMarginCommandHandler<ShowPopupCommandArgs>
+    internal class ShowPopupCommandHandler : PerforceDiffMarginCommandHandler<ShowPopupCommandArgs>
     {
         public ShowPopupCommandHandler()
             : base(PerforceDiffMarginCommand.ShowPopup)
