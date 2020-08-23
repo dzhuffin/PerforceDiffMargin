@@ -7,7 +7,7 @@ using Shouldly;
 
 #endregion
 
-namespace PerforceDiffMargin.Unit.Tests.Git
+namespace PerforceDiffMargin.Unit.Tests.Perforce
 {
     // ReSharper disable InconsistentNaming 
 
