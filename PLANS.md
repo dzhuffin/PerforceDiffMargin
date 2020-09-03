@@ -20,8 +20,8 @@ Actual list:
 * Fix unit tests and run them
 * Fix README.md
 	+ add correct links
-	+ add instructions for connect/disconnect/p4 set
-* Fix README-marketplace.md
+	+ **DONE** add instructions for connect/disconnect/p4 set
+* **DONE** Fix README-marketplace.md
 * Scroll in the settings dialog
 * edit AssemblyInfo.cs
 * Final: add to marketplace + links

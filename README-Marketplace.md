@@ -2,6 +2,25 @@
 
 Perforce Diff Margin displays live Perforce changes of the currently edited file on Visual Studio margin and scroll bar.
 
+## Perforce connection setup
+
+To configure Perforce connection Helix Server system variables mechanism is used.
+You can set up them from the plugin. Just open settings in the "Perforce Diff Margin Configuration" toolbar.
+
+[p4 set](https://www.perforce.com/manuals/v18.1/cmdref/Content/CmdRef/p4_set.html) is called under the hood to configure client, workspace and username.
+These 3 things are required to connect. 
+1. P4PORT is the address of the repository.
+2. P4USER is your username
+3. P4CLIENT is workspace name. A few workspaces can exist on 1 machine, so this information is also needed for correct margins.
+
+You can set up the variables manually and connect via P4V desktop client. In this case, the plugin will connect automatically.
+Usually, workspace(P4CLIENT variable) is not set by default.
+
+You can use connect/disconnect in case something get wrong or you want to change the user for example.
+One more usual case: if you lose internet connection the plugin can't work because perforce require a connection for p4 diff. But when you go online again plugin can't know that connection is OK. Here connect button can help.
+
+## Features
+
 *   Supports Visual Studio 2012 through Visual Studio 2019
 *   Quickly view all current file changes on
     *   Left margin
