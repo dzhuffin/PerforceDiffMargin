@@ -9,9 +9,9 @@ You can set up them from the plugin. Just open settings in the "Perforce Diff Ma
 
 [p4 set](https://www.perforce.com/manuals/v18.1/cmdref/Content/CmdRef/p4_set.html) is called under the hood to configure client, workspace and username.
 These 3 things are required to connect. 
-1. P4PORT is the address of the repository.
-2. P4USER is your username
-3. P4CLIENT is workspace name. A few workspaces can exist on 1 machine, so this information is also needed for correct margins.
+1. [P4PORT](https://www.perforce.com/manuals/v17.1/cmdref/Content/CmdRef/P4PORT.html) is the address of the repository.
+2. [P4USER](https://www.perforce.com/manuals/v18.1/cmdref/Content/CmdRef/P4USER.html) is your username
+3. [P4CLIENT](https://www.perforce.com/manuals/v18.1/cmdref/Content/CmdRef/P4CLIENT.html) is workspace name. A few workspaces can exist on 1 machine, so this information is also needed for correct margins.
 
 You can set up the variables manually and connect via P4V desktop client. In this case, the plugin will connect automatically.
 Usually, workspace(P4CLIENT variable) is not set by default.
