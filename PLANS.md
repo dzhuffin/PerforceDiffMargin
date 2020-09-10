@@ -22,6 +22,6 @@ Actual list:
 	+ add correct links
 	+ **DONE** add instructions for connect/disconnect/p4 set
 * **DONE** Fix README-marketplace.md
-* Scroll in the settings dialog
+* **DONE** Scroll in the settings dialog
 * edit AssemblyInfo.cs
 * Final: add to marketplace + links
