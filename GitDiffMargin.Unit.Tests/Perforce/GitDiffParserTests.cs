@@ -191,7 +191,7 @@ index e91ba58..e2dbef0 100644
             //Assert
             hunkRanges[0].OriginalHunkRange.StartingLineNumber.ShouldBe(67);
             hunkRanges[0].OriginalHunkRange.NumberOfLines.ShouldBe(2);
-            hunkRanges[0].NewHunkRange.StartingLineNumber.ShouldBe(66);
+            hunkRanges[0].NewHunkRange.StartingLineNumber.ShouldBe(65);
             hunkRanges[0].NewHunkRange.NumberOfLines.ShouldBe(0);
 
             hunkRanges[1].OriginalHunkRange.StartingLineNumber.ShouldBe(169);
@@ -201,7 +201,7 @@ index e91ba58..e2dbef0 100644
 
             hunkRanges[2].OriginalHunkRange.StartingLineNumber.ShouldBe(184);
             hunkRanges[2].OriginalHunkRange.NumberOfLines.ShouldBe(2);
-            hunkRanges[2].NewHunkRange.StartingLineNumber.ShouldBe(208);
+            hunkRanges[2].NewHunkRange.StartingLineNumber.ShouldBe(207);
             hunkRanges[2].NewHunkRange.NumberOfLines.ShouldBe(0);
         }
 
