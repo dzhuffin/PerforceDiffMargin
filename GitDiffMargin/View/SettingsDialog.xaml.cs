@@ -33,6 +33,8 @@ namespace PerforceDiffMargin.View
 
             var commands = PerforceCommands.GetInstance();
 
+            SetInitialMsg("Errors will be printed here...");
+
             try
             {
                 _initialPort = PortTextBox.Text = commands.GetP4EnvironmentVar("P4PORT");
@@ -60,21 +62,27 @@ namespace PerforceDiffMargin.View
             }
         }
 
+        private void SetInitialMsg(string error)
+        {
+            ResultTextBox.Foreground = Brushes.Gray;
+            ResultTextBox.Text = error.Trim();
+        }
+
         private void SetError(string error)
         {
-            ResultLabel.Foreground = Brushes.Red;
-            ResultLabel.Content = error.Trim();
+            ResultTextBox.Foreground = Brushes.Red;
+            ResultTextBox.Text = error.Trim();
         }
 
         private void SetInfo(string info)
         {
-            ResultLabel.Foreground = Brushes.Black;
-            ResultLabel.Content = info.Trim();
+            ResultTextBox.Foreground = Brushes.Black;
+            ResultTextBox.Text = info.Trim();
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            ResultLabel.Content = "";
+            ResultTextBox.Text = "";
 
             var commands = PerforceCommands.GetInstance();
 
