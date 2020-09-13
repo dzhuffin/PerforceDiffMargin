@@ -7,8 +7,8 @@
     <ProjectGuid>{AFEE8D6F-0358-4628-8CAC-D10668C95057}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GitDiffMargin.Commands</RootNamespace>
-    <AssemblyName>GitDiffMargin.Commands</AssemblyName>
+    <RootNamespace>PerforceDiffMargin.Commands</RootNamespace>
+    <AssemblyName>PerforceDiffMargin.Commands</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

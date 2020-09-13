@@ -23,7 +23,7 @@ using Microsoft.VisualStudio.Shell;
 [assembly: Guid("e4701f35-8030-418e-8e8c-6ae72e229138")]
 
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GitDiffMargin.dll")]
-[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GitDiffMargin.Commands.dll")]
+[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.Commands.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.LegacyCommands.dll")]
 
 // Version information for an assembly consists of the following four values:
