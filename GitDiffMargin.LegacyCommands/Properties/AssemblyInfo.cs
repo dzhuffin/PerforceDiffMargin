@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GitDiffMargin.LegacyCommands")]
+[assembly: AssemblyTitle("PerforceDiffMargin.LegacyCommands")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Laurent Kempé")]
-[assembly: AssemblyProduct("GitDiffMargin.LegacyCommands")]
+[assembly: AssemblyProduct("PerforceDiffMargin.LegacyCommands")]
 [assembly: AssemblyCopyright("Laurent Kempé")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -24,7 +24,7 @@ using Microsoft.VisualStudio.Shell;
 
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GitDiffMargin.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GitDiffMargin.Commands.dll")]
-[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GitDiffMargin.LegacyCommands.dll")]
+[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.LegacyCommands.dll")]
 
 // Version information for an assembly consists of the following four values:
 //
