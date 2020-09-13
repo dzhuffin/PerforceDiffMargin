@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDiffMargin.Extension", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDiffMargin", "GitDiffMargin\GitDiffMargin.csproj", "{233B6F13-7687-4823-870B-A8F44B79D4F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDiffMargin.Unit.Tests", "GitDiffMargin.Unit.Tests\GitDiffMargin.Unit.Tests.csproj", "{B954F515-AC6F-40D4-8169-03985AC62B06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Unit.Tests", "GitDiffMargin.Unit.Tests\PerforceDiffMargin.Unit.Tests.csproj", "{B954F515-AC6F-40D4-8169-03985AC62B06}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1ACE889E-6D42-4673-B624-5E11D4FE5744}"
 	ProjectSection(SolutionItems) = preProject
