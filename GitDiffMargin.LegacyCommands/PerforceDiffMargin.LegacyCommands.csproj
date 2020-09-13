@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GitDiffMargin\GitDiffMargin.csproj">
+    <ProjectReference Include="..\GitDiffMargin\PerforceDiffMargin.csproj">
       <Project>{233b6f13-7687-4823-870b-a8f44b79d4f0}</Project>
-      <Name>GitDiffMargin</Name>
+      <Name>PerforceDiffMargin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

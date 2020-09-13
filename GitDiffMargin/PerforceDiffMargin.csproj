@@ -11,8 +11,8 @@
     <ProjectGuid>{233B6F13-7687-4823-870B-A8F44B79D4F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GitDiffMargin</RootNamespace>
-    <AssemblyName>GitDiffMargin</AssemblyName>
+    <RootNamespace>PerforceDiffMargin</RootNamespace>
+    <AssemblyName>PerforceDiffMargin</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <UseCodebase>true</UseCodebase>
@@ -63,7 +63,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Imaging" Version="15.0.26201" PrivateAssets="all" />
     <!--
       These are not development-only dependencies, but PrivateAssets is still used to avoid transitive dependencies when
-      GitDiffMargin.Commands references this project using a ProjectReference.
+      PerforceDiffMargin.Commands references this project using a ProjectReference.
     -->
     <PackageReference Include="p4api.net" Version="2020.1.193.5313" PrivateAssets="all" />
     <PackageReference Include="VSSDK.Editor.11" Version="11.0.4" PrivateAssets="all" />
@@ -176,7 +176,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="GitDiffMargin.vsct">
+    <VSCTCompile Include="PerforceDiffMargin.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>
