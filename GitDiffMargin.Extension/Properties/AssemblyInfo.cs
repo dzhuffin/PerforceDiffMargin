@@ -5,11 +5,11 @@ using Microsoft.VisualStudio.Shell;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GitDiffMargin.Extension")]
+[assembly: AssemblyTitle("PerforceDiffMargin.Extension")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Laurent Kempé")]
-[assembly: AssemblyProduct("GitDiffMargin.Extension")]
+[assembly: AssemblyProduct("PerforceDiffMargin.Extension")]
 [assembly: AssemblyCopyright("Laurent Kempé")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

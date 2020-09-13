@@ -9,8 +9,8 @@
     <ProjectGuid>{E4701F35-8030-418E-8E8C-6AE72E229138}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GitDiffMargin.Extension</RootNamespace>
-    <AssemblyName>GitDiffMargin.Extension</AssemblyName>
+    <RootNamespace>PerforceDiffMargin.Extension</RootNamespace>
+    <AssemblyName>PerforceDiffMargin.Extension</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
