@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Extension", "GitDiffMargin.Extension\PerforceDiffMargin.Extension.csproj", "{E4701F35-8030-418E-8E8C-6AE72E229138}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Extension", "PerforceDiffMargin.Extension\PerforceDiffMargin.Extension.csproj", "{E4701F35-8030-418E-8E8C-6AE72E229138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin", "GitDiffMargin\PerforceDiffMargin.csproj", "{233B6F13-7687-4823-870B-A8F44B79D4F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin", "PerforceDiffMargin\PerforceDiffMargin.csproj", "{233B6F13-7687-4823-870B-A8F44B79D4F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Unit.Tests", "GitDiffMargin.Unit.Tests\PerforceDiffMargin.Unit.Tests.csproj", "{B954F515-AC6F-40D4-8169-03985AC62B06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Unit.Tests", "PerforceDiffMargin.Unit.Tests\PerforceDiffMargin.Unit.Tests.csproj", "{B954F515-AC6F-40D4-8169-03985AC62B06}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1ACE889E-6D42-4673-B624-5E11D4FE5744}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,9 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Commands", "GitDiffMargin.Commands\PerforceDiffMargin.Commands.csproj", "{AFEE8D6F-0358-4628-8CAC-D10668C95057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Commands", "PerforceDiffMargin.Commands\PerforceDiffMargin.Commands.csproj", "{AFEE8D6F-0358-4628-8CAC-D10668C95057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.LegacyCommands", "GitDiffMargin.LegacyCommands\PerforceDiffMargin.LegacyCommands.csproj", "{359BA5C3-6964-4FA4-941F-FB97E250C521}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.LegacyCommands", "PerforceDiffMargin.LegacyCommands\PerforceDiffMargin.LegacyCommands.csproj", "{359BA5C3-6964-4FA4-941F-FB97E250C521}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
