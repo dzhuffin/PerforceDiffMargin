@@ -1,55 +1,48 @@
-[fork]: https://github.com/laurentkempe/GitDiffMargin/fork
-[pr]: https://github.com/laurentkempe/GitDiffMargin/compare
+# Contributing to Perforce Diff Margin
+We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-# Contributing to Git Diff Margin
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
 
-Hi there! We're delighted that you'd like to contribute to the **Git Diff Margin**. Your help is appreciated and essential for keeping Git Diff Margin great.
+## We Develop with Github
+We use github to host code, to track issues and feature requests, as well as accept pull requests.
 
-Contributions to this project are released to the public under the [project's open source license](LICENSE.md).
+## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
+Pull requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
-Please note that this project is released with a [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+1. Fork the repo and create your branch from `master`.
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Ensure the test suite passes.
+5. Make sure your code lints.
+6. Issue that pull request!
 
-## Feature request
-Do you have a feature that you think would be a great addition to Git Diff Margin, please verify first that we do not have something similar in our [issues labeled feature](https://github.com/laurentkempe/GitDiffMargin/issues?q=is%3Aissue+is%3Aopen+label%3Afeature).
-Also take a peek at our [pull requests](https://github.com/laurentkempe/GitDiffMargin/pulls) to see what we're currently working on. 
-To suggest a feature use the [feature request template](https://github.com/laurentkempe/GitDiffMargin/issues/new?assignees=&labels=&template=feature_request.md&title=).
+## Any contributions you make will be under the MIT Software License
+In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Pull request
-1. [Fork][] and clone the Git Diff Margin repository.
-2. Create a new branch: `git checkout -b my-branch-name`.
-3. Make your change, add tests, and make sure the tests still pass.
-4. Push to your fork and [submit a pull request][pr].
-5. That's it! Your pull request will be reviewed, discussed if needed and finally merged when ready.
+## Report bugs using Github's [issues](https://github.com/w-koder/GitDiffMargin/issues)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
 
-Here are a few things you can do that will increase the likelihood of your pull request being accepted:
+## Write bug reports with detail, background, and sample code
+[This is an example](http://stackoverflow.com/q/12488905/180626) of a bug report, and I think it's not a bad model. Here's [another example from Craig Hockenberry](http://www.openradar.me/11905408), an app developer whom I greatly respect.
 
-- Follow the style/format of the existing code.
-- Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
-- Write tests for your changes.
-- Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+**Great Bug Reports** tend to have:
 
-## Bug Reporting
+- A quick summary and/or background
+- Steps to reproduce
+  - Be specific!
+  - Give sample code if you can.
+- What you expected would happen
+- What actually happens
+- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
 
-Here are a few helpful tips when reporting a bug:
+People *love* thorough bug reports. I'm not even kidding.
 
-- Verify that the bug resides in Git Diff Margin extension.
-- If the bug is not related to the Git Diff Margin extension, visit the [Visual Studio support page](https://www.visualstudio.com/support/support-overview-vs) for help.
-- To report a bug use the [bug report template](https://github.com/laurentkempe/GitDiffMargin/issues/new?assignees=&labels=bug&template=bug_report.md&title=).
-- Screenshots are very helpful in diagnosing bugs and understanding the state of the extension when it's experiencing problems. Please include them whenever possible.
-- A log file is helpful in diagnosing bug issues. 
+## License
+By contributing, you agree that your contributions will be licensed under its MIT License.
 
-To include log files in your issue:
-* Close Visual Studio if it's open
-* Open a Developer Command Prompt for VS2017
-* Run devenv /log
-* Reproduce your issue
-* Close VS
-* Locate the following file on your system and create a gist and link it in the issue report:
-  - `%appdata%\Microsoft\VisualStudio\15.0\ActivityLog.xml`
-
-
-## Resources
-
-- [Contributing to Open Source on GitHub](https://guides.github.com/activities/contributing-to-open-source/)
-- [Using Pull Requests](https://help.github.com/articles/using-pull-requests/)
-- [GitHub Help](https://help.github.com)
+## References
+This document was adapted from the open-source [contribution guidelines](https://gist.github.com/briandk/3d2e8b3ec8daf5a27a62)
