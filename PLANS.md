@@ -17,11 +17,11 @@
 
 Actual list:
 * **DONE** Rename Git to Perforce for every item in project (code)
-* Fix unit tests and run them
+* **DONE** Fix unit tests and run them
 * Fix README.md
 	+ add correct links
 	+ **DONE** add instructions for connect/disconnect/p4 set
 * **DONE** Fix README-marketplace.md
 * **DONE** Scroll in the settings dialog
-* edit AssemblyInfo.cs
+* **DONE** edit AssemblyInfo.cs
 * Final: add to marketplace + links

@@ -7,12 +7,12 @@ using Microsoft.VisualStudio.Shell;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Git Diff Margin")]
-[assembly: AssemblyDescription("Git Diff Margin displays live changes of the currently edited file on Visual Studio margin and scroll bar.")]
+[assembly: AssemblyTitle("Perforce Diff Margin")]
+[assembly: AssemblyDescription("Perforce Diff Margin displays live changes of the currently edited file on Visual Studio margin and scroll bar.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Laurent Kempé")]
-[assembly: AssemblyProduct("Git Diff Margin")]
-[assembly: AssemblyCopyright("Laurent Kempé")]
+[assembly: AssemblyCompany("Andrii Radchenko")]
+[assembly: AssemblyProduct("Perforce Diff Margin")]
+[assembly: AssemblyCopyright("Andrii Radchenko")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(false)]
@@ -32,9 +32,9 @@ using Microsoft.VisualStudio.Shell;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.9.0.0")]
-[assembly: AssemblyFileVersion("3.9.0.0")]
-[assembly: AssemblyInformationalVersion("3.9.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0.0")]
 
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GalaSoft.MvvmLight.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GalaSoft.MvvmLight.Extras.dll")]
