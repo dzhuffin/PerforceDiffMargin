@@ -6,15 +6,16 @@
         "source control"
     ],
     "identity": {
-        "internalName": "GitDiffMargin",
+        "internalName": "PerforceDiffMargin",
         "tags": [
-            "Git"
+            "Perforce",
+            "P4"
         ]
     },
     "overview": "README-Marketplace.md",
     "priceCategory": "free",
-    "publisher": "LaurentKempe",
+    "publisher": "AndriiRadchenko",
     "private": false,
     "qna": true,
-    "repo": "https://github.com/laurentkempe/GitDiffMargin"
+    "repo": "https://github.com/w-koder/PerforceDiffMargin"
 }
