@@ -42,7 +42,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Git-Icon-1788C.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Perforce-Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -137,7 +137,7 @@
     <Resource Include="Resources\Git-Logo-2Color.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Resources\Git-Icon-1788C.ico">
+    <Content Include="Resources\Perforce-Logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -4,10 +4,8 @@
         <Identity Id="PerforceDiffMargin" Version="1.0.0.0" Language="en-US" Publisher="Andrii Radchenko" />
         <DisplayName>Perforce Diff Margin</DisplayName>
         <Description xml:space="preserve">Perforce Diff Margin displays live Perforce changes of the currently edited file on Visual Studio margin and scroll bar. Supports Visual Studio 2012 through Visual Studio 2019.</Description>
-        <MoreInfo>https://github.com/laurentkempe/GitDiffMargin</MoreInfo>
+        <MoreInfo>https://github.com/w-koder/PerforceDiffMargin</MoreInfo>
         <License>License.md</License>
-        <GettingStartedGuide>http://visualstudiogallery.msdn.microsoft.com/cf49cf30-2ca6-4ea0-b7cc-6a8e0dadc1a8</GettingStartedGuide>
-        <ReleaseNotes>https://github.com/laurentkempe/GitDiffMargin/releases/tag/v3.10.2</ReleaseNotes>
         <Icon>Resources/PerforceDiffMargin-Thumb.png</Icon>
         <PreviewImage>Resources/PerforceDiffMargin-Preview.png</PreviewImage>
         <Tags>perforce, p4, gutter, diff, PerforceDiffMargin, GitDiffMargin</Tags>
