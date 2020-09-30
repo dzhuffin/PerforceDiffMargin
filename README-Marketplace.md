@@ -45,12 +45,12 @@ He is the author of Git Diff Margin and without his work Perforce Diff Margin wo
 
 # Get the code
 
-[https://github.com/laurentkempe/GitDiffMargin](https://github.com/laurentkempe/GitDiffMargin)
+[https://github.com/w-koder/PerforceDiffMargin](https://github.com/w-koder/PerforceDiffMargin)
 
 # Report Issue
 
-* To report a bug, please use the [**Issue Tracker**](https://github.com/laurentkempe/GitDiffMargin/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
-* To suggest an idea, please use the [**Issue Tracker**](https://github.com/laurentkempe/GitDiffMargin/issues/new?assignees=&labels=&template=feature_request.md&title=)
+* To report a bug, please use the [**Issue Tracker**](https://github.com/w-koder/PerforceDiffMargin/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
+* To suggest an idea, please use the [**Issue Tracker**](https://github.com/w-koder/PerforceDiffMargin/issues/new?assignees=&labels=&template=feature_request.md&title=)
 
 # Credits
 

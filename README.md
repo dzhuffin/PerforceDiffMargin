@@ -1,4 +1,4 @@
- # Perforce Diff Margin [![VS Marketplace](https://vsmarketplacebadge.apphb.com/version/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Rating(Short)](https://vsmarketplacebadge.apphb.com/rating-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Installs(Short))](https://vsmarketplacebadge.apphb.com/installs-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin) [![Downloads(Short)))](https://vsmarketplacebadge.apphb.com/downloads-short/LaurentKempe.GitDiffMargin.svg)](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin)
+ # Perforce Diff Margin
 
 Perforce Diff Margin displays live Perforce changes of the currently edited file on Visual Studio margin and scroll bar.
 
@@ -40,12 +40,12 @@ One more usual case: if you lose internet connection the plugin can't work becau
 
 ![Screenshot](https://farm4.staticflickr.com/3893/15335334635_a88dc1f271.jpg)
 
-Perforce Diff Margin version 1.0.0 is the latest release supporting Visual Studio 2012 it uses p4api.net version 2020.1.193.5313. You can [download it here](https://github.com/laurentkempe/GitDiffMargin/releases/tag/v3.2.2).
+Perforce Diff Margin version 1.0.0 is the latest release supporting Visual Studio 2012 it uses p4api.net version 2020.1.193.5313.
 
 ## Project idea and code base
 
 The project is a clone of [Git Diff Margin](https://github.com/laurentkempe/GitDiffMargin)
-I've adopted existing Git plugin to Perforce control system with some modifications.
+I've adopted existing Git plugin to Perforce version control system with some modifications.
 
 ## Sponsor
 
@@ -55,10 +55,6 @@ He is the author of Git Diff Margin and without his work Perforce Diff Margin wo
 ## Installation
 
 Grab it from inside of Visual Studio's Extension Manager searching for **Perforce Diff Margin**, or via the [Extension Gallery link](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin).
-
-## Video
-
-You might see a short video showing some Git Diff Margin features on the [following page](https://www.flickr.com/photos/laurentkempe/14879945429/).
 
 ## Contributing
 
@@ -75,16 +71,11 @@ Visit the [Contributor Guidelines](CONTRIBUTING.md) for details on how to contri
 Clone the repository and using a git GUI client or via the command line:
 
 ```txt
-git clone https://github.com/laurentkempe/GitDiffMargin.git
+git clone https://github.com/w-koder/PerforceDiffMargin.git
 cd GitDiffMargin
 ```
 
-Open the `GitDiffMargin.sln` solution with Visual Studio 2017+, build and run!
-
-## Feedback
-
-* Write a [**review**](https://marketplace.visualstudio.com/items?itemName=LaurentKempe.GitDiffMargin#review-details)
-* Tweet me [![Follow on Twitter](https://img.shields.io/twitter/url/http/realvizu.svg?style=social&label=@laurentkempe)](https://twitter.com/laurentkempe)
+Open the `PerforceDiffMargin.sln` solution with Visual Studio 2017+, build and run!
 
 ## Credits
 
