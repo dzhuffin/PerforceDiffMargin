@@ -56,6 +56,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LibGit2Sharp">
+      <Version>0.26.2</Version>
+    </PackageReference>
+    <PackageReference Include="LibGit2Sharp.NativeBinaries">
+      <Version>2.0.312</Version>
+    </PackageReference>
     <PackageReference Include="Tvl.VisualStudio.Text.Utility.10" version="1.0.0" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <!-- This is a development-only dependency. -->
