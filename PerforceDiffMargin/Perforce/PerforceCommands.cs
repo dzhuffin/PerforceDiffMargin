@@ -95,7 +95,7 @@ namespace PerforceDiffMargin.Perforce
             if (!CanGetDiff(textDocument.FilePath))
                 yield break;
 
-            var depotPath = GetPerforcePath(textDocument.FilePath);
+            var depotPath = GetPerforcePath(textDocument.FilePath, _connection.Client.Name);
 
             IList<FileDiff> target = null;
             try
@@ -106,6 +106,8 @@ namespace PerforceDiffMargin.Perforce
                 FileSpec fs = new FileSpec(new DepotPath(depotPath));
                 fsl.Add(fs);
                 target = _repository.GetFileDiffs(fsl, opts);
+                if (target == null)
+                    yield break;
             }
             catch (P4Exception)
             {
@@ -137,7 +139,7 @@ namespace PerforceDiffMargin.Perforce
             if (!IsDiffPerformed(filename))
                 return;
 
-            var depotPath = GetPerforcePath(filename);
+            var depotPath = GetPerforcePath(filename, _connection.Client.Name);
             FileSpec fs = new FileSpec(new DepotPath(depotPath));
 
             var tempFileName = Path.GetTempFileName();
@@ -364,14 +366,14 @@ namespace PerforceDiffMargin.Perforce
             return absolutePath.StartsWith(_perforceRoot, StringComparison.OrdinalIgnoreCase);
         }
 
-        private string GetPerforcePath(string absolutePath)
+        private string GetPerforcePath(string absolutePath, string clientName)
         {
             Debug.Assert(IsDiffPerformed(absolutePath));
             Debug.Assert(IsPerforceRootFound());
 
             string perforcePath = absolutePath.Substring(_perforceRoot.Length, absolutePath.Length - _perforceRoot.Length);
             perforcePath = perforcePath.Replace('\\', '/');
-            perforcePath = perforcePath.Insert(0, "/");
+            perforcePath = string.Format("//{0}{1}", clientName, perforcePath);
 
             return perforcePath;
         }
