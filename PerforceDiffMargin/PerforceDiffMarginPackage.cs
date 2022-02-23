@@ -18,8 +18,10 @@ namespace PerforceDiffMargin
     [Guid("F82C1EF6-3B52-425E-BC28-4934E6073A32")]
 
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideAutoLoad(UIContextGuids80.NoSolution)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
-
+    [ProvideAutoLoad(UIContextGuids80.SolutionHasMultipleProjects)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionHasSingleProject)]
     public class PerforceDiffMarginPackage : Package
     {
         protected override void Initialize()
