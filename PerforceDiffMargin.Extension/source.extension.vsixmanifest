@@ -20,9 +20,7 @@
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="PerforceDiffMargin" Path="|PerforceDiffMargin|" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="PerforceDiffMargin.Commands" TargetVersion="[15.0.27428,17.0)" Path="|PerforceDiffMargin.Commands|" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="PerforceDiffMargin" Path="|PerforceDiffMargin;PkgdefProjectOutputGroup|" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="PerforceDiffMargin.LegacyCommands" TargetVersion="[15.0,15.0.27131)" Path="|PerforceDiffMargin.LegacyCommands|" />
     </Assets>
 </PackageManifest>

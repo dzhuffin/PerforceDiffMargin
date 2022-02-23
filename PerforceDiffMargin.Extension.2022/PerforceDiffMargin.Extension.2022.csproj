@@ -60,18 +60,6 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.1.4054" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PerforceDiffMargin.Commands\PerforceDiffMargin.Commands.csproj">
-      <Project>{AFEE8D6F-0358-4628-8CAC-D10668C95057}</Project>
-      <Name>PerforceDiffMargin.Commands</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-    </ProjectReference>
-    <ProjectReference Include="..\PerforceDiffMargin.LegacyCommands\PerforceDiffMargin.LegacyCommands.csproj">
-      <Project>{359ba5c3-6964-4fa4-941f-fb97e250c521}</Project>
-      <Name>PerforceDiffMargin.LegacyCommands</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-    </ProjectReference>
     <ProjectReference Include="..\PerforceDiffMargin\PerforceDiffMargin.csproj">
       <Project>{233B6F13-7687-4823-870B-A8F44B79D4F0}</Project>
       <Name>PerforceDiffMargin</Name>

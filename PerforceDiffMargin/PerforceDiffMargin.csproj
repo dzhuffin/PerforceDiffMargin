@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DeployExtension>False</DeployExtension>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DeployExtension>False</DeployExtension>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\Perforce-Logo.ico</ApplicationIcon>
@@ -64,7 +66,18 @@
     <PackageReference Include="LibGit2Sharp.NativeBinaries">
       <Version>2.0.312</Version>
     </PackageReference>
-    <PackageReference Include="Tvl.VisualStudio.Text.Utility.10" version="1.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Editor">
+      <Version>17.1.386</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading">
+      <Version>17.1.46</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="StreamJsonRpc">
+      <Version>2.10.41</Version>
+    </PackageReference>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <!-- This is a development-only dependency. -->
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.9.1050" PrivateAssets="all" />
@@ -73,9 +86,7 @@
       These are not development-only dependencies, but PrivateAssets is still used to avoid transitive dependencies when
       PerforceDiffMargin.Commands references this project using a ProjectReference.
     -->
-    <PackageReference Include="p4api.net" Version="2020.1.193.5313" PrivateAssets="all" />
-    <PackageReference Include="VSSDK.Editor.11" Version="11.0.4" PrivateAssets="all" />
-    <PackageReference Include="VSSDK.Shell.11" Version="11.0.4" PrivateAssets="all" />
+    <PackageReference Include="p4api.net" Version="2020.2.207.9205" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

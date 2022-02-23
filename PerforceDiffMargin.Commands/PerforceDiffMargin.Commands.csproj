@@ -52,23 +52,7 @@
     <PackageReference Include="StreamJsonRpc" Version="1.3.23" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlerTextViewCreationListener.cs" />
-    <Compile Include="CopyOldTextCommandArgs.cs" />
-    <Compile Include="CopyOldTextCommandHandler.cs" />
-    <Compile Include="NextChangeCommandArgs.cs" />
-    <Compile Include="NextChangeCommandHandler.cs" />
-    <Compile Include="PerforceDiffMarginCommandBinding.cs" />
-    <Compile Include="PerforceDiffMarginCommandHandler`1.cs" />
-    <Compile Include="PreviousChangeCommandArgs.cs" />
-    <Compile Include="PreviousChangeCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RollbackChangeCommandArgs.cs" />
-    <Compile Include="RollbackChangeCommandHandler.cs" />
-    <Compile Include="ShimCommandHandler.cs" />
-    <Compile Include="ShowDiffCommandArgs.cs" />
-    <Compile Include="ShowDiffCommandHandler.cs" />
-    <Compile Include="ShowPopupCommandArgs.cs" />
-    <Compile Include="ShowPopupCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\PerforceDiffMargin\SharedKey.snk">

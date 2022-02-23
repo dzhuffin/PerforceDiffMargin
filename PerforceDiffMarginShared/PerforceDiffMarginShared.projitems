@@ -9,6 +9,23 @@
     <Import_RootNamespace>PerforceDiffMarginShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CommandFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandHandlerTextViewCreationListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CopyOldTextCommandArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CopyOldTextCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\NextChangeCommandArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\NextChangeCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PerforceDiffMarginCommandBinding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PerforceDiffMarginCommandHandler`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PreviousChangeCommandArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PreviousChangeCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\RollbackChangeCommandArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\RollbackChangeCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ShimCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ShowDiffCommandArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ShowDiffCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ShowPopupCommandArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ShowPopupCommandHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\BackgroundParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\DiffParseResultEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\DiffUpdateBackgroundParser.cs" />
@@ -21,6 +38,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)DiffMarginFactoryBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EditorDiffMargin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EditorDiffMarginFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LegacyCommands\LegacyCommandHandlerTextViewCreationListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OleCommandText.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PerforceDiffMarginCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PerforceDiffMarginCommandHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PerforceDiffMarginPackage.cs" />
@@ -37,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\DiffAdditionEditorFormatDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\DiffModificationEditorFormatDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\DiffRemovedEditorFormatDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextViewCommandFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DiffMarginViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DiffViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EditorDiffMarginViewModel.cs" />

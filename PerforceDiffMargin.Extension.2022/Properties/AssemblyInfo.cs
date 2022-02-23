@@ -21,8 +21,8 @@ using Microsoft.VisualStudio.Shell;
 [assembly: ComVisible(false)]
 
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.dll")]
-[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.Commands.dll")]
-[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.LegacyCommands.dll")]
+//[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.Commands.dll")]
+//[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\PerforceDiffMargin.LegacyCommands.dll")]
 
 // Version information for an assembly consists of the following four values:
 //
