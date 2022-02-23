@@ -24,7 +24,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.LegacyCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerforceDiffMargin.Extension.2022", "PerforceDiffMargin.Extension.2022\PerforceDiffMargin.Extension.2022.csproj", "{1B26BE36-28D5-46FE-9C2B-08751705DD1C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PerforceDiffMarginShared", "PerforceDiffMarginShared\PerforceDiffMarginShared.shproj", "{AD75D909-0C0E-4733-9963-499FC1BD8028}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		PerforceDiffMarginShared\PerforceDiffMarginShared.projitems*{233b6f13-7687-4823-870b-a8f44b79d4f0}*SharedItemsImports = 4
+		PerforceDiffMarginShared\PerforceDiffMarginShared.projitems*{ad75d909-0c0e-4733-9963-499fc1bd8028}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
