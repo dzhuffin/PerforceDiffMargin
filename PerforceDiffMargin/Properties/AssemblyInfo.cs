@@ -39,6 +39,5 @@ using Microsoft.VisualStudio.Shell;
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GalaSoft.MvvmLight.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GalaSoft.MvvmLight.Extras.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\GalaSoft.MvvmLight.Platform.dll")]
-[assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\p4api.net.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\CommonServiceLocator.dll")]
 [assembly: ProvideCodeBase(CodeBase = "$PackageFolder$\\System.Windows.Interactivity.dll")]
