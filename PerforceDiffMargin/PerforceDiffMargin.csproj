@@ -76,7 +76,7 @@
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="p4api.net.x64">
-      <Version>2021.2.226.2490</Version>
+      <Version>2021.2.233.6662</Version>
     </PackageReference>
     <PackageReference Include="StreamJsonRpc">
       <Version>2.10.41</Version>
