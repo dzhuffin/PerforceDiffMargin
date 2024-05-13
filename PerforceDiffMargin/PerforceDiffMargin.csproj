@@ -52,6 +52,29 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>SharedKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -61,30 +84,30 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LibGit2Sharp">
-      <Version>0.26.2</Version>
+      <Version>0.30.0</Version>
     </PackageReference>
     <PackageReference Include="LibGit2Sharp.NativeBinaries">
-      <Version>2.0.306</Version>
+      <Version>2.0.322</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Editor">
-      <Version>17.1.386</Version>
+      <Version>17.9.187</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Threading">
-      <Version>17.1.46</Version>
+      <Version>17.10.48</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="p4api.net.x64">
-      <Version>2021.2.235.1465</Version>
+      <Version>2023.2.255.3501</Version>
     </PackageReference>
     <PackageReference Include="StreamJsonRpc">
-      <Version>2.10.41</Version>
+      <Version>2.17.11</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <!-- This is a development-only dependency. -->
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.9.1050" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VisualStudio.Imaging" Version="15.0.26201" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.9.3184" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Imaging" Version="17.9.37000" PrivateAssets="all" />
     <!--
       These are not development-only dependencies, but PrivateAssets is still used to avoid transitive dependencies when
       PerforceDiffMargin.Commands references this project using a ProjectReference.
@@ -122,6 +145,9 @@
     <Resource Include="Resources\Git-Logo-2Color.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <None Include="..\PerforceDiffMargin.Extension.2022\source.extension.vsixmanifest">
+      <Link>source.extension.vsixmanifest</Link>
+    </None>
     <Content Include="Resources\Perforce-Logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

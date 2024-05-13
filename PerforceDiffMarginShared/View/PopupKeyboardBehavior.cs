@@ -29,6 +29,8 @@ namespace PerforceDiffMargin.View
 {
     public class PopupAllowKeyboardInput
     {
+        private static bool _allowKeyboardInput = false;
+
         public static readonly DependencyProperty IsEnabledProperty =
             DependencyProperty.RegisterAttached(
                 "IsEnabled",
@@ -53,7 +55,13 @@ namespace PerforceDiffMargin.View
 
         private static void EnableKeyboardInput(Popup popup, bool enabled)
         {
-            if (!enabled) return;
+            if (_allowKeyboardInput == enabled)
+                return;
+
+            _allowKeyboardInput = enabled;
+
+            if (!enabled)
+                return;
 
             IInputElement element = null;
             popup.Loaded += (sender, args) =>
@@ -64,7 +72,13 @@ namespace PerforceDiffMargin.View
                     if (popup.Child.IsVisible)
                     {
                         element = Keyboard.FocusedElement;
-                        Keyboard.Focus(popup.Child);
+
+                        try 
+                        {
+                            Keyboard.Focus(popup.Child);
+                        }
+                        catch { }
+                        
                     }
                 };
             };
